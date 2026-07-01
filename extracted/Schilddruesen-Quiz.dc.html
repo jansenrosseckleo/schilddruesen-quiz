@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/miavola-2-0-design-system-019e1fb5-7550-772f-964b-b7aee6a06470/colors_and_type.css">
+<link rel="stylesheet" href="_ds/miavola-2-0-design-system-019e1fb5-7550-772f-964b-b7aee6a06470/supplementary_tokens.css">
+<script src="_ds/miavola-2-0-design-system-019e1fb5-7550-772f-964b-b7aee6a06470/_ds_bundle.js"></script>
+<style>
+  *{box-sizing:border-box;}
+  body{margin:0;}
+  @keyframes mvspin{to{transform:rotate(360deg);}}
+  @keyframes mvpulse{0%,100%{opacity:.35;}50%{opacity:1;}}
+  @keyframes mvbar{0%{transform:translateX(-100%);}100%{transform:translateX(280%);}}
+</style>
+</helmet>
+<div style="width:max-content;min-width:100%;min-height:100vh;box-sizing:border-box;padding:56px 64px 96px;background:#e7e2d9;font-family:var(--font-sans);color:var(--miavola-ink-900);">
+
+  <!-- ====== DOC HEADER ====== -->
+  <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:40px;max-width:1180px;margin-bottom:14px;">
+    <div>
+      <img src="assets/logo-black.png" alt="miavola" style="height:26px;width:auto;display:block;margin-bottom:22px;opacity:.9;">
+      <div style="font:600 12px/1 var(--font-sans);letter-spacing:.18em;text-transform:uppercase;color:#8e4756;margin-bottom:14px;">Schilddrüsen-Quiz · Design System & Screen-Katalog</div>
+      <h1 style="font-family:var(--font-display);font-weight:600;font-size:46px;line-height:1.04;letter-spacing:-.02em;margin:0;max-width:18ch;">Eine ehrliche Einschätzung — kein Verkauf.</h1>
+    </div>
+    <div style="flex:none;text-align:right;font:400 13px/1.6 var(--font-sans);color:var(--miavola-ink-500);max-width:240px;">
+      Wiederverwendbare Komponenten,<br>alle States, Mobile &amp; Desktop.<br>
+      <span style="color:var(--miavola-ink-400);">Übergabe an Claude Code.</span>
+    </div>
+  </div>
+  <div style="height:1px;background:#d3cabf;max-width:1180px;margin:0 0 52px;"></div>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 1 — NORTH STAR / PRINZIPIEN -->
+  <!-- ============================================================ -->
+  <div style="margin-bottom:64px;">
+    <div style="font:600 12px/1 var(--font-sans);letter-spacing:.16em;text-transform:uppercase;color:#8e4756;margin-bottom:16px;">01 · Haltung</div>
+    <div style="display:flex;gap:28px;align-items:stretch;">
+
+      <div style="flex:none;width:560px;background:var(--miavola-wine-700);color:#fff;border-radius:8px;padding:40px 44px;position:relative;overflow:hidden;">
+        <img src="assets/butterfly-mark.png" alt="" style="position:absolute;top:-10px;right:-6px;width:120px;opacity:.14;">
+        <div style="font:600 12px/1 var(--font-sans);letter-spacing:.16em;text-transform:uppercase;color:var(--miavola-gold-light);margin-bottom:18px;">North Star</div>
+        <div style="font-family:var(--font-display);font-weight:500;font-size:30px;line-height:1.2;letter-spacing:-.015em;max-width:20ch;">Das Quiz fühlt sich an wie ein Education-Produkt, nicht wie ein Funnel.</div>
+        <p style="font-size:15px;line-height:1.6;color:rgba(255,255,255,.82);margin:20px 0 0;max-width:46ch;">Eine Influencerin soll es guten Gewissens empfehlen können. Wer durchgeht, geht informiert und mit echtem Mehrwert raus — auch ohne Kauf. Eine Produktempfehlung darf am Ende stehen, als ruhige Schlussfolgerung. Nie als Druck.</p>
+      </div>
+
+      <div style="flex:none;width:560px;display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+        <div style="background:#fff;border:1px solid #e7ddd4;border-radius:8px;padding:22px;">
+          <div style="font-family:var(--font-display);font-weight:600;font-size:17px;margin-bottom:6px;">Mehrwert zuerst</div>
+          <p style="font-size:13.5px;line-height:1.55;color:var(--miavola-ink-500);margin:0;">Jede Frage und jeder Einschub gibt etwas zurück — Verständnis, kein Datensammeln.</p>
+        </div>
+        <div style="background:#fff;border:1px solid #e7ddd4;border-radius:8px;padding:22px;">
+          <div style="font-family:var(--font-display);font-weight:600;font-size:17px;margin-bottom:6px;">Warm &amp; begleitend</div>
+          <p style="font-size:13.5px;line-height:1.55;color:var(--miavola-ink-500);margin:0;">Du-Ansprache, ruhiger Ton, ein Schritt nach dem anderen. Wie eine kundige Freundin.</p>
+        </div>
+        <div style="background:#fff;border:1px solid #e7ddd4;border-radius:8px;padding:22px;">
+          <div style="font-family:var(--font-display);font-weight:600;font-size:17px;margin-bottom:6px;">Ehrlich einordnen</div>
+          <p style="font-size:13.5px;line-height:1.55;color:var(--miavola-ink-500);margin:0;">Keine Diagnose, keine Angst. Klartext darüber, was wahrscheinlich los ist — und was nicht.</p>
+        </div>
+        <div style="background:#fff;border:1px solid #e7ddd4;border-radius:8px;padding:22px;">
+          <div style="font-family:var(--font-display);font-weight:600;font-size:17px;margin-bottom:6px;">Kein Preis-Geschrei</div>
+          <p style="font-size:13.5px;line-height:1.55;color:var(--miavola-ink-500);margin:0;">Im Flow kein Preis, kein Countdown, kein „Jetzt kaufen“. Produkt erst ganz am Ende.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 2 — KOMPONENTEN & STATES -->
+  <!-- ============================================================ -->
+  <div style="margin-bottom:64px;">
+    <div style="font:600 12px/1 var(--font-sans);letter-spacing:.16em;text-transform:uppercase;color:#8e4756;margin-bottom:6px;">02 · Komponenten &amp; States</div>
+    <p style="font-size:14px;color:var(--miavola-ink-500);max-width:60ch;margin:0 0 28px;">Die wiederverwendbaren Bausteine des Quiz mit allen Zuständen. Radius 8px durchgängig, Pills 99px, Buttons in Wine. Antwortflächen sind großzügig (Touch-Target ≥ 56px).</p>
+
+    <div style="display:flex;gap:24px;align-items:flex-start;">
+
+      <!-- Antwortoption single -->
+      <div style="flex:none;width:360px;">
+        <div style="font:600 11px/1 var(--font-sans);letter-spacing:.14em;text-transform:uppercase;color:#8e4756;margin:0 0 12px 2px;">Antwortoption · Single-Select</div>
+        <div style="background:#fff;border:1px solid #e7ddd4;border-radius:8px;padding:20px;display:flex;flex-direction:column;gap:12px;">
+          <!-- default -->
+          <div style="display:flex;align-items:center;gap:14px;padding:16px 18px;border:1px solid var(--miavola-ink-200);border-radius:8px;background:#fff;min-height:56px;">
+            <span style="flex:none;width:22px;height:22px;border-radius:99px;border:1.5px solid var(--miavola-ink-300);"></span>
+            <span style="font-size:15px;color:var(--miavola-ink-800);">Etwas träge, komme aber in Schwung</span>
+            <span style="margin-left:auto;font:600 10px/1 var(--font-sans);letter-spacing:.12em;text-transform:uppercase;color:var(--miavola-ink-300);">default</span>
+          </div>
+          <!-- hover -->
+          <div style="display:flex;align-items:center;gap:14px;padding:16px 18px;border:1.5px solid var(--miavola-wine-500);border-radius:8px;background:#fff;min-height:56px;box-shadow:0 6px 16px rgba(122,51,67,.08);">
+            <span style="flex:none;width:22px;height:22px;border-radius:99px;border:1.5px solid var(--miavola-wine-500);"></span>
+            <span style="font-size:15px;color:var(--miavola-ink-900);">Etwas träge, komme aber in Schwung</span>
+            <span style="margin-left:auto;font:600 10px/1 var(--font-sans);letter-spacing:.12em;text-transform:uppercase;color:var(--miavola-wine-500);">hover</span>
+          </div>
+          <!-- selected -->
+          <div style="display:flex;align-items:center;gap:14px;padding:16px 18px;border:2px solid var(--miavola-wine-700);border-radius:8px;background:var(--mv-tint-produzent);min-height:56px;">
+            <span style="flex:none;width:22px;height:22px;border-radius:99px;border:2px solid var(--miavola-wine-700);display:grid;place-items:center;"><span style="width:10px;height:10px;border-radius:99px;background:var(--miavola-wine-700);"></span></span>
+            <span style="font-size:15px;color:var(--miavola-wine-900);font-weight:500;">Etwas träge, komme aber in Schwung</span>
+            <span style="margin-left:auto;font:600 10px/1 var(--font-sans);letter-spacing:.12em;text-transform:uppercase;color:var(--miavola-wine-700);">selected</span>
+          </div>
+          <!-- disabled -->
+          <div style="display:flex;align-items:center;gap:14px;padding:16px 18px;border:1px solid var(--miavola-ink-200);border-radius:8px;background:var(--miavola-cream-200);min-height:56px;opacity:.55;">
+            <span style="flex:none;width:22px;height:22px;border-radius:99px;border:1.5px solid var(--miavola-ink-300);"></span>
+            <span style="font-size:15px;color:var(--miavola-ink-400);">Etwas träge, komme aber in Schwung</span>
+            <span style="margin-left:auto;font:600 10px/1 var(--font-sans);letter-spacing:.12em;text-transform:uppercase;color:var(--miavola-ink-300);">disabled</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Eingabefeld -->
+      <div style="flex:none;width:340px;">
+        <div style="font:600 11px/1 var(--font-sans);letter-spacing:.14em;text-transform:uppercase;color:#8e4756;margin:0 0 12px 2px;">Eingabefeld · 3 States</div>
+        <div style="background:#fff;border:1px solid #e7ddd4;border-radius:8px;padding:20px;display:flex;flex-direction:column;gap:18px;">
+          <div>
+            <div style="font:500 13px/1 var(--font-sans);color:var(--miavola-ink-500);margin-bottom:8px;">default</div>
+            <div style="display:flex;align-items:center;border:1px solid #1b1b1b;border-radius:8px;padding:15px 18px;background:#fff;">
+              <input disabled placeholder="36,5" style="border:none;outline:none;font:400 16px var(--font-sans);width:100%;background:transparent;color:#1b1b1b;">
+              <span style="font:500 15px var(--font-sans);color:var(--miavola-ink-400);">°C</span>
+            </div>
+          </div>
+          <div>
+            <div style="font:500 13px/1 var(--font-sans);color:var(--miavola-wine-700);margin-bottom:8px;">focus</div>
+            <div style="display:flex;align-items:center;border:1px solid var(--miavola-wine-700);border-radius:8px;padding:15px 18px;background:#fff;box-shadow:0 0 0 3px color-mix(in srgb,var(--miavola-wine-700) 18%,transparent);">
+              <span style="font:400 16px var(--font-sans);color:#1b1b1b;">36,4<span style="display:inline-block;width:1.5px;height:18px;background:var(--miavola-wine-700);vertical-align:-3px;margin-left:1px;animation:mvpulse 1.1s infinite;"></span></span>
+              <span style="margin-left:auto;font:500 15px var(--font-sans);color:var(--miavola-ink-400);">°C</span>
+            </div>
+          </div>
+          <div>
+            <div style="font:500 13px/1 var(--font-sans);color:var(--miavola-error);margin-bottom:8px;">error</div>
+            <div style="display:flex;align-items:center;border:1px solid #B14242;border-radius:8px;padding:15px 18px;background:#fff;">
+              <span style="font:400 16px var(--font-sans);color:#1b1b1b;">42,0</span>
+              <span style="margin-left:auto;font:500 15px var(--font-sans);color:var(--miavola-ink-400);">°C</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:6px;margin-top:8px;color:#B14242;font:400 13px/1.4 var(--font-sans);">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#B14242" stroke-width="1.8" stroke-linecap="round"><path d="M12 8v5M12 16.5v.5"/><circle cx="12" cy="12" r="9"/></svg>
+              Bitte einen Wert zwischen 35,0 und 38,5 eingeben.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Buttons + progress -->
+      <div style="flex:none;width:320px;">
+        <div style="font:600 11px/1 var(--font-sans);letter-spacing:.14em;text-transform:uppercase;color:#8e4756;margin:0 0 12px 2px;">Buttons &amp; Fortschritt</div>
+        <div style="background:#fff;border:1px solid #e7ddd4;border-radius:8px;padding:22px;display:flex;flex-direction:column;gap:16px;">
+          <button class="mv-btn mv-btn--burg mv-btn--block" style="font-family:var(--font-sans);">Weiter</button>
+          <button class="mv-btn mv-btn--ghost mv-btn--block" style="font-family:var(--font-sans);">Zurück</button>
+          <button class="mv-btn mv-btn--block" disabled style="font-family:var(--font-sans);background:var(--miavola-cream-200);color:var(--miavola-ink-300);cursor:not-allowed;">Weiter</button>
+          <div style="font:400 12px var(--font-sans);color:var(--miavola-ink-400);text-align:center;">primär · sekundär · disabled</div>
+          <div style="height:1px;background:#eee3da;margin:2px 0;"></div>
+          <div>
+            <div style="display:flex;justify-content:space-between;font:500 12px var(--font-sans);color:var(--miavola-ink-500);margin-bottom:8px;"><span>Frage 5 von 12</span><span>42%</span></div>
+            <div style="height:6px;border-radius:99px;background:var(--miavola-cream-200);overflow:hidden;"><div style="width:42%;height:100%;border-radius:99px;background:var(--miavola-wine-700);"></div></div>
+          </div>
+          <div style="height:1px;background:#eee3da;margin:2px 0;"></div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <span style="font:600 11px/1 var(--font-sans);letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--miavola-sage-600);border-radius:99px;padding:7px 12px;">Mehrfachauswahl</span>
+            <span style="font:600 11px/1 var(--font-sans);letter-spacing:.1em;text-transform:uppercase;color:var(--miavola-wine-800);background:var(--miavola-butter-300);border-radius:99px;padding:7px 12px;">Optional</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 3 — MOBILE FLOW -->
+  <!-- ============================================================ -->
+  <div style="margin-bottom:64px;" data-screen-label="Mobile Flow">
+    <div style="font:600 12px/1 var(--font-sans);letter-spacing:.16em;text-transform:uppercase;color:#8e4756;margin-bottom:6px;">03 · Der Flow — Mobile</div>
+    <p style="font-size:14px;color:var(--miavola-ink-500);max-width:62ch;margin:0 0 28px;">Der vollständige Weg von Start bis Ergebnis. Primäres Medium, da das Quiz meist über Influencer-Links auf dem Handy geöffnet wird. Screens in Reihenfolge — horizontal scrollen.</p>
+
+    <div style="display:flex;gap:32px;align-items:flex-start;">
+
+      <!-- 01 INTRO -->
+      <div style="flex:none;width:392px;">
+        <div style="margin:0 0 12px 2px;"><div style="font:600 11px/1 var(--font-sans);letter-spacing:.14em;text-transform:uppercase;color:#8e4756;">01 · Intro / Start</div><div style="font:400 12.5px/1.4 var(--font-sans);color:var(--miavola-ink-400);margin-top:4px;">Was erwartet mich, wie lange, was bekomme ich raus.</div></div>
+        <div style="background:#fff;border-radius:34px;padding:10px;border:1px solid #ddd3c8;box-shadow:0 1px 3px rgba(0,0,0,.08),0 18px 40px rgba(26,23,20,.07);">
+          <div style="border-radius:26px;overflow:hidden;background:var(--miavola-cream-50);min-height:812px;display:flex;flex-direction:column;position:relative;">
+            <div style="display:flex;align-items:center;justify-content:center;padding:20px 0 0;position:relative;">
+              <img src="assets/logo-black.png" alt="miavola" style="height:18px;opacity:.85;">
+            </div>
+            <div style="padding:26px 26px 0;flex:1;display:flex;flex-direction:column;">
+              <div style="position:relative;border-radius:8px;background:var(--mv-tint-produzent-x);height:200px;margin-bottom:26px;overflow:hidden;display:grid;place-items:center;">
+                <img src="assets/butterflies-trio.png" alt="" style="width:170px;opacity:.92;">
+                <span style="position:absolute;top:14px;left:14px;font:600 11px/1 var(--font-sans);letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--miavola-sage-600);border-radius:99px;padding:7px 12px;">Kostenlos</span>
+              </div>
+              <h2 style="font-family:var(--font-display);font-weight:600;font-size:30px;line-height:1.1;letter-spacing:-.02em;margin:0 0 12px;">Wie geht es deiner Schilddrüse?</h2>
+              <p style="font-size:15px;line-height:1.6;color:var(--miavola-ink-500);margin:0 0 22px;">Eine kostenlose Selbsteinschätzung. In etwa 3 Minuten bekommst du eine verständliche, ehrliche Einordnung deiner Situation — ganz ohne Diagnose-Versprechen.</p>
+              <div style="display:flex;flex-direction:column;gap:2px;margin-bottom:6px;">
+                <div style="display:flex;align-items:center;gap:14px;padding:14px 0;border-top:1px solid #ece2d9;">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7a3343" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+                  <span style="font-size:14.5px;color:var(--miavola-ink-800);">Etwa 3 Minuten, 12 kurze Fragen</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:14px;padding:14px 0;border-top:1px solid #ece2d9;">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7a3343" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                  <span style="font-size:14.5px;color:var(--miavola-ink-800);">Dein Ergebnis sofort — verständlich erklärt</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:14px;padding:14px 0;border-top:1px solid #ece2d9;border-bottom:1px solid #ece2d9;">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7a3343" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg>
+                  <span style="font-size:14.5px;color:var(--miavola-ink-800);">Mehrwert auch ohne Kauf</span>
+                </div>
+              </div>
+            </div>
+            <div style="padding:18px 26px 26px;">
+              <button class="mv-btn mv-btn--burg mv-btn--block" style="font-family:var(--font-sans);">Quiz starten</button>
+              <p style="text-align:center;font-size:12px;color:var(--miavola-ink-400);margin:14px 0 0;">Kein Login. Keine Diagnose. Du entscheidest, was du teilst.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 02 SINGLE SELECT -->
+      <div style="flex:none;width:392px;">
+        <div style="margin:0 0 12px 2px;"><div style="font:600 11px/1 var(--font-sans);letter-spacing:.14em;text-transform:uppercase;color:#8e4756;">02 · Single-Select</div><div style="font:400 12.5px/1.4 var(--font-sans);color:var(--miavola-ink-400);margin-top:4px;">Eine Antwort. Option 2 ist gewählt.</div></div>
+        <div style="background:#fff;border-radius:34px;padding:10px;border:1px solid #ddd3c8;box-shadow:0 1px 3px rgba(0,0,0,.08),0 18px 40px rgba(26,23,20,.07);">
+          <div style="border-radius:26px;overflow:hidden;background:var(--miavola-cream-50);min-height:812px;display:flex;flex-direction:column;">
+            <div style="display:flex;align-items:center;gap:14px;padding:18px 22px 12px;">
+              <span style="flex:none;width:34px;height:34px;border-radius:99px;border:1px solid var(--miavola-ink-200);display:grid;place-items:center;background:#fff;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3f3833" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></span>
+              <div style="flex:1;height:6px;border-radius:99px;background:var(--miavola-cream-200);overflow:hidden;"><div style="width:25%;height:100%;border-radius:99px;background:var(--miavola-wine-700);"></div></div>
+              <span style="font:500 12px var(--font-sans);color:var(--miavola-ink-500);">3/12</span>
+            </div>
+            <div style="padding:14px 22px 0;flex:1;">
+              <div style="font:600 11px/1 var(--font-sans);letter-spacing:.14em;text-transform:uppercase;color:#8e4756;margin-bottom:12px;">Energie &amp; Antrieb</div>
+              <h2 style="font-family:var(--font-display);font-weight:600;font-size:25px;line-height:1.15;letter-spacing:-.015em;margin:0 0 22px;">Wie fühlst du dich morgens nach dem Aufwachen?</h2>
+              <div style="display:flex;flex-direction:column;gap:12px;">
+                <div style="display:flex;align-items:center;gap:14px;padding:17px 18px;border:1px solid var(--miavola-ink-200);border-radius:8px;background:#fff;min-height:56px;"><span style="flex:none;width:22px;height:22px;border-radius:99px;border:1.5px solid var(--miavola-ink-300);"></span><span style="font-size:15px;color:var(--miavola-ink-800);">Ausgeruht und wach</span></div>
+                <div style="display:flex;align-items:center;gap:14px;padding:17px 18px;border:2px solid var(--miavola-wine-700);border-radius:8px;background:var(--mv-tint-produzent);min-height:56px;"><span style="flex:none;width:22px;height:22px;border-radius:99px;border:2px solid var(--miavola-wine-700);display:grid;place-items:center;"><span style="width:10px;height:10px;border-radius:99px;background:var(--miavola-wine-700);"></span></span><span style="font-size:15px;color:var(--miavola-wine-900);font-weight:500;">Etwas träge, komme aber in Schwung</span></div>
+                <div style="display:flex;align-items:center;gap:14px;padding:17px 18px;border:1px solid var(--miavola-ink-200);border-radius:8px;background:#fff;min-height:56px;"><span style="flex:none;width:22px;height:22px;border-radius:99px;border:1.5px solid var(--miavola-ink-300);"></span><span style="font-size:15px;color:var(--miavola-ink-800);">Erschöpft, obwohl ich genug geschlafen habe</span></div>
+                <div style="display:flex;align-items:center;gap:14px;padding:17px 18px;border:1px solid var(--miavola-ink-200);border-radius:8px;background:#fff;min-height:56px;"><span style="flex:none;width:22px;height:22px;border-radius:99px;border:1.5px solid var(--miavola-ink-300);"></span><span style="font-size:15px;color:var(--miavola-ink-800);">Wie erschlagen — egal wie lange ich schlafe</span></div>
+              </div>
+            </div>
+            <div style="padding:18px 22px 26px;"><button class="mv-btn mv-btn--burg mv-btn--block" style="font-family:var(--font-sans);">Weiter</button></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 03 MULTI SELECT (image cards) -->
+      <div style="flex:none;width:392px;">
+        <div style="margin:0 0 12px 2px;"><div style="font:600 11px/1 var(--font-sans);letter-spacing:.14em;text-transform:uppercase;color:#8e4756;">03 · Multi-Select · Bildkarten</div><div style="font:400 12.5px/1.4 var(--font-sans);color:var(--miavola-ink-400);margin-top:4px;">Mehrere möglich, mit Hinweis. 4 Bild-Karten.</div></div>
+        <div style="background:#fff;border-radius:34px;padding:10px;border:1px solid #ddd3c8;box-shadow:0 1px 3px rgba(0,0,0,.08),0 18px 40px rgba(26,23,20,.07);">
+          <div style="border-radius:26px;overflow:hidden;background:var(--miavola-cream-50);min-height:812px;display:flex;flex-direction:column;">
+            <div style="display:flex;align-items:center;gap:14px;padding:18px 22px 12px;">
+              <span style="flex:none;width:34px;height:34px;border-radius:99px;border:1px solid var(--miavola-ink-200);display:grid;place-items:center;background:#fff;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3f3833" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></span>
+              <div style="flex:1;height:6px;border-radius:99px;background:var(--miavola-cream-200);overflow:hidden;"><div style="width:50%;height:100%;border-radius:99px;background:var(--miavola-wine-700);"></div></div>
+              <span style="font:500 12px var(--font-sans);color:var(--miavola-ink-500);">6/12</span>
+            </div>
+            <div style="padding:14px 22px 0;flex:1;">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;"><span style="font:600 11px/1 var(--font-sans);letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--miavola-sage-600);border-radius:99px;padding:7px 12px;">Mehrfachauswahl</span></div>
+              <h2 style="font-family:var(--font-display);font-weight:600;font-size:25px;line-height:1.15;letter-spacing:-.015em;margin:0 0 6px;">Welche dieser Beschwerden kennst du?</h2>
+              <p style="font-size:14px;color:var(--miavola-ink-500);margin:0 0 18px;">Wähle alles, was auf dich zutrifft — auch Kleinigkeiten.</p>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+                <!-- selected -->
+                <div style="position:relative;border:2px solid var(--miavola-wine-700);border-radius:8px;background:var(--mv-tint-produzent);padding:16px 14px;display:flex;flex-direction:column;gap:12px;min-height:128px;">
+                  <span style="position:absolute;top:10px;right:10px;width:22px;height:22px;border-radius:99px;background:var(--miavola-wine-700);display:grid;place-items:center;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 5 10-12"/></svg></span>
+                  <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#7a3343" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a4 4 0 0 0-4 4c0 2 1 3 1 5s-2 3-2 5a3 3 0 0 0 5 2 3 3 0 0 0 5-2c0-2-2-3-2-5s1-3 1-5a4 4 0 0 0-4-4z"/></svg>
+                  <span style="font-size:14px;font-weight:500;color:var(--miavola-wine-900);line-height:1.25;">Müdigkeit &amp; Antriebslosigkeit</span>
+                </div>
+                <!-- default -->
+                <div style="position:relative;border:1px solid var(--miavola-ink-200);border-radius:8px;background:#fff;padding:16px 14px;display:flex;flex-direction:column;gap:12px;min-height:128px;">
+                  <span style="position:absolute;top:10px;right:10px;width:22px;height:22px;border-radius:6px;border:1.5px solid var(--miavola-ink-300);"></span>
+                  <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#7a3343" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M7 8l5-5 5 5M6 13l6-6 6 6M8 18l4-4 4 4"/></svg>
+                  <span style="font-size:14px;color:var(--miavola-ink-800);line-height:1.25;">Frieren &amp; kalte Hände</span>
+                </div>
+                <!-- selected -->
+                <div style="position:relative;border:2px solid var(--miavola-wine-700);border-radius:8px;background:var(--mv-tint-produzent);padding:16px 14px;display:flex;flex-direction:column;gap:12px;min-height:128px;">
+                  <span style="position:absolute;top:10px;right:10px;width:22px;height:22px;border-radius:99px;background:var(--miavola-wine-700);display:grid;place-items:center;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 5 10-12"/></svg></span>
+                  <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#7a3343" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4c0 4-3 5-3 9a4 4 0 0 0 8 0c0-3-2-4-2-7M14 6c0 3 3 4 3 8a3 3 0 0 1-3 3"/></svg>
+                  <span style="font-size:14px;font-weight:500;color:var(--miavola-wine-900);line-height:1.25;">Haarausfall &amp; trockene Haut</span>
+                </div>
+                <!-- default -->
+                <div style="position:relative;border:1px solid var(--miavola-ink-200);border-radius:8px;background:#fff;padding:16px 14px;display:flex;flex-direction:column;gap:12px;min-height:128px;">
+                  <span style="position:absolute;top:10px;right:10px;width:22px;height:22px;border-radius:6px;border:1.5px solid var(--miavola-ink-300);"></span>
+                  <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#7a3343" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v6M5 9h14l-1.5 9a2 2 0 0 1-2 1.7H8.5a2 2 0 0 1-2-1.7L5 9z"/></svg>
+                  <span style="font-size:14px;color:var(--miavola-ink-800);line-height:1.25;">Gewichtszunahme</span>
+                </div>
+              </div>
+            </div>
+            <div style="padding:18px 22px 26px;display:flex;flex-direction:column;gap:10px;"><button class="mv-btn mv-btn--burg mv-btn--block" style="font-family:var(--font-sans);">Weiter · 2 gewählt</button><button style="border:none;background:none;font:500 14px var(--font-sans);color:var(--miavola-ink-400);cursor:pointer;padding:6px;">Trifft nichts zu</button></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 04 NUMERIC INPUT -->
+      <div style="flex:none;width:392px;">
+        <div style="margin:0 0 12px 2px;"><div style="font:600 11px/1 var(--font-sans);letter-spacing:.14em;text-transform:uppercase;color:#8e4756;">04 · Freitext / Zahleneingabe</div><div style="font:400 12.5px/1.4 var(--font-sans);color:var(--miavola-ink-400);margin-top:4px;">Mit Validierung. Hier im Focus-State.</div></div>
+        <div style="background:#fff;border-radius:34px;padding:10px;border:1px solid #ddd3c8;box-shadow:0 1px 3px rgba(0,0,0,.08),0 18px 40px rgba(26,23,20,.07);">
+          <div style="border-radius:26px;overflow:hidden;background:var(--miavola-cream-50);min-height:812px;display:flex;flex-direction:column;">
+            <div style="display:flex;align-items:center;gap:14px;padding:18px 22px 12px;">
+              <span style="flex:none;width:34px;height:34px;border-radius:99px;border:1px solid var(--miavola-ink-200);display:grid;place-items:center;background:#fff;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3f3833" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></span>
+              <div style="flex:1;height:6px;border-radius:99px;background:var(--miavola-cream-200);overflow:hidden;"><div style="width:75%;height:100%;border-radius:99px;background:var(--miavola-wine-700);"></div></div>
+              <span style="font:500 12px var(--font-sans);color:var(--miavola-ink-500);">9/12</span>
+            </div>
+            <div style="padding:14px 22px 0;flex:1;">
+              <div style="font:600 11px/1 var(--font-sans);letter-spacing:.14em;text-transform:uppercase;color:#8e4756;margin-bottom:12px;">Ein kleiner Selbsttest</div>
+              <h2 style="font-family:var(--font-display);font-weight:600;font-size:25px;line-height:1.15;letter-spacing:-.015em;margin:0 0 8px;">Wie ist deine Aufwach-Temperatur?</h2>
+              <p style="font-size:14px;color:var(--miavola-ink-500);margin:0 0 26px;">Miss direkt nach dem Aufwachen, noch im Liegen. Eine niedrige Basaltemperatur kann ein Hinweis sein — kein Beweis.</p>
+              <div style="display:flex;align-items:center;border:1px solid var(--miavola-wine-700);border-radius:8px;padding:20px 22px;background:#fff;box-shadow:0 0 0 3px color-mix(in srgb,var(--miavola-wine-700) 18%,transparent);margin-bottom:14px;">
+                <span style="font:400 34px var(--font-display);color:#1b1b1b;letter-spacing:-.01em;">36,4<span style="display:inline-block;width:2px;height:30px;background:var(--miavola-wine-700);vertical-align:-4px;margin-left:2px;animation:mvpulse 1.1s infinite;"></span></span>
+                <span style="margin-left:auto;font:500 22px var(--font-display);color:var(--miavola-ink-400);">°C</span>
+              </div>
+              <div style="display:flex;align-items:flex-start;gap:8px;color:var(--miavola-ink-400);font:400 13px/1.5 var(--font-sans);">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#8c8079" stroke-width="1.6" stroke-linecap="round" style="margin-top:1px;flex:none;"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8v.5"/></svg>
+                Gültig zwischen 35,0 und 38,5 °C. Du kannst den Wert auch später nachtragen.
+              </div>
+            </div>
+            <div style="padding:18px 22px 26px;display:flex;flex-direction:column;gap:10px;"><button class="mv-btn mv-btn--burg mv-btn--block" style="font-family:var(--font-sans);">Weiter</button><button style="border:none;background:none;font:500 14px var(--font-sans);color:var(--miavola-ink-400);cursor:pointer;padding:6px;">Weiß ich gerade nicht</button></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 05 EDUCATION INTERSTITIAL -->
+      <div style="flex:none;width:392px;">
+        <div style="margin:0 0 12px 2px;"><div style="font:600 11px/1 var(--font-sans);letter-spacing:.14em;text-transform:uppercase;color:#8e4756;">05 · Education-Einschub</div><div style="font:400 12.5px/1.4 var(--font-sans);color:var(--miavola-ink-400);margin-top:4px;">Wissens-Moment zwischen Fragen. Nie Produktanbahnung.</div></div>
+        <div style="background:#fff;border-radius:34px;padding:10px;border:1px solid #ddd3c8;box-shadow:0 1px 3px rgba(0,0,0,.08),0 18px 40px rgba(26,23,20,.07);">
+          <div style="border-radius:26px;overflow:hidden;background:var(--miavola-wine-700);min-height:812px;display:flex;flex-direction:column;position:relative;color:#fff;">
+            <img src="assets/butterfly-mark.png" alt="" style="position:absolute;top:24px;right:22px;width:34px;opacity:.5;">
+            <div style="padding:32px 28px 0;flex:1;display:flex;flex-direction:column;">
+              <div style="font:600 11px/1 var(--font-sans);letter-spacing:.16em;text-transform:uppercase;color:var(--miavola-gold-light);margin-bottom:auto;padding-top:40px;">Schon gewusst?</div>
+              <div style="padding:40px 0;">
+                <h2 style="font-family:var(--font-display);font-weight:500;font-size:29px;line-height:1.2;letter-spacing:-.015em;margin:0 0 18px;max-width:18ch;">Deine Schilddrüse steuert fast jede Zelle deines Körpers.</h2>
+                <p style="font-size:15px;line-height:1.65;color:rgba(255,255,255,.82);margin:0 0 18px;">Über die Hormone T3 und T4 reguliert sie Stoffwechsel, Temperatur, Herzschlag und Stimmung. Läuft sie zu langsam, spürst du das überall gleichzeitig — genau deshalb fühlen sich die Beschwerden oft so diffus an.</p>
+                <p style="font-size:13px;line-height:1.6;color:rgba(255,255,255,.6);margin:0;border-top:1px solid rgba(255,255,255,.18);padding-top:14px;">Für die Bildung dieser Hormone braucht der Körper u.a. Jod und Selen.<sup style="font-size:.7em;">1,4</sup></p>
+              </div>
+            </div>
+            <div style="padding:18px 28px 28px;">
+              <button class="mv-btn mv-btn--block" style="font-family:var(--font-sans);background:#fff;color:var(--miavola-wine-800);">Weiter geht's</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 06 PROGRESS MILESTONE -->
+      <div style="flex:none;width:392px;">
+        <div style="margin:0 0 12px 2px;"><div style="font:600 11px/1 var(--font-sans);letter-spacing:.14em;text-transform:uppercase;color:#8e4756;">06 · Motivations-Moment</div><div style="font:400 12.5px/1.4 var(--font-sans);color:var(--miavola-ink-400);margin-top:4px;">Über die Hälfte geschafft.</div></div>
+        <div style="background:#fff;border-radius:34px;padding:10px;border:1px solid #ddd3c8;box-shadow:0 1px 3px rgba(0,0,0,.08),0 18px 40px rgba(26,23,20,.07);">
+          <div style="border-radius:26px;overflow:hidden;background:var(--miavola-cream-50);min-height:812px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 34px;">
+            <img src="assets/butterfly-rose.png" alt="" style="width:120px;margin-bottom:30px;">
+            <div style="width:200px;height:6px;border-radius:99px;background:var(--miavola-cream-200);overflow:hidden;margin-bottom:26px;"><div style="width:58%;height:100%;border-radius:99px;background:var(--miavola-wine-700);"></div></div>
+            <h2 style="font-family:var(--font-display);font-weight:600;font-size:30px;line-height:1.12;letter-spacing:-.02em;margin:0 0 14px;">Über die Hälfte geschafft.</h2>
+            <p style="font-size:15.5px;line-height:1.6;color:var(--miavola-ink-500);margin:0 0 34px;max-width:30ch;">Noch 5 kurze Fragen — danach ordnen wir alles für dich ein. Du machst das super.</p>
+            <button class="mv-btn mv-btn--burg" style="font-family:var(--font-sans);min-width:200px;">Weiter</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 07 EMAIL CAPTURE -->
+      <div style="flex:none;width:392px;">
+        <div style="margin:0 0 12px 2px;"><div style="font:600 11px/1 var(--font-sans);letter-spacing:.14em;text-transform:uppercase;color:#8e4756;">07 · E-Mail-Capture · soft</div><div style="font:400 12.5px/1.4 var(--font-sans);color:var(--miavola-ink-400);margin-top:4px;">Optional, kein Gate. Skip immer sichtbar.</div></div>
+        <div style="background:#fff;border-radius:34px;padding:10px;border:1px solid #ddd3c8;box-shadow:0 1px 3px rgba(0,0,0,.08),0 18px 40px rgba(26,23,20,.07);">
+          <div style="border-radius:26px;overflow:hidden;background:var(--miavola-cream-50);min-height:812px;display:flex;flex-direction:column;">
+            <div style="padding:30px 26px 0;flex:1;">
+              <div style="font:600 11px/1 var(--font-sans);letter-spacing:.14em;text-transform:uppercase;color:#8e4756;margin-bottom:16px;">Fast geschafft</div>
+              <h2 style="font-family:var(--font-display);font-weight:600;font-size:28px;line-height:1.12;letter-spacing:-.02em;margin:0 0 12px;">Dein Ergebnis ist fertig.</h2>
+              <p style="font-size:15px;line-height:1.6;color:var(--miavola-ink-500);margin:0 0 26px;">Du bekommst es gleich direkt auf dem Bildschirm. Wenn du magst, schicken wir dir zusätzlich vertiefende Infos passend zu deinen Antworten per Mail.</p>
+              <div style="display:flex;align-items:center;border:1px solid #1b1b1b;border-radius:8px;padding:16px 18px;background:#fff;margin-bottom:14px;">
+                <input placeholder="deine@email.de" disabled style="border:none;outline:none;font:400 15px var(--font-sans);width:100%;background:transparent;color:#1b1b1b;">
+              </div>
+              <label style="display:flex;align-items:flex-start;gap:10px;font-size:12.5px;line-height:1.5;color:var(--miavola-ink-400);cursor:pointer;">
+                <span style="flex:none;width:18px;height:18px;border-radius:5px;border:1.5px solid var(--miavola-ink-300);margin-top:1px;"></span>
+                Ja, schickt mir vertiefende Infos zu meinem Ergebnis. Abmeldung jederzeit.
+              </label>
+            </div>
+            <div style="padding:18px 26px 26px;display:flex;flex-direction:column;gap:8px;">
+              <button class="mv-btn mv-btn--burg mv-btn--block" style="font-family:var(--font-sans);">Ergebnis ansehen</button>
+              <button style="border:none;background:none;font:500 14px var(--font-sans);color:var(--miavola-ink-500);cursor:pointer;padding:10px;text-decoration:underline;text-underline-offset:3px;">Direkt zum Ergebnis — ohne E-Mail</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 08 ANALYSE -->
+      <div style="flex:none;width:392px;">
+        <div style="margin:0 0 12px 2px;"><div style="font:600 11px/1 var(--font-sans);letter-spacing:.14em;text-transform:uppercase;color:#8e4756;">08 · Übergang / Analyse</div><div style="font:400 12.5px/1.4 var(--font-sans);color:var(--miavola-ink-400);margin-top:4px;">Ruhiger Moment, bevor das Ergebnis kommt.</div></div>
+        <div style="background:#fff;border-radius:34px;padding:10px;border:1px solid #ddd3c8;box-shadow:0 1px 3px rgba(0,0,0,.08),0 18px 40px rgba(26,23,20,.07);">
+          <div style="border-radius:26px;overflow:hidden;background:var(--miavola-cream-50);min-height:812px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 36px;">
+            <div style="position:relative;width:74px;height:74px;margin-bottom:32px;">
+              <div style="position:absolute;inset:0;border-radius:99px;border:3px solid var(--miavola-cream-200);"></div>
+              <div style="position:absolute;inset:0;border-radius:99px;border:3px solid transparent;border-top-color:var(--miavola-wine-700);animation:mvspin 1s linear infinite;"></div>
+              <img src="assets/butterfly-mark.png" alt="" style="position:absolute;inset:0;margin:auto;width:30px;">
+            </div>
+            <h2 style="font-family:var(--font-display);font-weight:600;font-size:26px;line-height:1.15;letter-spacing:-.015em;margin:0 0 28px;">Wir werten deine<br>Antworten aus …</h2>
+            <div style="display:flex;flex-direction:column;gap:14px;width:100%;max-width:260px;text-align:left;">
+              <div style="display:flex;align-items:center;gap:12px;font-size:14.5px;color:var(--miavola-ink-700);"><span style="flex:none;width:22px;height:22px;border-radius:99px;background:var(--miavola-wine-700);display:grid;place-items:center;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 5 10-12"/></svg></span>Antworten zusammengeführt</div>
+              <div style="display:flex;align-items:center;gap:12px;font-size:14.5px;color:var(--miavola-ink-700);"><span style="flex:none;width:22px;height:22px;border-radius:99px;border:2px solid var(--miavola-wine-700);animation:mvpulse 1.1s infinite;"></span>Muster erkennen …</div>
+              <div style="display:flex;align-items:center;gap:12px;font-size:14.5px;color:var(--miavola-ink-300);"><span style="flex:none;width:22px;height:22px;border-radius:99px;border:2px solid var(--miavola-ink-200);"></span>Einordnung vorbereiten</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 4 — ERGEBNISSEITE (HERZSTÜCK) -->
+  <!-- ============================================================ -->
+  <div style="margin-bottom:64px;" data-screen-label="Ergebnisseite">
+    <div style="font:600 12px/1 var(--font-sans);letter-spacing:.16em;text-transform:uppercase;color:#8e4756;margin-bottom:6px;">04 · Ergebnisseite — das Herzstück</div>
+    <p style="font-size:14px;color:var(--miavola-ink-500);max-width:64ch;margin:0 0 28px;">Education-first, in fünf klar getrennten Abschnitten: Validierung → Mechanismus → was das für dich heißt → sanfter nächster Schritt → Empowerment. Der Produktblock ist Teil von (d), als ruhige Schlussfolgerung.</p>
+
+    <div style="display:flex;gap:32px;align-items:flex-start;">
+
+      <!-- FULL RESULT — mobile, scroll content -->
+      <div style="flex:none;width:392px;">
+        <div style="margin:0 0 12px 2px;"><div style="font:600 11px/1 var(--font-sans);letter-spacing:.14em;text-transform:uppercase;color:#8e4756;">09 · Ergebnis · Mobile (vollständig)</div><div style="font:400 12.5px/1.4 var(--font-sans);color:var(--miavola-ink-400);margin-top:4px;">Beispiel-Typ: deutliche Anzeichen.</div></div>
+        <div style="background:#fff;border-radius:34px;padding:10px;border:1px solid #ddd3c8;box-shadow:0 1px 3px rgba(0,0,0,.08),0 18px 40px rgba(26,23,20,.07);">
+          <div style="border-radius:26px;overflow:hidden;background:var(--miavola-cream-50);display:flex;flex-direction:column;">
+
+            <!-- logo bar -->
+            <div style="display:flex;align-items:center;justify-content:center;padding:18px 0 6px;"><img src="assets/logo-black.png" alt="miavola" style="height:16px;opacity:.85;"></div>
+
+            <!-- HEADER + gauge -->
+            <div style="margin:8px 14px 0;border-radius:8px;background:var(--mv-tint-produzent-x);padding:26px 22px;position:relative;overflow:hidden;">
+              <img src="assets/butterfly-mark.png" alt="" style="position:absolute;top:-6px;right:-4px;width:78px;opacity:.18;">
+              <div style="font:600 11px/1 var(--font-sans);letter-spacing:.14em;text-transform:uppercase;color:#8e4756;margin-bottom:12px;">Deine Einschätzung</div>
+              <h2 style="font-family:var(--font-display);font-weight:600;font-size:26px;line-height:1.12;letter-spacing:-.02em;margin:0 0 18px;">Deutliche Anzeichen für eine Unterfunktion.</h2>
+              <div style="display:flex;gap:6px;margin-bottom:10px;">
+                <div style="flex:1;height:8px;border-radius:99px;background:#e3cfce;"></div>
+                <div style="flex:1;height:8px;border-radius:99px;background:#e3cfce;"></div>
+                <div style="flex:1;height:8px;border-radius:99px;background:var(--miavola-wine-700);"></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;font:500 11px var(--font-sans);color:var(--miavola-ink-400);"><span>leicht</span><span>möglich</span><span style="color:var(--miavola-wine-700);font-weight:700;">deutlich</span></div>
+            </div>
+
+            <!-- a) VALIDIERUNG -->
+            <div style="padding:30px 24px 0;">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;"><span style="font:700 12px var(--font-sans);color:var(--miavola-wine-700);">a</span><span style="font:600 11px/1 var(--font-sans);letter-spacing:.14em;text-transform:uppercase;color:#8e4756;">Das sehen wir bei dir</span></div>
+              <p style="font-size:15px;line-height:1.6;color:var(--miavola-ink-800);margin:0 0 16px;">Du hast mehrere typische Beschwerden angegeben, die oft zusammen auftreten. Das ist anstrengend — und du bildest dir das nicht ein.</p>
+              <div style="display:flex;flex-wrap:wrap;gap:8px;">
+                <span style="font-size:13px;background:#fff;border:1px solid var(--miavola-ink-200);border-radius:99px;padding:8px 14px;color:var(--miavola-ink-700);">Anhaltende Müdigkeit</span>
+                <span style="font-size:13px;background:#fff;border:1px solid var(--miavola-ink-200);border-radius:99px;padding:8px 14px;color:var(--miavola-ink-700);">Frieren</span>
+                <span style="font-size:13px;background:#fff;border:1px solid var(--miavola-ink-200);border-radius:99px;padding:8px 14px;color:var(--miavola-ink-700);">Haarausfall</span>
+                <span style="font-size:13px;background:#fff;border:1px solid var(--miavola-ink-200);border-radius:99px;padding:8px 14px;color:var(--miavola-ink-700);">Temp. 36,4 °C</span>
+              </div>
+            </div>
+
+            <div style="height:1px;background:#eadfd5;margin:28px 24px;"></div>
+
+            <!-- b) MECHANISMUS -->
+            <div style="padding:0 24px;">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;"><span style="font:700 12px var(--font-sans);color:var(--miavola-wine-700);">b</span><span style="font:600 11px/1 var(--font-sans);letter-spacing:.14em;text-transform:uppercase;color:#8e4756;">Was wahrscheinlich los ist</span></div>
+              <h3 style="font-family:var(--font-display);font-weight:600;font-size:21px;line-height:1.2;margin:0 0 12px;">Dein Stoffwechsel läuft vermutlich auf Sparflamme.</h3>
+              <p style="font-size:14.5px;line-height:1.65;color:var(--miavola-ink-700);margin:0 0 14px;">Deine Antworten passen zu einer Schilddrüse, die zu wenig Hormone bereitstellt. Weil T3 und T4 fast jede Zelle steuern, macht sich das überall bemerkbar: weniger Energie, frieren, langsamere Haut und Haare.</p>
+              <div style="background:var(--miavola-cream-100);border-radius:8px;padding:16px 18px;font-size:13.5px;line-height:1.55;color:var(--miavola-ink-600,#755469);"><strong style="color:var(--miavola-ink-800);">Wichtig:</strong> Das ist eine Einordnung, keine Diagnose. Sicherheit gibt nur ein Blutbild bei deinem Arzt.</div>
+            </div>
+
+            <div style="height:1px;background:#eadfd5;margin:28px 24px;"></div>
+
+            <!-- c) WAS DAS FÜR DICH HEISST -->
+            <div style="padding:0 24px;">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;"><span style="font:700 12px var(--font-sans);color:var(--miavola-wine-700);">c</span><span style="font:600 11px/1 var(--font-sans);letter-spacing:.14em;text-transform:uppercase;color:#8e4756;">Was das für dich heißt</span></div>
+              <div style="display:flex;flex-direction:column;gap:12px;">
+                <div style="background:#fff;border:1px solid #ece2d9;border-radius:8px;padding:18px;display:flex;gap:14px;">
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#7a3343" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px;"><path d="M12 3a4 4 0 0 0-4 4c0 2 1 3 1 5s-2 3-2 5a3 3 0 0 0 5 2 3 3 0 0 0 5-2c0-2-2-3-2-5s1-3 1-5a4 4 0 0 0-4-4z"/></svg>
+                  <div><div style="font-weight:600;font-size:15px;margin-bottom:4px;">Beobachte 1–2 Wochen</div><p style="margin:0;font-size:13.5px;line-height:1.55;color:var(--miavola-ink-500);">Notiere Energie, Temperatur &amp; Schlaf. Muster helfen dir und deinem Arzt.</p></div>
+                </div>
+                <div style="background:#fff;border:1px solid #ece2d9;border-radius:8px;padding:18px;display:flex;gap:14px;">
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#7a3343" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px;"><path d="M6 3v6a6 6 0 0 0 12 0V3M9 21a3 3 0 0 1 6 0"/><path d="M18 9a3 3 0 0 0 0 6"/></svg>
+                  <div><div style="font-weight:600;font-size:15px;margin-bottom:4px;">Sprich beim Arzt diese Werte an</div><p style="margin:0;font-size:13.5px;line-height:1.55;color:var(--miavola-ink-500);">TSH, fT3, fT4 und die Antikörper TPO-AK geben Klarheit über Hashimoto.</p></div>
+                </div>
+                <div style="background:#fff;border:1px solid #ece2d9;border-radius:8px;padding:18px;display:flex;gap:14px;">
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#7a3343" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px;"><path d="M12 21c5-3 8-7 8-12a8 8 0 0 0-8 8 8 8 0 0 0-8-8c0 5 3 9 8 12z"/></svg>
+                  <div><div style="font-weight:600;font-size:15px;margin-bottom:4px;">Sanfte Lifestyle-Hebel</div><p style="margin:0;font-size:13.5px;line-height:1.55;color:var(--miavola-ink-500);">Genug Schlaf, Stress runter, und auf Jod- &amp; Selenzufuhr achten.</p></div>
+                </div>
+              </div>
+            </div>
+
+            <div style="height:1px;background:#eadfd5;margin:28px 24px;"></div>
+
+            <!-- d) SANFTER NÄCHSTER SCHRITT — SOFT PRODUCT BLOCK -->
+            <div style="padding:0 24px;">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;"><span style="font:700 12px var(--font-sans);color:var(--miavola-wine-700);">d</span><span style="font:600 11px/1 var(--font-sans);letter-spacing:.14em;text-transform:uppercase;color:#8e4756;">Ein möglicher nächster Schritt</span></div>
+              <div style="border:1px solid #e7ddd4;border-radius:8px;overflow:hidden;background:#fff;">
+                <div style="display:flex;gap:14px;align-items:center;padding:18px;background:var(--mv-tint-produzent);">
+                  <img src="assets/produzent-hero.png" alt="Der Produzent" style="width:84px;height:84px;object-fit:cover;border-radius:8px;mix-blend-mode:multiply;flex:none;">
+                  <div>
+                    <div style="font:600 10px/1 var(--font-sans);letter-spacing:.12em;text-transform:uppercase;color:#8e4756;margin-bottom:5px;">Passend zu deinem Ergebnis</div>
+                    <div style="font-family:var(--font-display);font-weight:600;font-size:19px;letter-spacing:-.01em;">Der Produzent®</div>
+                    <div style="font-size:12.5px;color:var(--miavola-ink-500);">Schilddrüsen-Komplex</div>
+                  </div>
+                </div>
+                <div style="padding:18px;">
+                  <p style="font-size:14px;line-height:1.6;color:var(--miavola-ink-700);margin:0 0 14px;">Weil dein Körper für die Hormonbildung Jod und Selen braucht, kann ein gezielter Komplex sinnvoll sein. Der Produzent liefert genau diese Nährstoffe — als Ergänzung, nicht als Ersatz für ärztliche Abklärung.</p>
+                  <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:16px;">
+                    <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--miavola-ink-700);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#87a35d" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 5 10-12"/></svg>Selen für eine normale Schilddrüsenfunktion<sup style="font-size:.7em;opacity:.7;">1</sup></div>
+                    <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--miavola-ink-700);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#87a35d" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 5 10-12"/></svg>Jod trägt zur Produktion von Schilddrüsenhormonen bei<sup style="font-size:.7em;opacity:.7;">4</sup></div>
+                  </div>
+                  <button class="mv-btn mv-btn--ghost mv-btn--block" style="font-family:var(--font-sans);">Mehr über Der Produzent</button>
+                  <p style="font-size:12px;line-height:1.5;color:var(--miavola-ink-400);margin:12px 0 0;text-align:center;">Kein Muss. Bitte besprich Veränderungen mit deinem Arzt.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- e) EMPOWERMENT -->
+            <div style="margin:28px 14px 14px;border-radius:8px;background:var(--miavola-wine-700);color:#fff;padding:28px 24px;text-align:center;position:relative;overflow:hidden;">
+              <img src="assets/butterfly-mark.png" alt="" style="width:30px;opacity:.8;margin-bottom:14px;">
+              <h3 style="font-family:var(--font-display);font-weight:500;font-size:21px;line-height:1.25;margin:0 0 10px;">Du verstehst deinen Körper jetzt ein Stück besser.</h3>
+              <p style="font-size:13.5px;line-height:1.6;color:rgba(255,255,255,.8);margin:0;">Das ist der wichtigste Schritt. Was du daraus machst, entscheidest du.</p>
+            </div>
+
+            <div style="padding:6px 24px 28px;"><button class="mv-btn mv-btn--block" style="font-family:var(--font-sans);background:#1b1b1b;color:#fff;">Ergebnis per Mail sichern</button></div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- RESULT TYPE HEADERS -->
+      <div style="flex:none;width:340px;">
+        <div style="margin:0 0 12px 2px;"><div style="font:600 11px/1 var(--font-sans);letter-spacing:.14em;text-transform:uppercase;color:#8e4756;">Ergebnis-Typen · Header-State</div><div style="font:400 12.5px/1.4 var(--font-sans);color:var(--miavola-ink-400);margin-top:4px;">Gleicher Aufbau, drei Stufen. Ton bleibt ruhig.</div></div>
+        <div style="display:flex;flex-direction:column;gap:16px;">
+          <!-- niedrig -->
+          <div style="border-radius:8px;background:var(--mv-tint-jod);padding:22px;position:relative;overflow:hidden;">
+            <div style="font:600 11px/1 var(--font-sans);letter-spacing:.14em;text-transform:uppercase;color:var(--miavola-forest-700);margin-bottom:10px;">Niedriger Verdacht</div>
+            <h3 style="font-family:var(--font-display);font-weight:600;font-size:21px;line-height:1.12;letter-spacing:-.01em;margin:0 0 14px;">Wenig Anzeichen — vieles spricht für dich.</h3>
+            <div style="display:flex;gap:6px;"><div style="flex:1;height:7px;border-radius:99px;background:var(--miavola-sage-600);"></div><div style="flex:1;height:7px;border-radius:99px;background:#cfdcc4;"></div><div style="flex:1;height:7px;border-radius:99px;background:#cfdcc4;"></div></div>
+          </div>
+          <!-- mittel -->
+          <div style="border-radius:8px;background:var(--mv-tint-selen);padding:22px;position:relative;overflow:hidden;">
+            <div style="font:600 11px/1 var(--font-sans);letter-spacing:.14em;text-transform:uppercase;color:#a07c12;margin-bottom:10px;">Möglicher Verdacht</div>
+            <h3 style="font-family:var(--font-display);font-weight:600;font-size:21px;line-height:1.12;letter-spacing:-.01em;margin:0 0 14px;">Ein paar Hinweise — gut, genauer hinzusehen.</h3>
+            <div style="display:flex;gap:6px;"><div style="flex:1;height:7px;border-radius:99px;background:var(--miavola-butter-500);"></div><div style="flex:1;height:7px;border-radius:99px;background:var(--miavola-butter-500);"></div><div style="flex:1;height:7px;border-radius:99px;background:#ecdcae;"></div></div>
+          </div>
+          <!-- hoch -->
+          <div style="border-radius:8px;background:var(--mv-tint-produzent-x);padding:22px;position:relative;overflow:hidden;">
+            <div style="font:600 11px/1 var(--font-sans);letter-spacing:.14em;text-transform:uppercase;color:#8e4756;margin-bottom:10px;">Deutlicher Verdacht</div>
+            <h3 style="font-family:var(--font-display);font-weight:600;font-size:21px;line-height:1.12;letter-spacing:-.01em;margin:0 0 14px;">Deutliche Anzeichen für eine Unterfunktion.</h3>
+            <div style="display:flex;gap:6px;"><div style="flex:1;height:7px;border-radius:99px;background:var(--miavola-wine-700);"></div><div style="flex:1;height:7px;border-radius:99px;background:var(--miavola-wine-700);"></div><div style="flex:1;height:7px;border-radius:99px;background:var(--miavola-wine-700);"></div></div>
+          </div>
+          <div style="background:#fff;border:1px solid #e7ddd4;border-radius:8px;padding:18px;">
+            <div style="font:600 11px/1 var(--font-sans);letter-spacing:.12em;text-transform:uppercase;color:var(--miavola-ink-400);margin-bottom:10px;">Logik-Hinweis für Claude Code</div>
+            <p style="font-size:13px;line-height:1.55;color:var(--miavola-ink-500);margin:0;">Score aus den Antworten bestimmt die Stufe. Abschnitte a–e bleiben strukturell identisch — nur Header-Tint, Pill-Text, Mechanismus-Klartext und die Stärke der Empfehlung in (d) variieren. Bei „niedrig“ entfällt der Produktblock oder wird zu einem reinen Wissens-Hinweis.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 5 — DESKTOP REFERENCES -->
+  <!-- ============================================================ -->
+  <div style="margin-bottom:64px;" data-screen-label="Desktop">
+    <div style="font:600 12px/1 var(--font-sans);letter-spacing:.16em;text-transform:uppercase;color:#8e4756;margin-bottom:6px;">05 · Der Flow — Desktop</div>
+    <p style="font-size:14px;color:var(--miavola-ink-500);max-width:64ch;margin:0 0 28px;">Dieselben Komponenten, für breite Viewports neu komponiert: Quiz zentriert in einer ruhigen Spalte (max. 640px), Ergebnis zweispaltig. Repräsentativ — die übrigen Screens folgen denselben Regeln.</p>
+
+    <div style="display:flex;gap:40px;align-items:flex-start;">
+
+      <!-- DESKTOP INTRO -->
+      <div style="flex:none;width:1180px;">
+        <div style="font:600 11px/1 var(--font-sans);letter-spacing:.14em;text-transform:uppercase;color:#8e4756;margin:0 0 12px 2px;">Intro · Desktop</div>
+        <div style="border-radius:12px;overflow:hidden;border:1px solid #ddd3c8;box-shadow:0 1px 3px rgba(0,0,0,.08),0 18px 40px rgba(26,23,20,.07);background:#fff;">
+          <div style="display:flex;align-items:center;gap:8px;padding:12px 16px;background:#efe7dd;border-bottom:1px solid #e1d6c9;"><span style="width:11px;height:11px;border-radius:99px;background:#d8b3b3;"></span><span style="width:11px;height:11px;border-radius:99px;background:#e6cf9c;"></span><span style="width:11px;height:11px;border-radius:99px;background:#b8cfa8;"></span><span style="margin-left:12px;font:400 12px var(--font-mono);color:var(--miavola-ink-400);">miavola.de/quiz</span></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;min-height:560px;">
+            <div style="padding:64px 56px;display:flex;flex-direction:column;justify-content:center;">
+              <img src="assets/logo-black.png" alt="miavola" style="height:22px;width:auto;opacity:.85;margin-bottom:34px;">
+              <span style="align-self:flex-start;font:600 11px/1 var(--font-sans);letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--miavola-sage-600);border-radius:99px;padding:7px 13px;margin-bottom:22px;">Kostenlos · 3 Min</span>
+              <h2 style="font-family:var(--font-display);font-weight:600;font-size:44px;line-height:1.05;letter-spacing:-.02em;margin:0 0 18px;max-width:14ch;">Wie geht es deiner Schilddrüse?</h2>
+              <p style="font-size:17px;line-height:1.6;color:var(--miavola-ink-500);margin:0 0 30px;max-width:42ch;">Eine kostenlose Selbsteinschätzung mit verständlicher, ehrlicher Einordnung deiner Situation — ganz ohne Diagnose-Versprechen.</p>
+              <div style="display:flex;gap:14px;align-items:center;"><button class="mv-btn mv-btn--burg mv-btn--lg" style="font-family:var(--font-sans);">Quiz starten</button><span style="font-size:13px;color:var(--miavola-ink-400);">Kein Login nötig</span></div>
+            </div>
+            <div style="background:var(--mv-tint-produzent-x);display:grid;place-items:center;position:relative;overflow:hidden;">
+              <img src="assets/butterflies-trio.png" alt="" style="width:62%;opacity:.95;">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DESKTOP QUESTION -->
+      <div style="flex:none;width:1180px;">
+        <div style="font:600 11px/1 var(--font-sans);letter-spacing:.14em;text-transform:uppercase;color:#8e4756;margin:0 0 12px 2px;">Single-Select · Desktop</div>
+        <div style="border-radius:12px;overflow:hidden;border:1px solid #ddd3c8;box-shadow:0 1px 3px rgba(0,0,0,.08),0 18px 40px rgba(26,23,20,.07);background:var(--miavola-cream-50);">
+          <div style="display:flex;align-items:center;gap:8px;padding:12px 16px;background:#efe7dd;border-bottom:1px solid #e1d6c9;"><span style="width:11px;height:11px;border-radius:99px;background:#d8b3b3;"></span><span style="width:11px;height:11px;border-radius:99px;background:#e6cf9c;"></span><span style="width:11px;height:11px;border-radius:99px;background:#b8cfa8;"></span></div>
+          <div style="padding:26px 56px 0;display:flex;align-items:center;gap:18px;"><img src="assets/logo-black.png" alt="" style="height:16px;opacity:.7;"><div style="flex:1;height:6px;border-radius:99px;background:var(--miavola-cream-200);overflow:hidden;"><div style="width:25%;height:100%;background:var(--miavola-wine-700);border-radius:99px;"></div></div><span style="font:500 13px var(--font-sans);color:var(--miavola-ink-500);">Frage 3 von 12</span></div>
+          <div style="max-width:640px;margin:0 auto;padding:50px 24px 60px;">
+            <div style="font:600 11px/1 var(--font-sans);letter-spacing:.14em;text-transform:uppercase;color:#8e4756;margin-bottom:14px;">Energie &amp; Antrieb</div>
+            <h2 style="font-family:var(--font-display);font-weight:600;font-size:34px;line-height:1.12;letter-spacing:-.02em;margin:0 0 30px;">Wie fühlst du dich morgens nach dem Aufwachen?</h2>
+            <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:34px;">
+              <div style="display:flex;align-items:center;gap:14px;padding:19px 22px;border:1px solid var(--miavola-ink-200);border-radius:8px;background:#fff;"><span style="flex:none;width:22px;height:22px;border-radius:99px;border:1.5px solid var(--miavola-ink-300);"></span><span style="font-size:16px;color:var(--miavola-ink-800);">Ausgeruht und wach</span></div>
+              <div style="display:flex;align-items:center;gap:14px;padding:19px 22px;border:2px solid var(--miavola-wine-700);border-radius:8px;background:var(--mv-tint-produzent);"><span style="flex:none;width:22px;height:22px;border-radius:99px;border:2px solid var(--miavola-wine-700);display:grid;place-items:center;"><span style="width:10px;height:10px;border-radius:99px;background:var(--miavola-wine-700);"></span></span><span style="font-size:16px;color:var(--miavola-wine-900);font-weight:500;">Etwas träge, komme aber in Schwung</span></div>
+              <div style="display:flex;align-items:center;gap:14px;padding:19px 22px;border:1px solid var(--miavola-ink-200);border-radius:8px;background:#fff;"><span style="flex:none;width:22px;height:22px;border-radius:99px;border:1.5px solid var(--miavola-ink-300);"></span><span style="font-size:16px;color:var(--miavola-ink-800);">Erschöpft, obwohl ich genug geschlafen habe</span></div>
+              <div style="display:flex;align-items:center;gap:14px;padding:19px 22px;border:1px solid var(--miavola-ink-200);border-radius:8px;background:#fff;"><span style="flex:none;width:22px;height:22px;border-radius:99px;border:1.5px solid var(--miavola-ink-300);"></span><span style="font-size:16px;color:var(--miavola-ink-800);">Wie erschlagen — egal wie lange ich schlafe</span></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:16px;"><button class="mv-btn mv-btn--ghost" style="font-family:var(--font-sans);">Zurück</button><button class="mv-btn mv-btn--burg" style="font-family:var(--font-sans);flex:1;">Weiter</button></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DESKTOP RESULT -->
+      <div style="flex:none;width:1180px;">
+        <div style="font:600 11px/1 var(--font-sans);letter-spacing:.14em;text-transform:uppercase;color:#8e4756;margin:0 0 12px 2px;">Ergebnis · Desktop (zweispaltig)</div>
+        <div style="border-radius:12px;overflow:hidden;border:1px solid #ddd3c8;box-shadow:0 1px 3px rgba(0,0,0,.08),0 18px 40px rgba(26,23,20,.07);background:var(--miavola-cream-50);">
+          <div style="display:flex;align-items:center;gap:8px;padding:12px 16px;background:#efe7dd;border-bottom:1px solid #e1d6c9;"><span style="width:11px;height:11px;border-radius:99px;background:#d8b3b3;"></span><span style="width:11px;height:11px;border-radius:99px;background:#e6cf9c;"></span><span style="width:11px;height:11px;border-radius:99px;background:#b8cfa8;"></span></div>
+          <div style="display:grid;grid-template-columns:400px 1fr;gap:40px;padding:44px 56px 56px;">
+            <!-- sticky summary -->
+            <div>
+              <div style="border-radius:10px;background:var(--mv-tint-produzent-x);padding:28px;position:relative;overflow:hidden;margin-bottom:18px;">
+                <img src="assets/butterfly-mark.png" alt="" style="position:absolute;top:-6px;right:-4px;width:80px;opacity:.18;">
+                <div style="font:600 11px/1 var(--font-sans);letter-spacing:.14em;text-transform:uppercase;color:#8e4756;margin-bottom:12px;">Deine Einschätzung</div>
+                <h2 style="font-family:var(--font-display);font-weight:600;font-size:27px;line-height:1.1;letter-spacing:-.02em;margin:0 0 18px;">Deutliche Anzeichen für eine Unterfunktion.</h2>
+                <div style="display:flex;gap:6px;margin-bottom:8px;"><div style="flex:1;height:8px;border-radius:99px;background:#e3cfce;"></div><div style="flex:1;height:8px;border-radius:99px;background:#e3cfce;"></div><div style="flex:1;height:8px;border-radius:99px;background:var(--miavola-wine-700);"></div></div>
+                <div style="display:flex;justify-content:space-between;font:500 11px var(--font-sans);color:var(--miavola-ink-400);"><span>leicht</span><span>möglich</span><span style="color:var(--miavola-wine-700);font-weight:700;">deutlich</span></div>
+              </div>
+              <div style="background:#fff;border:1px solid #ece2d9;border-radius:10px;padding:22px;">
+                <div style="font:600 11px/1 var(--font-sans);letter-spacing:.14em;text-transform:uppercase;color:#8e4756;margin-bottom:10px;">Das sehen wir bei dir</div>
+                <p style="font-size:14px;line-height:1.6;color:var(--miavola-ink-700);margin:0 0 14px;">Mehrere typische Beschwerden, die oft zusammen auftreten. Du bildest dir das nicht ein.</p>
+                <div style="display:flex;flex-wrap:wrap;gap:7px;"><span style="font-size:12.5px;background:var(--miavola-cream-100);border-radius:99px;padding:7px 12px;color:var(--miavola-ink-700);">Müdigkeit</span><span style="font-size:12.5px;background:var(--miavola-cream-100);border-radius:99px;padding:7px 12px;color:var(--miavola-ink-700);">Frieren</span><span style="font-size:12.5px;background:var(--miavola-cream-100);border-radius:99px;padding:7px 12px;color:var(--miavola-ink-700);">Haarausfall</span><span style="font-size:12.5px;background:var(--miavola-cream-100);border-radius:99px;padding:7px 12px;color:var(--miavola-ink-700);">36,4 °C</span></div>
+              </div>
+            </div>
+            <!-- content column -->
+            <div>
+              <div style="margin-bottom:30px;">
+                <div style="font:600 11px/1 var(--font-sans);letter-spacing:.14em;text-transform:uppercase;color:#8e4756;margin-bottom:10px;">Was wahrscheinlich los ist</div>
+                <h3 style="font-family:var(--font-display);font-weight:600;font-size:25px;line-height:1.15;margin:0 0 12px;">Dein Stoffwechsel läuft vermutlich auf Sparflamme.</h3>
+                <p style="font-size:15px;line-height:1.65;color:var(--miavola-ink-700);margin:0;max-width:60ch;">Deine Antworten passen zu einer Schilddrüse, die zu wenig Hormone bereitstellt. Weil T3 und T4 fast jede Zelle steuern, macht sich das überall bemerkbar. Das ist eine Einordnung, keine Diagnose — Sicherheit gibt nur ein Blutbild.</p>
+              </div>
+              <div style="font:600 11px/1 var(--font-sans);letter-spacing:.14em;text-transform:uppercase;color:#8e4756;margin-bottom:14px;">Was das für dich heißt</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:30px;">
+                <div style="background:#fff;border:1px solid #ece2d9;border-radius:8px;padding:18px;"><div style="font-weight:600;font-size:14.5px;margin-bottom:6px;">Beobachten</div><p style="margin:0;font-size:13px;line-height:1.5;color:var(--miavola-ink-500);">Energie, Temperatur &amp; Schlaf 1–2 Wochen notieren.</p></div>
+                <div style="background:#fff;border:1px solid #ece2d9;border-radius:8px;padding:18px;"><div style="font-weight:600;font-size:14.5px;margin-bottom:6px;">Beim Arzt ansprechen</div><p style="margin:0;font-size:13px;line-height:1.5;color:var(--miavola-ink-500);">TSH, fT3, fT4 &amp; TPO-AK abklären lassen.</p></div>
+                <div style="background:#fff;border:1px solid #ece2d9;border-radius:8px;padding:18px;"><div style="font-weight:600;font-size:14.5px;margin-bottom:6px;">Lifestyle-Hebel</div><p style="margin:0;font-size:13px;line-height:1.5;color:var(--miavola-ink-500);">Schlaf, Stress runter, Jod &amp; Selen.</p></div>
+              </div>
+              <!-- soft product -->
+              <div style="border:1px solid #e7ddd4;border-radius:10px;background:#fff;overflow:hidden;display:grid;grid-template-columns:200px 1fr;margin-bottom:24px;">
+                <div style="background:var(--mv-tint-produzent);display:grid;place-items:center;padding:18px;"><img src="assets/produzent-hero.png" alt="Der Produzent" style="width:140px;mix-blend-mode:multiply;"></div>
+                <div style="padding:24px;">
+                  <div style="font:600 10px/1 var(--font-sans);letter-spacing:.12em;text-transform:uppercase;color:#8e4756;margin-bottom:6px;">Ein möglicher nächster Schritt</div>
+                  <div style="font-family:var(--font-display);font-weight:600;font-size:21px;letter-spacing:-.01em;margin-bottom:8px;">Der Produzent®</div>
+                  <p style="font-size:14px;line-height:1.6;color:var(--miavola-ink-700);margin:0 0 14px;max-width:52ch;">Weil dein Körper für die Hormonbildung Jod und Selen braucht, kann ein gezielter Komplex sinnvoll sein — als Ergänzung, nicht als Ersatz für ärztliche Abklärung.</p>
+                  <div style="display:flex;align-items:center;gap:14px;"><button class="mv-btn mv-btn--ghost" style="font-family:var(--font-sans);">Mehr über Der Produzent</button><span style="font-size:12px;color:var(--miavola-ink-400);">Kein Muss · besprich es mit deinem Arzt</span></div>
+                </div>
+              </div>
+              <div style="border-radius:10px;background:var(--miavola-wine-700);color:#fff;padding:26px 30px;display:flex;align-items:center;gap:20px;">
+                <img src="assets/butterfly-mark.png" alt="" style="width:34px;opacity:.85;flex:none;">
+                <div><div style="font-family:var(--font-display);font-weight:500;font-size:20px;line-height:1.2;">Du verstehst deinen Körper jetzt ein Stück besser.</div><div style="font-size:13px;color:rgba(255,255,255,.78);margin-top:4px;">Das ist der wichtigste Schritt. Was du daraus machst, entscheidest du.</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 6 — VARIANTEN -->
+  <!-- ============================================================ -->
+  <div style="margin-bottom:24px;" data-screen-label="Varianten">
+    <div style="font:600 12px/1 var(--font-sans);letter-spacing:.16em;text-transform:uppercase;color:#8e4756;margin-bottom:6px;">06 · Varianten zum Vergleichen</div>
+    <p style="font-size:14px;color:var(--miavola-ink-500);max-width:64ch;margin:0 0 32px;">Atomare Optionen zum Mischen — Intro, Education-Einschub, Ergebnis-Aufbau und E-Mail-Capture. Jede bleibt im selben System; sie variieren Metapher, Hierarchie und Framing.</p>
+
+    <!-- 6a INTRO VARIANTS -->
+    <div style="font:600 11px/1 var(--font-sans);letter-spacing:.14em;text-transform:uppercase;color:var(--miavola-ink-400);margin-bottom:16px;">Intro · 3 Richtungen</div>
+    <div style="display:flex;gap:24px;align-items:flex-start;margin-bottom:48px;">
+      <!-- A photo-led -->
+      <div style="flex:none;width:300px;">
+        <div style="font:500 12px var(--font-sans);color:var(--miavola-ink-500);margin:0 0 10px 2px;">A · Foto-geführt, warm</div>
+        <div style="border-radius:26px;overflow:hidden;border:1px solid #ddd3c8;box-shadow:0 12px 30px rgba(26,23,20,.07);background:var(--miavola-cream-50);min-height:540px;display:flex;flex-direction:column;">
+          <div style="height:230px;background:url('assets/lifestyle-portrait.jpg') center/cover;"></div>
+          <div style="padding:24px;flex:1;display:flex;flex-direction:column;">
+            <h3 style="font-family:var(--font-display);font-weight:600;font-size:23px;line-height:1.12;letter-spacing:-.015em;margin:0 0 10px;">Hör auf deinen Körper.</h3>
+            <p style="font-size:13.5px;line-height:1.55;color:var(--miavola-ink-500);margin:0 0 18px;">3 Minuten für eine ehrliche Einschätzung deiner Schilddrüse.</p>
+            <button class="mv-btn mv-btn--burg mv-btn--block" style="font-family:var(--font-sans);margin-top:auto;">Quiz starten</button>
+          </div>
+        </div>
+      </div>
+      <!-- B editorial type -->
+      <div style="flex:none;width:300px;">
+        <div style="font:500 12px var(--font-sans);color:var(--miavola-ink-500);margin:0 0 10px 2px;">B · Typo-editorial, ruhig</div>
+        <div style="border-radius:26px;overflow:hidden;border:1px solid #ddd3c8;box-shadow:0 12px 30px rgba(26,23,20,.07);background:var(--miavola-cream-100);min-height:540px;display:flex;flex-direction:column;padding:30px 26px;">
+          <img src="assets/logo-black.png" alt="" style="height:16px;opacity:.8;margin-bottom:auto;">
+          <div style="padding:30px 0;">
+            <span style="font:600 11px/1 var(--font-sans);letter-spacing:.1em;text-transform:uppercase;color:var(--miavola-wine-700);">Kostenlos · 12 Fragen</span>
+            <h3 style="font-family:var(--font-display);font-weight:600;font-size:32px;line-height:1.05;letter-spacing:-.02em;margin:14px 0 12px;">Wie geht es deiner Schilddrüse?</h3>
+            <p style="font-size:13.5px;line-height:1.55;color:var(--miavola-ink-500);margin:0;">Verständlich, ehrlich, ohne Verkauf.</p>
+          </div>
+          <button class="mv-btn mv-btn--burg mv-btn--block" style="font-family:var(--font-sans);">Los geht's</button>
+        </div>
+      </div>
+      <!-- C reassurance-led -->
+      <div style="flex:none;width:300px;">
+        <div style="font:500 12px var(--font-sans);color:var(--miavola-ink-500);margin:0 0 10px 2px;">C · Vertrauen zuerst (Social Proof)</div>
+        <div style="border-radius:26px;overflow:hidden;border:1px solid #ddd3c8;box-shadow:0 12px 30px rgba(26,23,20,.07);background:var(--miavola-cream-50);min-height:540px;display:flex;flex-direction:column;padding:28px 24px;text-align:center;align-items:center;">
+          <img src="assets/butterfly-rose.png" alt="" style="width:84px;margin:14px 0 18px;">
+          <h3 style="font-family:var(--font-display);font-weight:600;font-size:24px;line-height:1.1;letter-spacing:-.015em;margin:0 0 10px;">Du bist nicht allein damit.</h3>
+          <p style="font-size:13.5px;line-height:1.55;color:var(--miavola-ink-500);margin:0 0 18px;">Über 40.000 Menschen haben sich schon eingeschätzt. In 3 Minuten weißt du mehr.</p>
+          <div style="display:flex;gap:6px;margin-bottom:20px;color:var(--miavola-butter-500);font-size:15px;">★★★★★ <span style="color:var(--miavola-ink-400);font-size:12px;align-self:center;margin-left:4px;">4,8 / 5</span></div>
+          <button class="mv-btn mv-btn--burg mv-btn--block" style="font-family:var(--font-sans);margin-top:auto;">Quiz starten</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6b EDUCATION VARIANTS -->
+    <div style="font:600 11px/1 var(--font-sans);letter-spacing:.14em;text-transform:uppercase;color:var(--miavola-ink-400);margin-bottom:16px;">Education-Einschub · 3 Stile</div>
+    <div style="display:flex;gap:24px;align-items:flex-start;margin-bottom:48px;">
+      <!-- A burgundy full -->
+      <div style="flex:none;width:320px;">
+        <div style="font:500 12px var(--font-sans);color:var(--miavola-ink-500);margin:0 0 10px 2px;">A · Vollbild Burgund (Fokus)</div>
+        <div style="border-radius:18px;background:var(--miavola-wine-700);color:#fff;padding:30px 26px;min-height:300px;position:relative;overflow:hidden;display:flex;flex-direction:column;">
+          <img src="assets/butterfly-mark.png" alt="" style="position:absolute;top:20px;right:20px;width:30px;opacity:.5;">
+          <div style="font:600 11px/1 var(--font-sans);letter-spacing:.16em;text-transform:uppercase;color:var(--miavola-gold-light);margin-bottom:auto;">Schon gewusst?</div>
+          <h3 style="font-family:var(--font-display);font-weight:500;font-size:23px;line-height:1.2;margin:24px 0 10px;">T3 und T4 steuern fast jede Zelle.</h3>
+          <p style="font-size:13.5px;line-height:1.55;color:rgba(255,255,255,.8);margin:0;">Läuft die Schilddrüse langsam, spürst du es überall gleichzeitig.</p>
+        </div>
+      </div>
+      <!-- B inline knowledge card -->
+      <div style="flex:none;width:320px;">
+        <div style="font:500 12px var(--font-sans);color:var(--miavola-ink-500);margin:0 0 10px 2px;">B · Karte auf Creme (sanft)</div>
+        <div style="border-radius:18px;background:var(--miavola-cream-100);padding:28px 26px;min-height:300px;position:relative;display:flex;flex-direction:column;">
+          <img src="assets/butterfly-mark.png" alt="" style="position:absolute;top:22px;right:22px;width:28px;opacity:.55;">
+          <h3 style="font-family:var(--font-display);font-weight:600;font-size:22px;line-height:1.15;margin:0 0 12px;max-width:14ch;">Schon gewusst?</h3>
+          <p style="font-size:14px;line-height:1.6;color:var(--miavola-ink-700);margin:0 0 16px;">Selen schützt die Schilddrüsenzellen vor oxidativem Stress — gerade bei Hashimoto ein wichtiger Faktor.</p>
+          <div style="margin-top:auto;font-size:12px;color:var(--miavola-ink-400);border-top:1px solid #e3d7ca;padding-top:12px;">Quelle: EFSA-zugelassene Aussage<sup style="font-size:.8em;">1</sup></div>
+        </div>
+      </div>
+      <!-- C stat-led -->
+      <div style="flex:none;width:320px;">
+        <div style="font:500 12px var(--font-sans);color:var(--miavola-ink-500);margin:0 0 10px 2px;">C · Zahl im Fokus (einprägsam)</div>
+        <div style="border-radius:18px;background:#fff;border:1px solid #e7ddd4;padding:30px 26px;min-height:300px;display:flex;flex-direction:column;justify-content:center;text-align:center;">
+          <div style="font-family:var(--font-display);font-weight:600;font-size:64px;line-height:1;letter-spacing:-.03em;color:var(--miavola-wine-700);">9 von 10</div>
+          <p style="font-size:14px;line-height:1.6;color:var(--miavola-ink-700);margin:18px 0 0;">Fällen von Schilddrüsenunterfunktion liegt eine Hashimoto-Thyreoiditis zugrunde — eine Reaktion des eigenen Immunsystems.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6c RESULT LAYOUT VARIANTS -->
+    <div style="font:600 11px/1 var(--font-sans);letter-spacing:.14em;text-transform:uppercase;color:var(--miavola-ink-400);margin-bottom:16px;">Ergebnis-Aufbau · 2 Strukturen</div>
+    <div style="display:flex;gap:24px;align-items:flex-start;margin-bottom:48px;">
+      <!-- A scroll narrative -->
+      <div style="flex:none;width:300px;">
+        <div style="font:500 12px var(--font-sans);color:var(--miavola-ink-500);margin:0 0 10px 2px;">A · Scroll-Narrativ (a→e linear)</div>
+        <div style="border-radius:20px;border:1px solid #ddd3c8;background:var(--miavola-cream-50);padding:20px;min-height:380px;display:flex;flex-direction:column;gap:10px;">
+          <div style="border-radius:6px;background:var(--mv-tint-produzent-x);padding:14px;"><div style="font:700 9px var(--font-sans);letter-spacing:.1em;text-transform:uppercase;color:#8e4756;">Einschätzung</div><div style="font-family:var(--font-display);font-weight:600;font-size:15px;margin-top:4px;">Deutliche Anzeichen</div></div>
+          <div style="font:700 9px var(--font-sans);letter-spacing:.1em;text-transform:uppercase;color:#8e4756;margin-top:4px;">a · Validierung</div>
+          <div style="height:8px;border-radius:99px;background:#eadfd5;"></div><div style="height:8px;width:70%;border-radius:99px;background:#eadfd5;"></div>
+          <div style="font:700 9px var(--font-sans);letter-spacing:.1em;text-transform:uppercase;color:#8e4756;margin-top:4px;">b · Mechanismus</div>
+          <div style="height:8px;border-radius:99px;background:#eadfd5;"></div><div style="height:8px;width:80%;border-radius:99px;background:#eadfd5;"></div>
+          <div style="font:700 9px var(--font-sans);letter-spacing:.1em;text-transform:uppercase;color:#8e4756;margin-top:4px;">c · Für dich</div>
+          <div style="display:flex;gap:6px;"><div style="flex:1;height:34px;border-radius:6px;background:#fff;border:1px solid #ece2d9;"></div><div style="flex:1;height:34px;border-radius:6px;background:#fff;border:1px solid #ece2d9;"></div><div style="flex:1;height:34px;border-radius:6px;background:#fff;border:1px solid #ece2d9;"></div></div>
+          <div style="font:700 9px var(--font-sans);letter-spacing:.1em;text-transform:uppercase;color:#8e4756;margin-top:4px;">d · Produkt · e · Empowerment</div>
+          <div style="height:38px;border-radius:6px;background:var(--miavola-wine-700);"></div>
+        </div>
+      </div>
+      <!-- B tabbed/sectioned -->
+      <div style="flex:none;width:300px;">
+        <div style="font:500 12px var(--font-sans);color:var(--miavola-ink-500);margin:0 0 10px 2px;">B · Geankert mit Sprung-Nav</div>
+        <div style="border-radius:20px;border:1px solid #ddd3c8;background:var(--miavola-cream-50);padding:20px;min-height:380px;">
+          <div style="border-radius:6px;background:var(--mv-tint-produzent-x);padding:14px;margin-bottom:14px;"><div style="font:700 9px var(--font-sans);letter-spacing:.1em;text-transform:uppercase;color:#8e4756;">Einschätzung</div><div style="font-family:var(--font-display);font-weight:600;font-size:15px;margin-top:4px;">Deutliche Anzeichen</div></div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px;"><span style="font-size:10px;background:var(--miavola-wine-700);color:#fff;border-radius:99px;padding:6px 10px;">Das siehst du</span><span style="font-size:10px;background:#fff;border:1px solid #ddd3c8;border-radius:99px;padding:6px 10px;color:var(--miavola-ink-600,#755469);">Mechanismus</span><span style="font-size:10px;background:#fff;border:1px solid #ddd3c8;border-radius:99px;padding:6px 10px;color:var(--miavola-ink-600,#755469);">Für dich</span><span style="font-size:10px;background:#fff;border:1px solid #ddd3c8;border-radius:99px;padding:6px 10px;color:var(--miavola-ink-600,#755469);">Schritt</span></div>
+          <div style="height:8px;border-radius:99px;background:#eadfd5;margin-bottom:8px;"></div><div style="height:8px;width:85%;border-radius:99px;background:#eadfd5;margin-bottom:8px;"></div><div style="height:8px;width:60%;border-radius:99px;background:#eadfd5;margin-bottom:18px;"></div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;"><span style="font-size:11px;background:#fff;border:1px solid #ddd3c8;border-radius:99px;padding:7px 12px;">Müdigkeit</span><span style="font-size:11px;background:#fff;border:1px solid #ddd3c8;border-radius:99px;padding:7px 12px;">Frieren</span><span style="font-size:11px;background:#fff;border:1px solid #ddd3c8;border-radius:99px;padding:7px 12px;">Haarausfall</span></div>
+          <p style="font-size:11px;color:var(--miavola-ink-400);margin:14px 0 0;">Schneller Zugriff bei langen Ergebnissen — gut für Desktop &amp; Wiederbesuch.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6d EMAIL VARIANTS -->
+    <div style="font:600 11px/1 var(--font-sans);letter-spacing:.14em;text-transform:uppercase;color:var(--miavola-ink-400);margin-bottom:16px;">E-Mail-Capture · 3 Framings (immer kein Gate)</div>
+    <div style="display:flex;gap:24px;align-items:flex-start;">
+      <!-- A bonus framing -->
+      <div style="flex:none;width:300px;">
+        <div style="font:500 12px var(--font-sans);color:var(--miavola-ink-500);margin:0 0 10px 2px;">A · „Zusätzlich per Mail"</div>
+        <div style="border-radius:20px;border:1px solid #ddd3c8;background:var(--miavola-cream-50);padding:26px;min-height:340px;display:flex;flex-direction:column;">
+          <div style="font:600 10px/1 var(--font-sans);letter-spacing:.12em;text-transform:uppercase;color:#8e4756;margin-bottom:12px;">Fast geschafft</div>
+          <h3 style="font-family:var(--font-display);font-weight:600;font-size:21px;line-height:1.12;margin:0 0 10px;">Dein Ergebnis ist fertig.</h3>
+          <p style="font-size:13px;line-height:1.55;color:var(--miavola-ink-500);margin:0 0 16px;">Sofort auf dem Bildschirm. Per Mail zusätzlich vertiefende Infos.</p>
+          <div style="border:1px solid #1b1b1b;border-radius:8px;padding:13px 16px;font-size:13px;color:#8a7e76;margin-bottom:10px;">deine@email.de</div>
+          <button class="mv-btn mv-btn--burg mv-btn--block" style="font-family:var(--font-sans);">Ergebnis ansehen</button>
+          <button style="border:none;background:none;font:500 13px var(--font-sans);color:var(--miavola-ink-400);cursor:pointer;margin-top:10px;text-decoration:underline;">Ohne E-Mail</button>
+        </div>
+      </div>
+      <!-- B side-by-side split -->
+      <div style="flex:none;width:300px;">
+        <div style="font:500 12px var(--font-sans);color:var(--miavola-ink-500);margin:0 0 10px 2px;">B · Gleichwertige Wahl</div>
+        <div style="border-radius:20px;border:1px solid #ddd3c8;background:var(--miavola-cream-50);padding:26px;min-height:340px;display:flex;flex-direction:column;">
+          <h3 style="font-family:var(--font-display);font-weight:600;font-size:21px;line-height:1.12;margin:0 0 18px;">Wie möchtest du dein Ergebnis?</h3>
+          <div style="border:2px solid var(--miavola-wine-700);border-radius:8px;background:var(--mv-tint-produzent);padding:16px;margin-bottom:10px;"><div style="font-weight:600;font-size:14px;margin-bottom:3px;">Mit Mail + Vertiefung</div><div style="font-size:12px;color:var(--miavola-ink-500);">Ergebnis sofort, dazu Infos per Mail</div></div>
+          <div style="border:1px solid var(--miavola-ink-200);border-radius:8px;background:#fff;padding:16px;"><div style="font-weight:600;font-size:14px;margin-bottom:3px;">Nur ansehen</div><div style="font-size:12px;color:var(--miavola-ink-500);">Direkt zum Ergebnis, ohne Mail</div></div>
+          <button class="mv-btn mv-btn--burg mv-btn--block" style="font-family:var(--font-sans);margin-top:auto;">Weiter</button>
+        </div>
+      </div>
+      <!-- C inline on result -->
+      <div style="flex:none;width:300px;">
+        <div style="font:500 12px var(--font-sans);color:var(--miavola-ink-500);margin:0 0 10px 2px;">C · Erst Ergebnis, Mail danach</div>
+        <div style="border-radius:20px;border:1px solid #ddd3c8;background:var(--miavola-cream-50);padding:20px;min-height:340px;display:flex;flex-direction:column;gap:10px;">
+          <div style="border-radius:6px;background:var(--mv-tint-produzent-x);padding:14px;"><div style="font-family:var(--font-display);font-weight:600;font-size:15px;">Dein Ergebnis</div></div>
+          <div style="height:8px;border-radius:99px;background:#eadfd5;"></div><div style="height:8px;width:75%;border-radius:99px;background:#eadfd5;"></div>
+          <div style="margin-top:auto;border-radius:8px;background:#1b1b1b;color:#fff;padding:16px;">
+            <div style="font-size:13px;font-weight:600;margin-bottom:8px;">Ergebnis per Mail sichern?</div>
+            <div style="border-radius:6px;background:rgba(255,255,255,.12);padding:10px 12px;font-size:12px;color:rgba(255,255,255,.6);margin-bottom:8px;">deine@email.de</div>
+            <button class="mv-btn mv-btn--block" style="font-family:var(--font-sans);background:#fff;color:#1b1b1b;font-size:13px;padding:11px;">Sichern</button>
+          </div>
+          <p style="font-size:11px;color:var(--miavola-ink-400);margin:0;text-align:center;">Mail ist optionaler Zusatz, nie Voraussetzung fürs Ergebnis.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!--APPEND-->
+
+</div>
+</x-dc>
+</body>
+</html>

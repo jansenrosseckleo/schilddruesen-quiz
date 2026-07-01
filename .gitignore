@@ -1,0 +1,9 @@
+# OS / Editor
+.DS_Store
+*.swp
+
+# Große Design-Quell-Zip (nicht fürs Deployment nötig)
+*.zip
+
+# Claude / lokale Session-Daten
+.claude/
