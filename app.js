@@ -44,9 +44,15 @@
     heart: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7a3343" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg>',
     info: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8v.5"/></svg>',
     warn: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 8v5M12 16.5v.5"/><circle cx="12" cy="12" r="9"/></svg>',
-    observe: '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a4 4 0 0 0-4 4c0 2 1 3 1 5s-2 3-2 5a3 3 0 0 0 5 2 3 3 0 0 0 5-2c0-2-2-3-2-5s1-3 1-5a4 4 0 0 0-4-4z"/></svg>',
-    doctor: '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3v6a6 6 0 0 0 12 0V3M9 21a3 3 0 0 1 6 0"/><path d="M18 9a3 3 0 0 0 0 6"/></svg>',
+    observe: '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>',
+    doctor: '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6 6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3"/><path d="M8 15v1a6 6 0 0 0 6 6 6 6 0 0 0 6-6v-4"/><circle cx="20" cy="10" r="2"/></svg>',
     leaf: '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c5-3 8-7 8-12a8 8 0 0 0-8 8 8 8 0 0 0-8-8c0 5 3 9 8 12z"/></svg>',
+    // Themen-spezifische Icons (klare Standard-Line-Icons, kein Freihand-Slop)
+    thermometer: '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"/></svg>',
+    sparkles: '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .962 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.962 0z"/></svg>',
+    mind: '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4a3 3 0 0 0-3 3 3 3 0 0 0-1 5 3 3 0 0 0 1 5 3 3 0 0 0 3 2V4zM15 4a3 3 0 0 1 3 3 3 3 0 0 1 1 5 3 3 0 0 1-1 5 3 3 0 0 1-3 2V4z"/></svg>',
+    clipboard: '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="4" x="8" y="2" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M9 12h6"/><path d="M9 16h4"/></svg>',
+    calendar: '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>',
     sym_tired: '<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#7a3343" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a4 4 0 0 0-4 4c0 2 1 3 1 5s-2 3-2 5a3 3 0 0 0 5 2 3 3 0 0 0 5-2c0-2-2-3-2-5s1-3 1-5a4 4 0 0 0-4-4z"/></svg>',
     sym_cold: '<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#7a3343" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M4 7l16 10M20 7L4 17M12 2l-3 3M12 2l3 3M12 22l-3-3M12 22l3-3"/></svg>',
     sym_hair: '<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#7a3343" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4c0 4-3 5-3 9a4 4 0 0 0 8 0c0-3-2-4-2-7M14 6c0 3 3 4 3 8a3 3 0 0 1-3 3"/></svg>',
@@ -145,10 +151,17 @@
     while (i >= 0 && i < FLOW.length && !isVisible(i)) i += dir;
     return i;
   }
+  // Info-/Meilenstein-Screens sind reine Vorwärts-Einschübe (nur „Weiter", kein Zurück).
+  // Bei Rückwärts-Navigation werden sie übersprungen, damit man die vorige Frage erreicht
+  // (sonst Sackgasse: Zurück landet auf der Info-Card, die nur vorwärts führt).
+  const FORWARD_ONLY = new Set(["education", "milestone"]);
   function go(delta) {
     // delta ist immer ±1; überspringt unsichtbare (geskippte) Schritte
     const dir = delta < 0 ? -1 : 1;
-    const ni = nextVisibleIndex(state.step, dir);
+    let ni = nextVisibleIndex(state.step, dir);
+    if (dir < 0) {
+      while (ni >= 0 && ni < FLOW.length && FORWARD_ONLY.has(FLOW[ni].type)) ni = nextVisibleIndex(ni, dir);
+    }
     if (ni < 0 || ni >= FLOW.length) return;
     state.step = ni;
     render();
@@ -214,7 +227,7 @@
       const a = state.answers[s.id];
       if (!a || !a.keys) return;
       const excl = new Set(s.options.filter((o) => o.exclusive).map((o) => o.key));
-      s.options.forEach((o) => { if (!excl.has(o.key) && a.keys.includes(o.key)) out.push(o.label); });
+      s.options.forEach((o) => { if (!excl.has(o.key) && a.keys.includes(o.key)) out.push(o.inlineLabel || o.label); });
     });
     return out;
   }
@@ -258,7 +271,7 @@
     for (const r of rules) {
       if (!matches(r.when, ctx)) continue;
       const p = products[r.productId];
-      if (!p || p.pending) continue;
+      if (!p || p.pending || p.active === false) continue;   // pending/nicht verfügbar (Stock) überspringen
       if (core.has(r.productId) && !ctx.diagnosed) continue;
       return r;                                          // ganze Regel (inkl. reason)
     }
@@ -324,8 +337,28 @@
     const ctx = buildCtx(flags, bandId);
     const sel = primary ? selectProduct(ctx, bandId) : null;
     const productId = sel ? sel.productId : null;
-    const productReason = sel && sel.reason ? tok(sel.reason, ctx) : "";
-    return { configured: !!primary, primary, band: bandId, total, flags, productId, productReason, secondary: [], summary, ctx };
+    const productReason = sel && sel.reason ? rich(sel.reason, ctx) : "";  // rich() akzeptiert String ODER Segment-Array
+    const secondary = buildSecondary(sel, ctx);                            // Zusatz-Produkte (`also`), gleiche Sicherungen
+    return { configured: !!primary, primary, band: bandId, total, flags, productId, productReason, secondary, summary, ctx };
+  }
+
+  // Zusatz-Produkte einer Regel (`also`): gleiche Gates wie das Primärprodukt
+  // (pending übersprungen, Core nur diagnostiziert). Begründung optional — sonst
+  // greift im Render der Registry-Text (products[id].text). KEIN erfundenes Produkt.
+  function buildSecondary(sel, ctx) {
+    if (!sel || !Array.isArray(sel.also)) return [];
+    const O = C.outcomes || {};
+    const core = new Set(O.coreProductIds || []);
+    const products = C.products || {};
+    const out = [];
+    for (const item of sel.also) {
+      const id = typeof item === "string" ? item : item.productId;
+      const p = products[id];
+      if (!p || p.pending || p.active === false) continue;   // pending/nicht verfügbar (Stock) überspringen
+      if (core.has(id) && !ctx.diagnosed) continue;
+      out.push({ productId: id, reason: (item && item.reason) ? rich(item.reason, ctx) : "" });
+    }
+    return out;
   }
 
   /* ----------------------------------------------------------------
@@ -387,7 +420,7 @@
         <div class="wrap">
           <div class="intro__inner-wide">
             <div class="intro__col-text">
-              <img src="${ASSET}logo-black.png" alt="miavola" style="height:22px;width:auto;opacity:.85;margin-bottom:34px;align-self:flex-start;">
+              <img src="${ASSET}logo-black.png" alt="miavola" style="height:72px;width:auto;opacity:.9;margin-bottom:34px;align-self:flex-start;">
               <span class="pill pill--sage" style="align-self:flex-start;margin-bottom:22px;">${t.badgeWide}</span>
               <h2 class="intro__title intro__title--wide">${t.title}</h2>
               <p class="intro__lead" style="font-size:17px;max-width:42ch;">${t.leadWide}</p>
@@ -424,6 +457,35 @@
     return screen;
   }
 
+  /* ---------------- Frage-Info („Was ist gemeint?") ----------------
+     Optionales `s.info` je Frage: dezenter, ausklappbarer Erklär-Hinweis
+     unter der Frage (barrierefrei: aria-expanded/-controls). Nur wenn gesetzt. */
+  let infoSeq = 0;
+  function questionInfoHTML(s) {
+    if (!s.info) return "";
+    const pid = `qinfo-${++infoSeq}`;
+    return `
+      <div class="q-info">
+        <button class="q-info__toggle" type="button" aria-expanded="false" aria-controls="${pid}">
+          ${icon("info")}<span>Was ist gemeint?</span>
+        </button>
+        <div class="q-info__panel" id="${pid}" hidden></div>
+      </div>`;
+  }
+  function wireQuestionInfo(scope, s) {
+    if (!s.info) return;
+    const toggle = scope.querySelector(".q-info__toggle");
+    const panel = scope.querySelector(".q-info__panel");
+    if (!toggle || !panel) return;
+    panel.textContent = s.info;                 // Inhalt sicher als Text (kein HTML-Inject)
+    toggle.addEventListener("click", () => {
+      const open = toggle.getAttribute("aria-expanded") === "true";
+      toggle.setAttribute("aria-expanded", open ? "false" : "true");
+      toggle.classList.toggle("is-open", !open);
+      panel.hidden = open;
+    });
+  }
+
   /* ---------------- SINGLE-SELECT ---------------- */
   function renderSingle(s) {
     const screen = el(`<section class="screen"></section>`);
@@ -436,9 +498,11 @@
           <div class="eyebrow">${s.cat}</div>
           <h2 class="q__title" tabindex="-1">${s.q}</h2>
           ${s.sub ? `<p class="q__sub">${s.sub}</p>` : ""}
+          ${questionInfoHTML(s)}
           <div class="options" role="radiogroup" aria-label="${s.q}"></div>
         </div>
       </div>`);
+    wireQuestionInfo(q, s);
 
     const list = q.querySelector(".options");
     const optionEls = [];
@@ -500,6 +564,7 @@
           <div style="margin-bottom:12px;"><span class="pill pill--sage">Mehrfachauswahl</span></div>
           <h2 class="q__title" tabindex="-1">${s.q}</h2>
           ${s.sub ? `<p class="q__sub">${s.sub}</p>` : ""}
+          ${questionInfoHTML(s)}
           <div class="${useCards ? "cards" : "options"}"></div>
         </div>
         <div class="wrap q__foot">
@@ -507,6 +572,7 @@
           <p class="q__hint" id="multihint" hidden>Bitte wähle eine Option — oder „Nichts davon“.</p>
         </div>
       </div>`);
+    wireQuestionInfo(q, s);
 
     const grid = q.querySelector(useCards ? ".cards" : ".options");
     const nextBtn = q.querySelector("#next");
@@ -566,18 +632,23 @@
           <div class="eyebrow">${s.cat}</div>
           <h2 class="q__title" tabindex="-1">${s.q}</h2>
           ${s.sub ? `<p class="q__sub">${s.sub}</p>` : ""}
+          ${questionInfoHTML(s)}
           <label class="numfield" for="numinput">
             <input id="numinput" type="text" inputmode="decimal" autocomplete="off" data-autofocus
                    placeholder="${s.placeholder}" value="${prev != null ? fmt(prev) : ""}" aria-label="${s.q}">
             <span class="numfield__unit">${s.unit}</span>
           </label>
           <div class="field-hint" id="hint" aria-live="polite"></div>
+          <label class="numskip" for="numskip">
+            <input type="checkbox" id="numskip">
+            <span>${s.skipLabel}</span>
+          </label>
         </div>
         <div class="wrap q__foot">
           <button class="mv-btn mv-btn--burg mv-btn--block" id="next">Weiter</button>
-          <button class="link-btn link-btn--muted" id="skip">${s.skipLabel}</button>
         </div>
       </div>`);
+    wireQuestionInfo(q, s);
 
     const field = q.querySelector(".numfield");
     const input = q.querySelector("#numinput");
@@ -608,7 +679,10 @@
     }
     q.querySelector("#next").addEventListener("click", commit);
     input.addEventListener("keydown", (e) => { if (e.key === "Enter") commit(); });
-    q.querySelector("#skip").addEventListener("click", () => { state.answers[s.id] = { value: null }; go(1); });
+    q.querySelector("#numskip").addEventListener("change", (e) => {
+      // „weiß nicht / noch nie gemessen“ → weich überspringen und direkt weiter
+      if (e.target.checked) { state.answers[s.id] = { value: null }; go(1); }
+    });
     screen.appendChild(q);
     return screen;
   }
@@ -630,6 +704,22 @@
           </div>
           <div class="edu__foot"><button class="mv-btn mv-btn--block mv-btn--light" id="next">${s.cta}</button></div>
         </div>`));
+    } else if (s.variant === "info") {
+      // Info-Card (Wissens-Einschub im Flow): helle Karte, Grafik oben + Text.
+      // Grafik über onerror-Fallback abgesichert — Card rendert sauber ohne Bild.
+      const node = el(`
+        <div class="edu edu--info">
+          <div class="edu__inner edu__inner--info">
+            ${s.graphic ? `<img class="edu__graphic" src="${ASSET}${s.graphic}" alt="" onerror="this.style.display='none'">` : ""}
+            <div class="edu__eyebrow edu__eyebrow--info">${s.eyebrow || "Gut zu wissen"}</div>
+            <h2 class="edu__title edu__title--info">${s.title}</h2>
+            <p class="edu__text edu__text--info">${s.text}</p>
+            ${s.src ? `<p class="edu__src edu__src--info">${s.src}</p>` : ""}
+          </div>
+          <div class="edu__foot"><button class="mv-btn mv-btn--burg mv-btn--block" id="next">${s.cta || "Weiter"}</button></div>
+        </div>`);
+      if (s.graphicAlt) { const g = node.querySelector(".edu__graphic"); if (g) g.setAttribute("alt", s.graphicAlt); }
+      screen.appendChild(node);
     } else {
       screen.appendChild(el(`
         <div class="edu">
@@ -766,6 +856,12 @@
     const wide = window.matchMedia("(min-width:880px)").matches;
     const screen = el(`<section class="screen ${wide ? "result--wide" : ""}"></section>`);
 
+    // Hero-Bild je Band (onerror-Fallback → Block verschwindet, Seite bleibt intakt).
+    const heroHTML = cp.heroImage ? `
+      <div class="result__hero">
+        <img src="${ASSET}${cp.heroImage}" alt="${cp.heroAlt || ""}" onerror="this.closest('.result__hero').style.display='none'">
+      </div>` : "";
+
     const headerHTML = `
       <div class="result__header">
         <img class="bgmark" src="${ASSET}butterfly-mark.png" alt="" onerror="this.style.display='none'">
@@ -776,7 +872,7 @@
     const aText = rich(cp.validation, ctx);
     const a = aText ? `
       <div class="result__section result__section--first">
-        <div class="sec-head"><span class="sec-head__alpha">a</span><span class="eyebrow">Das sehen wir bei dir</span></div>
+        <div class="sec-head"><span class="eyebrow">Das sehen wir bei dir</span></div>
         <p class="lead-text">${aText}</p>
       </div>` : "";
 
@@ -784,16 +880,30 @@
     const mechText = rich(mech.text, ctx);
     const b = (mech.title || mechText || mech.note) ? `
       <div class="result__section">
-        <div class="sec-head"><span class="sec-head__alpha">b</span><span class="eyebrow">Was wahrscheinlich los ist</span></div>
+        <div class="sec-head"><span class="eyebrow">Was wahrscheinlich los ist</span></div>
         ${mech.title ? `<h3 class="mech-title">${mech.title}</h3>` : ""}
         ${mechText ? `<p class="mech-text">${mechText}</p>` : ""}
         ${mech.note ? `<div class="note-box"><strong>Wichtig:</strong> ${mech.note}</div>` : ""}
       </div>` : "";
 
-    const adviceItems = (cp.advice || []).filter((ad) => matches(ad.when, ctx));
-    const c = adviceItems.length ? `
+    // Insights (c): erklärende Karten je Antwort-Cluster; leer → Sektion entfällt (modular).
+    const insightItems = (cp.insights || []).filter((it) => matches(it.when, ctx));
+    const cInsights = insightItems.length ? `
       <div class="result__section">
-        <div class="sec-head"><span class="sec-head__alpha">c</span><span class="eyebrow">Was das für dich heißt</span></div>
+        <div class="sec-head"><span class="eyebrow">Was deine Angaben im Einzelnen zeigen</span></div>
+        <div class="advice">
+          ${insightItems.map((it) => `
+            <div class="advice-card">${icon(it.icon)}
+              <div><div class="advice-card__title">${it.title}</div><p>${tok(it.text, ctx)}</p></div>
+            </div>`).join("")}
+        </div>
+      </div>` : "";
+
+    // Action-Points (d): handlungsleitend.
+    const adviceItems = (cp.advice || []).filter((ad) => matches(ad.when, ctx));
+    const dAdvice = adviceItems.length ? `
+      <div class="result__section">
+        <div class="sec-head"><span class="eyebrow">Was das für dich heißt</span></div>
         <div class="advice">
           ${adviceItems.map((ad) => `
             <div class="advice-card">${icon(ad.icon)}
@@ -812,10 +922,10 @@
         </div>
       </div>` : "";
 
-    // Produkt (d): aus der Auswahllogik — kein Treffer → kein Block (kein erfundenes Produkt).
-    const d = ev.productId ? renderProductSection(ev.productId, ev.productReason) : "";
+    // Produkt (e): aus der Auswahllogik — kein Treffer → kein Block (kein erfundenes Produkt).
+    const eProduct = ev.productId ? renderProductSection(ev.productId, ev.productReason, ev.secondary) : "";
 
-    const e = cp.empower ? `
+    const empower = cp.empower ? `
       <div class="empower">
         <img src="${ASSET}butterfly-mark.png" alt="" onerror="this.style.display='none'">
         <h3>${cp.empower.title || ""}</h3>
@@ -829,49 +939,65 @@
     screen.appendChild(el(`
       <div class="result">
         <div class="result__logobar"><img src="${ASSET}logo-black.png" alt="miavola" onerror="this.style.display='none'"></div>
+        ${heroHTML}
         ${headerHTML}
         ${a}${a ? '<div class="sec-divider"></div>' : ""}
         ${b}${b ? '<div class="sec-divider"></div>' : ""}
-        ${c}${c ? '<div class="sec-divider"></div>' : ""}
+        ${cInsights}${cInsights ? '<div class="sec-divider"></div>' : ""}
+        ${dAdvice}${dAdvice ? '<div class="sec-divider"></div>' : ""}
         ${autoimmune}
-        ${d}${e}${cta}
+        ${eProduct}${empower}${cta}
       </div>`));
 
     renderCta(screen.querySelector("#cta"));
     return screen;
   }
 
-  // Produktblock (Abschnitt d) — gekoppelt an products-Registry / products.md.
+  // Produktblock (Abschnitt e) — gekoppelt an products-Registry / products.md.
   // Kein Mapping/Produkt → sichtbarer TODO-Hinweis, KEIN Produkt erfunden.
-  function renderProductSection(productId, reason) {
+  // Primärprodukt + optionale Zusatz-Produkte (`secondary`) in EINER Sektion.
+  function renderProductSection(productId, reason, secondary) {
     const R = C.result;
     const p = productId ? (C.products || {})[productId] : null;
     if (!p) {
       return `
         <div class="result__section">
-          <div class="sec-head"><span class="sec-head__alpha">d</span><span class="eyebrow">Ein möglicher nächster Schritt</span></div>
+          <div class="sec-head"><span class="eyebrow">Ein möglicher nächster Schritt</span></div>
           <div class="todo-note">${R.todo.productSlot}</div>
         </div>`;
     }
-    const claims = (p.claims || []).map((cl) => `<div class="product__claim">${icon("checkSage")}${cl}</div>`).join("");
+    const cards = productCard(p, reason, false)
+      + (secondary || []).map((s) => {
+          const sp = (C.products || {})[s.productId];
+          return sp ? productCard(sp, s.reason, true) : "";
+        }).join("");
     return `
       <div class="result__section">
-        <div class="sec-head"><span class="sec-head__alpha">d</span><span class="eyebrow">Ein möglicher nächster Schritt</span></div>
-        <div class="product">
-          <div class="product__top">
-            ${p.image ? `<img class="product__img" src="${ASSET}${p.image}" alt="${p.name || ""}" onerror="this.style.display='none'">` : ""}
-            <div>
-              <div class="eyebrow" style="margin-bottom:5px;">Passend zu deinem Ergebnis</div>
-              <div class="product__name">${p.name || ""}</div>
-              <div class="product__sub">${p.sub || ""}</div>
-            </div>
+        <div class="sec-head"><span class="eyebrow">Ein möglicher nächster Schritt</span></div>
+        ${cards}
+      </div>`;
+  }
+
+  // Einzelne Produktkarte. `secondaryFlag` → dezentere „Ergänzend dazu"-Auszeichnung.
+  // Ohne `reason` greift der Registry-Text (products[id].text).
+  function productCard(p, reason, secondaryFlag) {
+    const claims = (p.claims || []).map((cl) => `<div class="product__claim">${icon("checkSage")}${cl}</div>`).join("");
+    const eyebrow = secondaryFlag ? "Ergänzend dazu" : "Passend zu deinem Ergebnis";
+    return `
+      <div class="product${secondaryFlag ? " product--secondary" : ""}">
+        <div class="product__top">
+          ${p.image ? `<img class="product__img" src="${ASSET}${p.image}" alt="${p.name || ""}" onerror="this.style.display='none'">` : ""}
+          <div>
+            <div class="eyebrow" style="margin-bottom:5px;">${eyebrow}</div>
+            <div class="product__name">${p.name || ""}</div>
+            <div class="product__sub">${p.sub || ""}</div>
           </div>
-          <div class="product__body">
-            ${(reason || p.text) ? `<p class="product__why">${reason || p.text}</p>` : ""}
-            ${claims ? `<div class="product__claims">${claims}</div>` : ""}
-            <button class="mv-btn mv-btn--ghost mv-btn--block" id="product-more" data-link="${p.link || ""}">${p.cta || "Mehr erfahren"}</button>
-            ${p.disclaimer ? `<p class="product__disclaimer">${p.disclaimer}</p>` : ""}
-          </div>
+        </div>
+        <div class="product__body">
+          ${(reason || p.text) ? `<p class="product__why">${reason || p.text}</p>` : ""}
+          ${claims ? `<div class="product__claims">${claims}</div>` : ""}
+          <button class="mv-btn mv-btn--ghost mv-btn--block js-product-more" data-link="${p.link || ""}">${p.cta || "Mehr erfahren"}</button>
+          ${p.disclaimer ? `<p class="product__disclaimer">${p.disclaimer}</p>` : ""}
         </div>
       </div>`;
   }
@@ -954,7 +1080,7 @@
      Verlinkt auf die echte Produktseite, sobald `link` aus products.md
      gesetzt ist. Ohne Link: sichtbarer Hinweis (kein Dead-End). */
   app.addEventListener("click", (e) => {
-    const btn = e.target.closest("#product-more");
+    const btn = e.target.closest(".js-product-more");
     if (!btn) return;
     const link = btn.getAttribute("data-link");
     if (link) window.open(link, "_blank", "noopener");
