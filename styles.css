@@ -559,7 +559,7 @@ sup { font-size: .7em; opacity: .7; }
 
 /* Empowerment */
 .empower {
-  margin: 28px 14px 14px; border-radius: var(--radius);
+  margin: 28px 24px 14px; border-radius: var(--radius);
   background: var(--miavola-wine-700); color: #fff; padding: 28px 24px;
   text-align: center; position: relative; overflow: hidden;
 }
