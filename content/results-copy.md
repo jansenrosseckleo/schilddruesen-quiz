@@ -86,7 +86,7 @@ Gemeinsame Bausteine (mehrfach verwendet):
 **b) mech**
 - title: „Was dahinterstecken kann"
 - text:
-  1. „Viele dieser Beschwerden sind unspezifisch. Halten sie an oder werden mehr, lohnt ein gezielter Blick auf die Schilddrüse."
+  1. „Anzeichen einer Unterfunktion sind oft unspezifisch — halten sie an oder nehmen zu, lohnt ein gezielter Blick auf die Schilddrüse." *(self-contained — auch ohne genannte Symptome, z. B. Risiko-only-Nutzer)*
   2. Wechseljahre-Einschub
   3. Zyklus-Einschub
 - note: (gemeinsame mech.note)
@@ -108,6 +108,7 @@ Gemeinsame Bausteine (mehrfach verwendet):
 
 **a) validation**
 1. „Deine Antworten sprechen aktuell wenig für eine Unterfunktion. Erst einmal eine gute Nachricht."
+2. `{q:"q2",is:2}` „Du hast bereits eine Diagnose — dass aktuell wenig zusätzliche Hinweise dazukommen, ist ein gutes Zeichen. Behalte deine Einstellung trotzdem im Blick." *(damit die Diagnose auch in Band C nicht ignoriert wird)*
 
 **b) mech**
 - title: „Trotzdem gut zu wissen"
@@ -142,14 +143,15 @@ Karten (identisch für A und B, außer Ton; C hat **keine** Insights):
    „Haut, Haare und Nägel reagieren empfindlich auf den Stoffwechsel. Verändern sie sich ohne
    klaren Grund, kann das ein leises Signal sein — für sich allein aber kein Beweis."
 3. `{q:"q5", hasAny:["fog","down"]}` · `observe` — „Kopf & Stimmung"
-   „Brain Fog und gedrückte Stimmung werden selten mit der Schilddrüse in Verbindung gebracht.
-   Dabei beeinflusst sie mit, wie klar und ausgeglichen du dich fühlst."
+   „Kopf und Stimmung reagieren mit auf den Stoffwechsel: Die Schilddrüse beeinflusst, wie klar,
+   wach und ausgeglichen du dich fühlst — ein Zusammenhang, der oft übersehen wird."
+   *(bewusst allgemein — Trigger feuert schon bei einem Symptom)*
 4. `{q:"q6", has:"verstopfung"}` · `observe` — „Träge Verdauung"
    „Eine langsamere Verdauung passt ins Bild eines gedrosselten Stoffwechsels. Sie ist häufig
    und lässt sich gut ansprechen."
 5. `{q:"q16", hasAny:["schwellung","kloss","heiser"]}` · `warn` — „Zeichen am Hals"
-   „Ein Druck- oder Kloßgefühl im Hals gehört einmal ärztlich angeschaut. Häufig ist es
-   harmlos — Klarheit bekommst du aber nur durch einen Blick darauf."
+   „Veränderungen im Hals- oder Kehlbereich gehören einmal ärztlich angeschaut. Häufig ist es
+   harmlos — Klarheit bekommst du aber nur durch einen Blick darauf." *(deckt auch Heiserkeit-only)*
 6. `{q:"q7", is:2}` · `clock` — „Das begleitet dich schon länger"
    „Beschwerden, die über ein Jahr anhalten, verdienen eine gezielte Abklärung — nicht, weil
    etwas Schlimmes sein muss, sondern damit du endlich Klarheit hast."
@@ -163,7 +165,7 @@ Karten (identisch für A und B, außer Ton; C hat **keine** Insights):
 
 - **title:** „Ein Hinweis zu deinen Angaben"
 - **text:**
-  1. „Einer deiner Angaben — {{autoimmuneFactor}} — gehört zu den bekannten Risikofaktoren für Hashimoto, die häufigste Ursache einer Unterfunktion in Deutschland."
+  1. „Eine deiner Angaben — {{autoimmuneFactor}} — gehört zu den bekannten Risikofaktoren für Hashimoto, die häufigste Ursache einer Unterfunktion in Deutschland."
   2. „Sprich das beim Arzt aktiv an und bitte ausdrücklich um die TPO-Antikörper; sie werden nicht immer automatisch mitbestimmt."
 
 ---

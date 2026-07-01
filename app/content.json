@@ -100,7 +100,8 @@
         },
         {
           "key": "gewicht",
-          "label": "Gewichtszunahme / schwer abzunehmen"
+          "label": "Gewichtszunahme / schwer abzunehmen",
+          "inlineLabel": "Gewichtszunahme"
         },
         {
           "key": "frieren",
@@ -128,7 +129,8 @@
       "options": [
         {
           "key": "haut",
-          "label": "Trockene Haut"
+          "label": "Trockene Haut",
+          "inlineLabel": "trockene Haut"
         },
         {
           "key": "haare",
@@ -136,11 +138,13 @@
         },
         {
           "key": "naegel",
-          "label": "Brüchige Nägel"
+          "label": "Brüchige Nägel",
+          "inlineLabel": "brüchige Nägel"
         },
         {
           "key": "gesicht",
-          "label": "Aufgedunsenes Gesicht"
+          "label": "Aufgedunsenes Gesicht",
+          "inlineLabel": "ein aufgedunsenes Gesicht"
         },
         {
           "key": "none",
@@ -169,7 +173,8 @@
         },
         {
           "key": "unruhe",
-          "label": "Innere Unruhe"
+          "label": "Innere Unruhe",
+          "inlineLabel": "innere Unruhe"
         },
         {
           "key": "schlaf",
@@ -197,7 +202,8 @@
         },
         {
           "key": "schmerzen",
-          "label": "Muskel- / Gelenkschmerzen"
+          "label": "Muskel- / Gelenkschmerzen",
+          "inlineLabel": "Muskel- oder Gelenkschmerzen"
         },
         {
           "key": "schwaeche",
@@ -731,13 +737,10 @@
         },
         "reason": [
           {
-            "text": "Du hast eine träge Verdauung genannt — ein Thema, das bei einem verlangsamten Stoffwechsel häufig dazugehört."
+            "text": "Du hast eine träge Verdauung genannt — deshalb taucht der Magenfreund® hier als möglicher nächster Schritt auf."
           },
           {
-            "text": "Der Magenfreund® ist als ruhige, alltagstaugliche Ergänzung genau dafür gedacht."
-          },
-          {
-            "text": "Kein Muss — und kein Ersatz für die ärztliche Abklärung deiner Schilddrüse."
+            "text": "Er ist der Verdauungs-Komplex aus unserer Range, als ruhige Alltags-Ergänzung gedacht."
           }
         ]
       },
@@ -748,13 +751,10 @@
         },
         "reason": [
           {
-            "text": "Autoimmun-Themen spielen bei dir eine Rolle — und genau dann lohnt ein Blick auf die Grundversorgung."
+            "text": "Weil bei dir Autoimmun-Angaben vorkommen, zeigen wir dir aus unserer Range Immungold®."
           },
           {
-            "text": "Eine gute Versorgung mit Vitamin D und Omega-3 rückt dann in den Fokus; dafür ist Immungold® gemacht."
-          },
-          {
-            "text": "Kein Muss. Besprich Veränderungen am besten mit deinem Arzt."
+            "text": "Es ist ein Komplex mit Vitamin D und Omega-3."
           }
         ]
       },
@@ -766,13 +766,10 @@
         },
         "reason": [
           {
-            "text": "Deine Schilddrüse ist bereits ärztlich diagnostiziert — dann geht es vor allem darum, sie im Alltag verlässlich mit den passenden Nährstoffen zu versorgen."
+            "text": "Deine Schilddrüse ist bereits ärztlich diagnostiziert — dann geht es vor allem darum, sie im Alltag gut zu begleiten."
           },
           {
-            "text": "Der Umwandler® ist als Ergänzung zu deiner ärztlichen Therapie gedacht, nicht als Ersatz."
-          },
-          {
-            "text": "Besprich die Einnahme am besten mit deinem Arzt."
+            "text": "Der Umwandler® ist der Leber-Komplex aus unserer Range, gedacht als Ergänzung zu deiner ärztlichen Therapie, nicht als Ersatz."
           }
         ],
         "also": [
@@ -824,7 +821,7 @@
       "title": "Ein Hinweis zu deinen Angaben",
       "text": [
         {
-          "text": "Einer deiner Angaben — {{autoimmuneFactor}} — gehört zu den bekannten Risikofaktoren für Hashimoto, die häufigste Ursache einer Unterfunktion in Deutschland."
+          "text": "Eine deiner Angaben — {{autoimmuneFactor}} — gehört zu den bekannten Risikofaktoren für Hashimoto, die häufigste Ursache einer Unterfunktion in Deutschland."
         },
         {
           "text": "Sprich das beim Arzt aktiv an und bitte ausdrücklich um die TPO-Antikörper; sie werden nicht immer automatisch mitbestimmt."
@@ -948,7 +945,7 @@
               },
               "icon": "observe",
               "title": "Kopf & Stimmung",
-              "text": "Brain Fog und gedrückte Stimmung werden selten mit der Schilddrüse in Verbindung gebracht. Dabei beeinflusst sie mit, wie klar und ausgeglichen du dich fühlst."
+              "text": "Kopf und Stimmung reagieren mit auf den Stoffwechsel: Die Schilddrüse beeinflusst, wie klar, wach und ausgeglichen du dich fühlst — ein Zusammenhang, der oft übersehen wird."
             },
             {
               "when": {
@@ -970,7 +967,7 @@
               },
               "icon": "warn",
               "title": "Zeichen am Hals",
-              "text": "Ein Druck- oder Kloßgefühl im Hals gehört einmal ärztlich angeschaut. Häufig ist es harmlos — Klarheit bekommst du aber nur durch einen Blick darauf."
+              "text": "Veränderungen im Hals- oder Kehlbereich gehören einmal ärztlich angeschaut. Häufig ist es harmlos — Klarheit bekommst du aber nur durch einen Blick darauf."
             },
             {
               "when": {
@@ -1069,7 +1066,7 @@
             "title": "Was dahinterstecken kann",
             "text": [
               {
-                "text": "Viele dieser Beschwerden sind unspezifisch. Halten sie an oder werden mehr, lohnt ein gezielter Blick auf die Schilddrüse."
+                "text": "Anzeichen einer Unterfunktion sind oft unspezifisch — halten sie an oder nehmen zu, lohnt ein gezielter Blick auf die Schilddrüse."
               },
               {
                 "when": {
@@ -1128,7 +1125,7 @@
               },
               "icon": "observe",
               "title": "Kopf & Stimmung",
-              "text": "Brain Fog und gedrückte Stimmung werden selten mit der Schilddrüse in Verbindung gebracht. Dabei beeinflusst sie mit, wie klar und ausgeglichen du dich fühlst."
+              "text": "Kopf und Stimmung reagieren mit auf den Stoffwechsel: Die Schilddrüse beeinflusst, wie klar, wach und ausgeglichen du dich fühlst — ein Zusammenhang, der oft übersehen wird."
             },
             {
               "when": {
@@ -1150,7 +1147,7 @@
               },
               "icon": "warn",
               "title": "Zeichen am Hals",
-              "text": "Ein Druck- oder Kloßgefühl im Hals gehört einmal ärztlich angeschaut. Häufig ist es harmlos — Klarheit bekommst du aber nur durch einen Blick darauf."
+              "text": "Veränderungen im Hals- oder Kehlbereich gehören einmal ärztlich angeschaut. Häufig ist es harmlos — Klarheit bekommst du aber nur durch einen Blick darauf."
             },
             {
               "when": {
@@ -1209,6 +1206,13 @@
           "validation": [
             {
               "text": "Deine Antworten sprechen aktuell wenig für eine Unterfunktion. Erst einmal eine gute Nachricht."
+            },
+            {
+              "when": {
+                "q": "q2",
+                "is": 2
+              },
+              "text": "Du hast bereits eine Diagnose — dass aktuell wenig zusätzliche Hinweise dazukommen, ist ein gutes Zeichen. Behalte deine Einstellung trotzdem im Blick."
             }
           ],
           "mech": {
@@ -1247,6 +1251,7 @@
     "magenfreund": {
       "name": "Der Magenfreund®",
       "sub": "Verdauungs-Komplex",
+      "active": false,
       "text": "Eine ruhige Ergänzung, wenn deine Verdauung träge ist — kein Muss.",
       "claims": [
         "Chlorid trägt zu einer normalen Verdauung bei, indem es zur Bildung von Magensäure beiträgt.<sup>1</sup>"

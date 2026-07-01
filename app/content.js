@@ -116,7 +116,7 @@ window.QUIZ_CONTENT = {
         { key: "haut",     label: "Trockene Haut", inlineLabel: "trockene Haut" },
         { key: "haare",    label: "Haarausfall" },
         { key: "naegel",   label: "Brüchige Nägel", inlineLabel: "brüchige Nägel" },
-        { key: "gesicht",  label: "Aufgedunsenes Gesicht" },
+        { key: "gesicht",  label: "Aufgedunsenes Gesicht", inlineLabel: "ein aufgedunsenes Gesicht" },
         { key: "none",     label: "Nichts davon", exclusive: true },
       ] },
 
@@ -128,7 +128,7 @@ window.QUIZ_CONTENT = {
       options: [
         { key: "fog",      label: "Brain Fog" },
         { key: "down",     label: "Niedergeschlagenheit" },
-        { key: "unruhe",   label: "Innere Unruhe" },
+        { key: "unruhe",   label: "Innere Unruhe", inlineLabel: "innere Unruhe" },
         { key: "schlaf",   label: "Schlafprobleme" },
         { key: "none",     label: "Nichts davon", exclusive: true },
       ] },
@@ -139,7 +139,7 @@ window.QUIZ_CONTENT = {
       sub: "Wähle alles, was zutrifft.",
       options: [
         { key: "verstopfung", label: "Verstopfung" },
-        { key: "schmerzen",   label: "Muskel- / Gelenkschmerzen" },
+        { key: "schmerzen",   label: "Muskel- / Gelenkschmerzen", inlineLabel: "Muskel- oder Gelenkschmerzen" },
         { key: "schwaeche",   label: "Muskelschwäche" },
         { key: "wasser",      label: "Wassereinlagerungen" },
         { key: "none",        label: "Nichts davon", exclusive: true },
@@ -549,6 +549,7 @@ window.QUIZ_CONTENT = {
   products: {
     magenfreund: {
       name: "Der Magenfreund®", sub: "Verdauungs-Komplex",
+      active: false,   // Stock-Toggle: aktuell nicht verfügbar → Engine empfiehlt ihn nicht (im Backend umschaltbar)
       // TODO(Leo): Magenfreund-Key-Visual fehlt noch → Datei nach app/assets/ legen
       //            (Konvention: magenfreund-hero.webp), dann image-Feld ergänzen.
       text: "Eine ruhige Ergänzung, wenn deine Verdauung träge ist — kein Muss.",

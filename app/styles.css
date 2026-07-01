@@ -314,7 +314,7 @@ html, body {
    ================================================================ */
 .intro { flex: 1; display: flex; flex-direction: column; }
 .intro__logobar { display: flex; justify-content: center; padding: 24px 0 0; }
-.intro__logobar img { height: 44px; opacity: .9; }
+.intro__logobar img { height: 48px; opacity: .9; }
 .intro__body { flex: 1; padding: 26px 0 0; display: flex; flex-direction: column; }
 .intro__hero {
   position: relative; border-radius: var(--radius);
@@ -469,7 +469,7 @@ html, body {
    ================================================================ */
 .result { flex: 1; }
 .result__logobar { display: flex; justify-content: center; padding: 18px 0 6px; }
-.result__logobar img { height: 16px; opacity: .85; }
+.result__logobar img { height: 44px; opacity: .9; }
 
 /* Hero-Bild je Ergebnis-Band (oben auf der Seite; onerror blendet Container aus) */
 .result__hero {
@@ -542,10 +542,9 @@ html, body {
 .product + .product { margin-top: 16px; }
 .product--secondary { border-style: dashed; }
 .product--secondary .product__top { background: var(--miavola-cream, #FBF7F2); }
-.product__top { display: flex; flex-direction: column; background: var(--mv-tint-produzent); }
-/* Volles Key-Visual als Banner oben (eigener Markenhintergrund) — kein multiply, kein Crop (Quelle ist quadratisch). */
-.product__img { width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover; display: block; }
-.product__top > div { padding: 18px; }
+.product__top { display: flex; align-items: center; gap: 14px; padding: 16px 18px; background: var(--mv-tint-produzent); }
+/* Kleines, ruhiges Produkt-Thumbnail (education-first, nicht reisserisch nach Sale). */
+.product__img { width: 60px; height: 60px; flex: none; object-fit: cover; border-radius: var(--radius); }
 .product__name { font-family: var(--font-display); font-weight: 600; font-size: 19px; letter-spacing: -.01em; }
 .product__sub { font-size: 12.5px; color: var(--miavola-ink-500); }
 .product__body { padding: 18px; }

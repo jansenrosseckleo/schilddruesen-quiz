@@ -47,6 +47,12 @@
     observe: '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>',
     doctor: '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6 6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3"/><path d="M8 15v1a6 6 0 0 0 6 6 6 6 0 0 0 6-6v-4"/><circle cx="20" cy="10" r="2"/></svg>',
     leaf: '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c5-3 8-7 8-12a8 8 0 0 0-8 8 8 8 0 0 0-8-8c0 5 3 9 8 12z"/></svg>',
+    // Themen-spezifische Icons (klare Standard-Line-Icons, kein Freihand-Slop)
+    thermometer: '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"/></svg>',
+    sparkles: '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .962 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.962 0z"/></svg>',
+    mind: '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4a3 3 0 0 0-3 3 3 3 0 0 0-1 5 3 3 0 0 0 1 5 3 3 0 0 0 3 2V4zM15 4a3 3 0 0 1 3 3 3 3 0 0 1 1 5 3 3 0 0 1-1 5 3 3 0 0 1-3 2V4z"/></svg>',
+    clipboard: '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="4" x="8" y="2" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M9 12h6"/><path d="M9 16h4"/></svg>',
+    calendar: '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>',
     sym_tired: '<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#7a3343" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a4 4 0 0 0-4 4c0 2 1 3 1 5s-2 3-2 5a3 3 0 0 0 5 2 3 3 0 0 0 5-2c0-2-2-3-2-5s1-3 1-5a4 4 0 0 0-4-4z"/></svg>',
     sym_cold: '<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#7a3343" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M4 7l16 10M20 7L4 17M12 2l-3 3M12 2l3 3M12 22l-3-3M12 22l3-3"/></svg>',
     sym_hair: '<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#7a3343" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4c0 4-3 5-3 9a4 4 0 0 0 8 0c0-3-2-4-2-7M14 6c0 3 3 4 3 8a3 3 0 0 1-3 3"/></svg>',
@@ -265,7 +271,7 @@
     for (const r of rules) {
       if (!matches(r.when, ctx)) continue;
       const p = products[r.productId];
-      if (!p || p.pending) continue;
+      if (!p || p.pending || p.active === false) continue;   // pending/nicht verfügbar (Stock) überspringen
       if (core.has(r.productId) && !ctx.diagnosed) continue;
       return r;                                          // ganze Regel (inkl. reason)
     }
@@ -348,7 +354,7 @@
     for (const item of sel.also) {
       const id = typeof item === "string" ? item : item.productId;
       const p = products[id];
-      if (!p || p.pending) continue;
+      if (!p || p.pending || p.active === false) continue;   // pending/nicht verfügbar (Stock) überspringen
       if (core.has(id) && !ctx.diagnosed) continue;
       out.push({ productId: id, reason: (item && item.reason) ? rich(item.reason, ctx) : "" });
     }

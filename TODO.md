@@ -36,6 +36,32 @@ Umgesetzt nach `docs/superpowers/specs/2026-06-30-quiz-backend-editor-design.md`
   `content.js` bleibt nur noch kommentierte Referenz. `Infinity`-Band → `null`.
   localStorage-Override (`quizContentOverride`) als Hook für die Editor-Vorschau.
 
+## ✅ Stand 2026-07-01 — Info-Cards · individuellere Ergebnisseiten · Produkt-Begründung · Frage-Info
+Umgesetzt nach `docs/superpowers/specs/2026-07-01-infocards-ergebnisseiten-produkt-design.md`.
+Adversariales Multi-Agent-Review (26 Roh-Funde → 12 „minor" → alle behoben; 0 Blocker/HWG).
+- ✅ **Info-Cards** (`type:"education", variant:"info"`, Grafik oben + Text) nach **F12**
+  (`eduHormone`, nur weiblich/keine Angabe), **F15** (`eduHashimoto`), **F17** (`eduTsh`).
+  Quelle `content/education.md`. Reine Vorwärts-Einschübe (bei Zurück übersprungen, keine
+  Sackgasse); zählen nicht im Fortschritt.
+- ✅ **Ergebnisseiten individueller**: neue bedingte **Insights-Sektion** (c) „Was deine
+  Angaben im Einzelnen zeigen"; mehr `when`-Segmente; **Modularität** verifiziert (kein Block
+  verweist auf einen weglassbaren Folgeblock; Personas P1–P7 gelesen). **Hero-Bild je Band**
+  (`heroImage`, `onerror`-Fallback).
+- ✅ **Produkt-Begründung** `reason` = rich-Text-Array (mehrsätzig, modular, HWG-neutral;
+  keine Claim-/Disclaimer-Doppelung).
+- ✅ **Inline-Frage-Erklärung** `info` (ausklappbar „ⓘ Was ist gemeint?") bei F5/F14/F15/F16/F17.
+- ✅ **Inline-Symptomliste** sauber (`inlineLabel` für „Konkret: …").
+- ✅ **Deliverable-Docs** für Leo: `content/graphics-spec.md` (Grafik-Steckbriefe + Produktbild-
+  Liste) · `content/image-prompts.md` (Image-Gen-2.0-Prompts der 3 Band-Hero-Fotos).
+
+### ⬜ Von Leo zu liefern (Assets für diese Features)
+- ⬜ **3 Info-Card-Grafiken** (Claude Design): `edu-hormone.png` · `edu-hashimoto.png` ·
+  `edu-tsh.png` → `app/assets/` (Steckbriefe: `content/graphics-spec.md`).
+- ⬜ **3 Band-Hero-Fotos** (Image Gen 2.0): `result-hero-a.jpg` · `-b.jpg` · `-c.jpg`
+  (Prompts: `content/image-prompts.md`).
+- ⬜ **`magenfreund-hero.*`** (einziges sichtbares Produkt ohne Bild) → danach `image`-Feld setzen.
+- ⬜ **HWG-Gegenlesen** der neuen Texte (Info-Cards, Insights, Produkt-`reason`, Frage-`info`).
+
 ## ⬜ Nächstes Subsystem — Visuelles Editor-Backend (Phasen 2–4)
 Eigener Plan noch zu schreiben. Spec §3/§5/§7: 4 Panels (Fragen · Scoring · Produkte ·
 Ergebnistexte mit Bedingungs-Builder) + Live-Vorschau + Export `content.json` + Validierung.
@@ -61,7 +87,7 @@ Ergebnistexte mit Bedingungs-Builder) + Live-Vorschau + Export `content.json` + 
   (kein `multiply`-Thumbnail mehr). **Fehlt noch: `magenfreund-hero.webp`** (kein reales
   Foto geliefert) → Magenfreund läuft bis dahin ohne Bild (Engine-Fallback greift).
 - ⬜ **Immungold®** (in §6 eingeführt): Katalog/Bild bestätigen (nicht im gefundenen Katalog).
-- ⬜ **Wissens-Einschübe** (nach F12/F14/F17) im Flow platzieren (Engine kann `education`-Screens).
+- ✅ **Wissens-Einschübe** platziert (nach F12/F15/F17, `variant:"info"`) — s. Stand 2026-07-01.
 
 ## Von Leo zu bestätigen (Spec-Treue / Wording)
 - [ ] **F0 / q0** Wortlaut Frage + Hinweistext („Welches biologische Geschlecht hast du?") ok?

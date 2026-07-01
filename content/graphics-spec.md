@@ -47,19 +47,19 @@
 > Freisteller-Produktfotos, quadratisch, auf **transparent** oder Creme. Die Engine zeigt
 > sie im Produktblock (84×84, `mix-blend-mode: multiply`). `onerror`-Fallback aktiv.
 
-| Produkt        | Dateiname (Konvention) | Status                    |
+| Produkt        | Dateiname (in `content.js` verdrahtet) | Status                    |
 |----------------|------------------------|---------------------------|
-| Der Produzent® | `produzent-hero.png`   | ✅ vorhanden               |
+| Der Produzent® | `produzent-hero.webp`  | ✅ vorhanden               |
 | Das Heldenduo  | `heldenduo-30-tage.jpg`| ✅ vorhanden               |
-| Der Magenfreund®| `magenfreund-hero.png` | ⬜ fehlt                   |
-| Immungold®     | `immungold-hero.png`   | ⬜ fehlt (+ Katalog klären)|
-| Der Umwandler® | `umwandler-hero.png`   | ⬜ fehlt                   |
-| Kollagen-MCT   | `kollagen-hero.png`    | ⬜ fehlt (Produkt `pending`, aktuell ausgeblendet) |
-| Essentielle Aminosäuren | `aminos-hero.png` | ⬜ fehlt (Produkt `pending`, ausgeblendet) |
+| Immungold®     | `immungold-hero.webp`  | ✅ vorhanden (Katalog noch klären) |
+| Der Umwandler® | `umwandler-hero.webp`  | ✅ vorhanden               |
+| Kollagen-MCT   | `kollagen-hero.webp`   | ✅ vorhanden (Produkt `pending`, aktuell ausgeblendet) |
+| Essentielle Aminosäuren | `aminos-hero.webp` | ✅ vorhanden (Produkt `pending`, ausgeblendet) |
+| Der Magenfreund®| `magenfreund-hero.*`  | ⬜ **fehlt** — als einziges sichtbares Produkt ohne Bild; nach Lieferung `image`-Feld in `content.js → products.magenfreund` ergänzen |
 
-- **Format:** 512 × 512+ empfohlen, transparent/Creme, PNG (JPG ok).
-- Die Dateinamen sind in `content.js → products[id].image` bereits hinterlegt — sobald die
-  Datei in `app/assets/` liegt, erscheint sie automatisch.
+- **Format:** vorhandene Bilder sind `.webp` (empfohlen; JPG/PNG ok), transparent/Creme.
+- Die Dateinamen sind in `content.js → products[id].image` hinterlegt — sobald die Datei in
+  `app/assets/` liegt, erscheint sie automatisch (bis dahin `onerror`-Fallback).
 
 ---
 
