@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#fbf7f2">
+  <!-- Test-Deployment: nicht von Suchmaschinen indexieren (Entwurf, pre-Compliance) -->
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="assets/butterfly-mark.png">
+  <title>Schilddrüsen-Check · miavola</title>
+  <meta name="description" content="Eine kostenlose, ehrliche Selbsteinschätzung deiner Schilddrüse in rund 3 Minuten — verständlich erklärt, ohne Diagnose-Versprechen.">
+
+  <!-- Miavola Design System -->
+  <link rel="stylesheet" href="_ds/miavola-2-0-design-system-019e1fb5-7550-772f-964b-b7aee6a06470/colors_and_type.css">
+  <link rel="stylesheet" href="_ds/miavola-2-0-design-system-019e1fb5-7550-772f-964b-b7aee6a06470/supplementary_tokens.css">
+
+  <!-- App styles (?v zum Cache-Busting — bei Änderungen hochzählen) -->
+  <link rel="stylesheet" href="styles.css?v=5">
+</head>
+<body>
+  <noscript>
+    <div style="max-width:640px;margin:40px auto;padding:24px;font-family:system-ui;">
+      Dieses Quiz benötigt JavaScript. Bitte aktiviere JavaScript in deinem Browser.
+    </div>
+  </noscript>
+
+  <!-- Quiz mounts here -->
+  <main id="app" class="app"></main>
+
+  <!-- Inhalte werden von app.js async aus content.json geladen
+       (mit optionalem localStorage-Override für die Editor-Vorschau).
+       ?v zum Cache-Busting — bei Änderungen hochzählen. -->
+  <script src="app.js?v=6" defer></script>
+</body>
+</html>
