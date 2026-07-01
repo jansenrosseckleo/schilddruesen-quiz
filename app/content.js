@@ -102,7 +102,7 @@ window.QUIZ_CONTENT = {
         { key: "muede",    label: "Müdigkeit" },
         { key: "gewicht",  label: "Gewichtszunahme / schwer abzunehmen", inlineLabel: "Gewichtszunahme" },
         { key: "frieren",  label: "Frieren" },
-        { key: "kalt",     label: "Kalte Hände und Füße" },
+        { key: "kalt",     label: "Kalte Hände und Füße", inlineLabel: "kalte Hände und Füße" },
         { key: "antrieb",  label: "Antriebslosigkeit" },
         { key: "none",     label: "Nichts davon", exclusive: true },
       ] },
