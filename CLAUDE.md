@@ -98,3 +98,21 @@ Verwende ausschließlich, was in den `/content`-Dateien steht. Fehlt Content →
 ```bash
 cd app && python3 -m http.server 8765   # → http://localhost:8765
 ```
+
+## Deployment — WICHTIG
+Die **Live-Seite** (GitHub Pages, `https://jansenrosseckleo.github.io/schilddruesen-quiz/`)
+deployt aus dem **`gh-pages`-Branch** (Pages-Quelle = `gh-pages`, Pfad `/`), der den
+**Inhalt von `app/` im Root** spiegelt (`index.html`, `app.js`, `content.js`, `content.json`,
+`styles.css`, `_ds/`, `assets/`, plus `.nojekyll`). **Pushes auf `main` deployen NICHT** —
+`main` ist nur das Quell-Repo. Nach Änderungen an `app/` **zusätzlich** deployen:
+```bash
+# aus dem Repo-Root, main committed & gepusht:
+git worktree add -B gh-pages /tmp/ghpages origin/gh-pages
+rsync -a --exclude='.DS_Store' --exclude='.git' app/ /tmp/ghpages/   # .nojekyll bleibt erhalten
+git -C /tmp/ghpages add -A && git -C /tmp/ghpages commit -m "Deploy: <beschreibung>"
+git -C /tmp/ghpages push origin gh-pages                              # löst Pages-Build aus
+git worktree remove /tmp/ghpages --force
+```
+`.nojekyll` **muss** bleiben (sonst ignoriert Jekyll das `_ds/`-Design-System).
+Cache: `?v=` in `index.html` bei jeder Änderung an `app.js`/`styles.css` hochzählen;
+`content.json` wird per `fetch(..., {cache:"no-store"})` geladen.
