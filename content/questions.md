@@ -59,11 +59,19 @@ Ein gerader Weg, **keine** Verzweigung. F2 verzweigt nicht (steuert nur Wording 
 **F18 (`q18`, number, weicher Zusatz-Hinweis)** — „Kennst du deine Körpertemperatur morgens nach dem Aufwachen?" — Zahl °C (34–42, 1 Nachkommastelle, Komma/Punkt) **oder** „weiß ich nicht".
 - Bänder: `band:0` < 36,8 °C (niedrig, +1) · `band:1` ≥ 36,8 (normal/hoch, 0)
 
-## Wissens-Einschübe (Kompetenz, kein Produkt) — §3
-- nach F12: „Wechseljahres-Beschwerden ähneln einer Unterfunktion."
-- nach F14: „Hashimoto ist häufigste Ursache, erblich beeinflusst."
-- nach F17: „Ein normaler TSH schließt nicht alles aus."
-> **[offen]** Education-Einschübe sind noch nicht im Flow platziert (Engine unterstützt `education`-Screens). Position mit Leo abstimmen.
+## Wissens-Einschübe (Info-Cards, kein Produkt) — §3 · PLATZIERT (2026-07-01)
+Ganzseitige Info-Cards (`type:"education", variant:"info"`, Grafik oben + Text). Quelle:
+`content/education.md`. Reine Vorwärts-Einschübe (bei Rückwärts-Navigation übersprungen).
+- **nach F12** (`eduHormone`, nur weiblich/keine Angabe): „Hormone und Schilddrüse sprechen dieselbe Sprache."
+- **nach F15** (`eduHashimoto`): „Die häufigste Ursache heißt Hashimoto." *(nach F15 statt F14 → Abstand zur Hormon-Card)*
+- **nach F17** (`eduTsh`): „Ein ‚normaler' TSH ist nicht das ganze Bild."
+
+## Inline-Frage-Erklärung (`info`) — NEU 2026-07-01
+Optionales Feld `info` je Frage → dezenter, ausklappbarer Hinweis „ⓘ Was ist gemeint?" unter
+der Frage (barrierefrei, nur bei Bedarf; identisch Desktop/Mobil). Gesetzt bei Fragen mit
+Fachbegriff/Selbst-Check-Bedarf: **F5** (Brain Fog), **F14** (Autoimmun – Familie),
+**F15** (Autoimmun – selbst), **F16** (Hals-/Kehl-Selbstcheck), **F17** (Blutwerte/TSH).
+Texte = Entwurf (HWG-neutral, Alltagssprache), erweiterbar. Vor Livegang gegenlesen.
 
 ---
 

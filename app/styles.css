@@ -148,6 +148,24 @@ html, body {
   font: 400 13px/1.4 var(--font-sans); color: var(--miavola-ink-400);
 }
 
+/* Ausklappbare Frage-Erklärung („Was ist gemeint?") — dezent, nur bei Bedarf */
+.q-info { margin: -2px 0 20px; }
+.q-info__toggle {
+  display: inline-flex; align-items: center; gap: 6px;
+  border: none; background: none; cursor: pointer; padding: 6px 0;
+  font: 500 13.5px/1.3 var(--font-sans); color: var(--miavola-wine-700);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+.q-info__toggle svg { flex: none; }
+.q-info__toggle:hover { color: var(--miavola-wine-800); }
+.q-info__panel {
+  margin-top: 8px; padding: 14px 16px;
+  background: var(--miavola-cream-100); border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font: 400 13.5px/1.6 var(--font-sans); color: var(--miavola-ink-700);
+  animation: scr-in var(--dur-base) var(--ease-out) both;
+}
+
 /* ===== Single-select options ===== */
 .options { display: flex; flex-direction: column; gap: 12px; margin-top: 4px; }
 .option {
@@ -296,7 +314,7 @@ html, body {
    ================================================================ */
 .intro { flex: 1; display: flex; flex-direction: column; }
 .intro__logobar { display: flex; justify-content: center; padding: 24px 0 0; }
-.intro__logobar img { height: 20px; opacity: .85; }
+.intro__logobar img { height: 44px; opacity: .9; }
 .intro__body { flex: 1; padding: 26px 0 0; display: flex; flex-direction: column; }
 .intro__hero {
   position: relative; border-radius: var(--radius);

@@ -157,6 +157,7 @@
       "wirkung": "Scoring + Ergebnis",
       "q": "Was trifft auf Kopf und Stimmung zu?",
       "sub": "Wähle alles, was zutrifft.",
+      "info": "Mit „Brain Fog“ ist ein benommenes, vernebeltes Gefühl im Kopf gemeint: Du bist zerstreut, vergisst Dinge oder kannst dich schlechter konzentrieren als sonst.",
       "options": [
         {
           "key": "fog",
@@ -425,6 +426,7 @@
       "cat": "Risikofaktoren",
       "wirkung": "Scoring + Autoimmun-Flag",
       "q": "Gibt es in deiner Familie Schilddrüsen- oder Autoimmunerkrankungen?",
+      "info": "Autoimmunerkrankungen sind Erkrankungen, bei denen sich das Immunsystem gegen den eigenen Körper richtet — z. B. Hashimoto, Rheuma, Typ-1-Diabetes, Zöliakie oder Schuppenflechte. Gemeint sind Fälle bei Eltern, Geschwistern oder Großeltern.",
       "options": [
         {
           "label": "Ja, Schilddrüse"
@@ -446,6 +448,7 @@
       "cat": "Risikofaktoren",
       "wirkung": "Scoring + Autoimmun-Flag",
       "q": "Hast du selbst eine andere Autoimmunerkrankung?",
+      "info": "Gemeint ist eine Autoimmunerkrankung bei dir selbst — z. B. Rheuma, Typ-1-Diabetes, Zöliakie oder Schuppenflechte. Solche Erkrankungen treten häufiger gemeinsam auf.",
       "options": [
         {
           "label": "Ja"
@@ -476,6 +479,7 @@
       "wirkung": "Scoring + Personalisierung",
       "q": "Bemerkst du etwas im Hals- oder Kehlbereich?",
       "sub": "Wähle alles, was zutrifft.",
+      "info": "Taste dazu locker deinen vorderen Hals unterhalb des Kehlkopfs ab und schluck einmal. Achte auf eine sichtbare Schwellung, ein Druck- oder Enge-Gefühl oder das Gefühl, einen „Kloß“ zu schlucken.",
       "options": [
         {
           "key": "schwellung",
@@ -502,6 +506,7 @@
       "cat": "Werte & Selbstmessung",
       "wirkung": "Action-Point-Steuerung",
       "q": "Wurden bei dir in den letzten 12 Monaten die Schilddrüsenwerte überprüft?",
+      "info": "Gemeint ist eine Blutabnahme, bei der Schilddrüsenwerte bestimmt wurden — meist der TSH-Wert, manchmal auch fT3/fT4. „Unauffällig“ heißt: die Werte lagen im Normbereich.",
       "options": [
         {
           "label": "Ja, unauffällig"

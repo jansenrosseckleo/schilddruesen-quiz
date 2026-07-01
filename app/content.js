@@ -123,6 +123,7 @@ window.QUIZ_CONTENT = {
     { type: "multi", id: "q5", cat: "Symptome", symptom: true, wirkung: "Scoring + Ergebnis",
       q: "Was trifft auf Kopf und Stimmung zu?",
       sub: "Wähle alles, was zutrifft.",
+      info: "Mit „Brain Fog“ ist ein benommenes, vernebeltes Gefühl im Kopf gemeint: Du bist zerstreut, vergisst Dinge oder kannst dich schlechter konzentrieren als sonst.",
       options: [
         { key: "fog",      label: "Brain Fog" },
         { key: "down",     label: "Niedergeschlagenheit" },
@@ -246,6 +247,7 @@ window.QUIZ_CONTENT = {
     // F14 — Familie
     { type: "single", id: "q14", cat: "Risikofaktoren", wirkung: "Scoring + Autoimmun-Flag",
       q: "Gibt es in deiner Familie Schilddrüsen- oder Autoimmunerkrankungen?",
+      info: "Autoimmunerkrankungen sind Erkrankungen, bei denen sich das Immunsystem gegen den eigenen Körper richtet — z. B. Hashimoto, Rheuma, Typ-1-Diabetes, Zöliakie oder Schuppenflechte. Gemeint sind Fälle bei Eltern, Geschwistern oder Großeltern.",
       options: [
         { label: "Ja, Schilddrüse" },
         { label: "Ja, andere Autoimmunerkrankung" },
@@ -256,6 +258,7 @@ window.QUIZ_CONTENT = {
     // F15 — Eigene Autoimmunerkrankung
     { type: "single", id: "q15", cat: "Risikofaktoren", wirkung: "Scoring + Autoimmun-Flag",
       q: "Hast du selbst eine andere Autoimmunerkrankung?",
+      info: "Gemeint ist eine Autoimmunerkrankung bei dir selbst — z. B. Rheuma, Typ-1-Diabetes, Zöliakie oder Schuppenflechte. Solche Erkrankungen treten häufiger gemeinsam auf.",
       options: [
         { label: "Ja" },
         { label: "Nein" },
@@ -275,6 +278,7 @@ window.QUIZ_CONTENT = {
     { type: "multi", id: "q16", cat: "Risikofaktoren", wirkung: "Scoring + Personalisierung",
       q: "Bemerkst du etwas im Hals- oder Kehlbereich?",
       sub: "Wähle alles, was zutrifft.",
+      info: "Taste dazu locker deinen vorderen Hals unterhalb des Kehlkopfs ab und schluck einmal. Achte auf eine sichtbare Schwellung, ein Druck- oder Enge-Gefühl oder das Gefühl, einen „Kloß“ zu schlucken.",
       options: [
         { key: "schwellung", label: "Schwellung / Druck" },
         { key: "kloss",      label: "Kloßgefühl / Schluckgefühl" },
@@ -287,6 +291,7 @@ window.QUIZ_CONTENT = {
     // F17 — Blutwerte
     { type: "single", id: "q17", cat: "Werte & Selbstmessung", wirkung: "Action-Point-Steuerung",
       q: "Wurden bei dir in den letzten 12 Monaten die Schilddrüsenwerte überprüft?",
+      info: "Gemeint ist eine Blutabnahme, bei der Schilddrüsenwerte bestimmt wurden — meist der TSH-Wert, manchmal auch fT3/fT4. „Unauffällig“ heißt: die Werte lagen im Normbereich.",
       options: [
         { label: "Ja, unauffällig" },
         { label: "Ja, kenne die Werte aber nicht" },
@@ -404,7 +409,8 @@ window.QUIZ_CONTENT = {
           { text: "Deine Schilddrüse ist bereits ärztlich diagnostiziert — dann geht es vor allem darum, sie im Alltag verlässlich mit den passenden Nährstoffen zu versorgen." },
           { text: "Der Umwandler® ist als Ergänzung zu deiner ärztlichen Therapie gedacht, nicht als Ersatz." },
           { text: "Besprich die Einnahme am besten mit deinem Arzt." },
-        ] },
+        ],
+        also: [{ productId: "produzent" }] },                             // Zweit-Empfehlung bei Diagnose (Begründung = products.produzent.text)
       { productId: "kollagen", when: { q: "q4", hasAny: ["haut", "haare", "naegel", "gesicht"] },  // pending
         reason: [
           { text: "Du hast Veränderungen an Haut, Haaren oder Nägeln genannt." },

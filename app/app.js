@@ -332,7 +332,27 @@
     const sel = primary ? selectProduct(ctx, bandId) : null;
     const productId = sel ? sel.productId : null;
     const productReason = sel && sel.reason ? rich(sel.reason, ctx) : "";  // rich() akzeptiert String ODER Segment-Array
-    return { configured: !!primary, primary, band: bandId, total, flags, productId, productReason, secondary: [], summary, ctx };
+    const secondary = buildSecondary(sel, ctx);                            // Zusatz-Produkte (`also`), gleiche Sicherungen
+    return { configured: !!primary, primary, band: bandId, total, flags, productId, productReason, secondary, summary, ctx };
+  }
+
+  // Zusatz-Produkte einer Regel (`also`): gleiche Gates wie das Primärprodukt
+  // (pending übersprungen, Core nur diagnostiziert). Begründung optional — sonst
+  // greift im Render der Registry-Text (products[id].text). KEIN erfundenes Produkt.
+  function buildSecondary(sel, ctx) {
+    if (!sel || !Array.isArray(sel.also)) return [];
+    const O = C.outcomes || {};
+    const core = new Set(O.coreProductIds || []);
+    const products = C.products || {};
+    const out = [];
+    for (const item of sel.also) {
+      const id = typeof item === "string" ? item : item.productId;
+      const p = products[id];
+      if (!p || p.pending) continue;
+      if (core.has(id) && !ctx.diagnosed) continue;
+      out.push({ productId: id, reason: (item && item.reason) ? rich(item.reason, ctx) : "" });
+    }
+    return out;
   }
 
   /* ----------------------------------------------------------------
@@ -431,6 +451,35 @@
     return screen;
   }
 
+  /* ---------------- Frage-Info („Was ist gemeint?") ----------------
+     Optionales `s.info` je Frage: dezenter, ausklappbarer Erklär-Hinweis
+     unter der Frage (barrierefrei: aria-expanded/-controls). Nur wenn gesetzt. */
+  let infoSeq = 0;
+  function questionInfoHTML(s) {
+    if (!s.info) return "";
+    const pid = `qinfo-${++infoSeq}`;
+    return `
+      <div class="q-info">
+        <button class="q-info__toggle" type="button" aria-expanded="false" aria-controls="${pid}">
+          ${icon("info")}<span>Was ist gemeint?</span>
+        </button>
+        <div class="q-info__panel" id="${pid}" hidden></div>
+      </div>`;
+  }
+  function wireQuestionInfo(scope, s) {
+    if (!s.info) return;
+    const toggle = scope.querySelector(".q-info__toggle");
+    const panel = scope.querySelector(".q-info__panel");
+    if (!toggle || !panel) return;
+    panel.textContent = s.info;                 // Inhalt sicher als Text (kein HTML-Inject)
+    toggle.addEventListener("click", () => {
+      const open = toggle.getAttribute("aria-expanded") === "true";
+      toggle.setAttribute("aria-expanded", open ? "false" : "true");
+      toggle.classList.toggle("is-open", !open);
+      panel.hidden = open;
+    });
+  }
+
   /* ---------------- SINGLE-SELECT ---------------- */
   function renderSingle(s) {
     const screen = el(`<section class="screen"></section>`);
@@ -443,9 +492,11 @@
           <div class="eyebrow">${s.cat}</div>
           <h2 class="q__title" tabindex="-1">${s.q}</h2>
           ${s.sub ? `<p class="q__sub">${s.sub}</p>` : ""}
+          ${questionInfoHTML(s)}
           <div class="options" role="radiogroup" aria-label="${s.q}"></div>
         </div>
       </div>`);
+    wireQuestionInfo(q, s);
 
     const list = q.querySelector(".options");
     const optionEls = [];
@@ -507,6 +558,7 @@
           <div style="margin-bottom:12px;"><span class="pill pill--sage">Mehrfachauswahl</span></div>
           <h2 class="q__title" tabindex="-1">${s.q}</h2>
           ${s.sub ? `<p class="q__sub">${s.sub}</p>` : ""}
+          ${questionInfoHTML(s)}
           <div class="${useCards ? "cards" : "options"}"></div>
         </div>
         <div class="wrap q__foot">
@@ -514,6 +566,7 @@
           <p class="q__hint" id="multihint" hidden>Bitte wähle eine Option — oder „Nichts davon“.</p>
         </div>
       </div>`);
+    wireQuestionInfo(q, s);
 
     const grid = q.querySelector(useCards ? ".cards" : ".options");
     const nextBtn = q.querySelector("#next");
@@ -573,6 +626,7 @@
           <div class="eyebrow">${s.cat}</div>
           <h2 class="q__title" tabindex="-1">${s.q}</h2>
           ${s.sub ? `<p class="q__sub">${s.sub}</p>` : ""}
+          ${questionInfoHTML(s)}
           <label class="numfield" for="numinput">
             <input id="numinput" type="text" inputmode="decimal" autocomplete="off" data-autofocus
                    placeholder="${s.placeholder}" value="${prev != null ? fmt(prev) : ""}" aria-label="${s.q}">
@@ -588,6 +642,7 @@
           <button class="mv-btn mv-btn--burg mv-btn--block" id="next">Weiter</button>
         </div>
       </div>`);
+    wireQuestionInfo(q, s);
 
     const field = q.querySelector(".numfield");
     const input = q.querySelector("#numinput");
