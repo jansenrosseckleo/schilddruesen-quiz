@@ -496,7 +496,12 @@ html, body {
 .result__section--first { padding-top: 30px; }
 .sec-head { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
 .sec-head__alpha { font: 700 12px var(--font-sans); color: var(--miavola-wine-700); }
-.sec-head .eyebrow { margin: 0; }
+/* Sektions-Überschriften im Ergebnis: Cabinet Grotesk, schwarz (kein Eyebrow-Stil, keine a/b/c-Marker) */
+.sec-head .eyebrow {
+  margin: 0; font-family: var(--font-display); font-weight: 600;
+  font-size: 16px; letter-spacing: -.01em; text-transform: none;
+  color: var(--miavola-ink-900);
+}
 .sec-divider { height: 1px; background: #eadfd5; margin: 28px 24px; }
 .lead-text { font-size: 15px; line-height: 1.6; color: var(--miavola-ink-800); margin: 0 0 16px; }
 .chips { display: flex; flex-wrap: wrap; gap: 8px; }
@@ -505,7 +510,7 @@ html, body {
   border-radius: var(--radius-pill); padding: 8px 14px; color: var(--miavola-ink-700);
 }
 .mech-title { font-family: var(--font-display); font-weight: 600; font-size: 21px; line-height: 1.2; margin: 0 0 12px; }
-.mech-text { font-size: 14.5px; line-height: 1.65; color: var(--miavola-ink-700); margin: 0 0 14px; }
+.mech-text { font-size: 14.5px; line-height: 1.65; color: var(--miavola-ink-800); margin: 0 0 14px; }
 .note-box {
   background: var(--miavola-cream-100); border-radius: var(--radius);
   padding: 16px 18px; font-size: 13.5px; line-height: 1.55; color: #755469;
@@ -528,11 +533,15 @@ html, body {
 .advice { display: flex; flex-direction: column; gap: 12px; }
 .advice-card { background: #fff; border: 1px solid #ece2d9; border-radius: var(--radius); padding: 18px; display: flex; gap: 14px; }
 .advice-card svg { flex: none; margin-top: 2px; color: var(--miavola-wine-700); }
-.advice-card__title { font-weight: 600; font-size: 15px; margin-bottom: 4px; }
-.advice-card p { margin: 0; font-size: 13.5px; line-height: 1.55; color: var(--miavola-ink-500); }
+.advice-card__title { font-family: var(--font-display); font-weight: 600; font-size: 15.5px; letter-spacing: -.01em; color: var(--miavola-ink-900); margin-bottom: 4px; }
+.advice-card p { margin: 0; font-size: 13.5px; line-height: 1.55; color: var(--miavola-ink-700); }
 
 /* Soft product block */
 .product { border: 1px solid #e7ddd4; border-radius: var(--radius); overflow: hidden; background: #fff; }
+/* Zweit-Empfehlung: etwas ruhiger, mit Abstand zur Haupt-Empfehlung darüber */
+.product + .product { margin-top: 16px; }
+.product--secondary { border-style: dashed; }
+.product--secondary .product__top { background: var(--miavola-cream, #FBF7F2); }
 .product__top { display: flex; flex-direction: column; background: var(--mv-tint-produzent); }
 /* Volles Key-Visual als Banner oben (eigener Markenhintergrund) — kein multiply, kein Crop (Quelle ist quadratisch). */
 .product__img { width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover; display: block; }

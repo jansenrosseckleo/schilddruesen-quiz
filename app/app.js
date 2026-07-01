@@ -44,8 +44,8 @@
     heart: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7a3343" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg>',
     info: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8v.5"/></svg>',
     warn: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 8v5M12 16.5v.5"/><circle cx="12" cy="12" r="9"/></svg>',
-    observe: '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a4 4 0 0 0-4 4c0 2 1 3 1 5s-2 3-2 5a3 3 0 0 0 5 2 3 3 0 0 0 5-2c0-2-2-3-2-5s1-3 1-5a4 4 0 0 0-4-4z"/></svg>',
-    doctor: '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3v6a6 6 0 0 0 12 0V3M9 21a3 3 0 0 1 6 0"/><path d="M18 9a3 3 0 0 0 0 6"/></svg>',
+    observe: '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>',
+    doctor: '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6 6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3"/><path d="M8 15v1a6 6 0 0 0 6 6 6 6 0 0 0 6-6v-4"/><circle cx="20" cy="10" r="2"/></svg>',
     leaf: '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c5-3 8-7 8-12a8 8 0 0 0-8 8 8 8 0 0 0-8-8c0 5 3 9 8 12z"/></svg>',
     sym_tired: '<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#7a3343" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a4 4 0 0 0-4 4c0 2 1 3 1 5s-2 3-2 5a3 3 0 0 0 5 2 3 3 0 0 0 5-2c0-2-2-3-2-5s1-3 1-5a4 4 0 0 0-4-4z"/></svg>',
     sym_cold: '<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#7a3343" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M4 7l16 10M20 7L4 17M12 2l-3 3M12 2l3 3M12 22l-3-3M12 22l3-3"/></svg>',
@@ -221,7 +221,7 @@
       const a = state.answers[s.id];
       if (!a || !a.keys) return;
       const excl = new Set(s.options.filter((o) => o.exclusive).map((o) => o.key));
-      s.options.forEach((o) => { if (!excl.has(o.key) && a.keys.includes(o.key)) out.push(o.label); });
+      s.options.forEach((o) => { if (!excl.has(o.key) && a.keys.includes(o.key)) out.push(o.inlineLabel || o.label); });
     });
     return out;
   }
@@ -866,7 +866,7 @@
     const aText = rich(cp.validation, ctx);
     const a = aText ? `
       <div class="result__section result__section--first">
-        <div class="sec-head"><span class="sec-head__alpha">a</span><span class="eyebrow">Das sehen wir bei dir</span></div>
+        <div class="sec-head"><span class="eyebrow">Das sehen wir bei dir</span></div>
         <p class="lead-text">${aText}</p>
       </div>` : "";
 
@@ -874,7 +874,7 @@
     const mechText = rich(mech.text, ctx);
     const b = (mech.title || mechText || mech.note) ? `
       <div class="result__section">
-        <div class="sec-head"><span class="sec-head__alpha">b</span><span class="eyebrow">Was wahrscheinlich los ist</span></div>
+        <div class="sec-head"><span class="eyebrow">Was wahrscheinlich los ist</span></div>
         ${mech.title ? `<h3 class="mech-title">${mech.title}</h3>` : ""}
         ${mechText ? `<p class="mech-text">${mechText}</p>` : ""}
         ${mech.note ? `<div class="note-box"><strong>Wichtig:</strong> ${mech.note}</div>` : ""}
@@ -884,7 +884,7 @@
     const insightItems = (cp.insights || []).filter((it) => matches(it.when, ctx));
     const cInsights = insightItems.length ? `
       <div class="result__section">
-        <div class="sec-head"><span class="sec-head__alpha">c</span><span class="eyebrow">Was deine Angaben im Einzelnen zeigen</span></div>
+        <div class="sec-head"><span class="eyebrow">Was deine Angaben im Einzelnen zeigen</span></div>
         <div class="advice">
           ${insightItems.map((it) => `
             <div class="advice-card">${icon(it.icon)}
@@ -897,7 +897,7 @@
     const adviceItems = (cp.advice || []).filter((ad) => matches(ad.when, ctx));
     const dAdvice = adviceItems.length ? `
       <div class="result__section">
-        <div class="sec-head"><span class="sec-head__alpha">d</span><span class="eyebrow">Was das für dich heißt</span></div>
+        <div class="sec-head"><span class="eyebrow">Was das für dich heißt</span></div>
         <div class="advice">
           ${adviceItems.map((ad) => `
             <div class="advice-card">${icon(ad.icon)}
@@ -917,7 +917,7 @@
       </div>` : "";
 
     // Produkt (e): aus der Auswahllogik — kein Treffer → kein Block (kein erfundenes Produkt).
-    const eProduct = ev.productId ? renderProductSection(ev.productId, ev.productReason) : "";
+    const eProduct = ev.productId ? renderProductSection(ev.productId, ev.productReason, ev.secondary) : "";
 
     const empower = cp.empower ? `
       <div class="empower">
@@ -949,35 +949,49 @@
 
   // Produktblock (Abschnitt e) — gekoppelt an products-Registry / products.md.
   // Kein Mapping/Produkt → sichtbarer TODO-Hinweis, KEIN Produkt erfunden.
-  function renderProductSection(productId, reason) {
+  // Primärprodukt + optionale Zusatz-Produkte (`secondary`) in EINER Sektion.
+  function renderProductSection(productId, reason, secondary) {
     const R = C.result;
     const p = productId ? (C.products || {})[productId] : null;
     if (!p) {
       return `
         <div class="result__section">
-          <div class="sec-head"><span class="sec-head__alpha">e</span><span class="eyebrow">Ein möglicher nächster Schritt</span></div>
+          <div class="sec-head"><span class="eyebrow">Ein möglicher nächster Schritt</span></div>
           <div class="todo-note">${R.todo.productSlot}</div>
         </div>`;
     }
-    const claims = (p.claims || []).map((cl) => `<div class="product__claim">${icon("checkSage")}${cl}</div>`).join("");
+    const cards = productCard(p, reason, false)
+      + (secondary || []).map((s) => {
+          const sp = (C.products || {})[s.productId];
+          return sp ? productCard(sp, s.reason, true) : "";
+        }).join("");
     return `
       <div class="result__section">
-        <div class="sec-head"><span class="sec-head__alpha">e</span><span class="eyebrow">Ein möglicher nächster Schritt</span></div>
-        <div class="product">
-          <div class="product__top">
-            ${p.image ? `<img class="product__img" src="${ASSET}${p.image}" alt="${p.name || ""}" onerror="this.style.display='none'">` : ""}
-            <div>
-              <div class="eyebrow" style="margin-bottom:5px;">Passend zu deinem Ergebnis</div>
-              <div class="product__name">${p.name || ""}</div>
-              <div class="product__sub">${p.sub || ""}</div>
-            </div>
+        <div class="sec-head"><span class="eyebrow">Ein möglicher nächster Schritt</span></div>
+        ${cards}
+      </div>`;
+  }
+
+  // Einzelne Produktkarte. `secondaryFlag` → dezentere „Ergänzend dazu"-Auszeichnung.
+  // Ohne `reason` greift der Registry-Text (products[id].text).
+  function productCard(p, reason, secondaryFlag) {
+    const claims = (p.claims || []).map((cl) => `<div class="product__claim">${icon("checkSage")}${cl}</div>`).join("");
+    const eyebrow = secondaryFlag ? "Ergänzend dazu" : "Passend zu deinem Ergebnis";
+    return `
+      <div class="product${secondaryFlag ? " product--secondary" : ""}">
+        <div class="product__top">
+          ${p.image ? `<img class="product__img" src="${ASSET}${p.image}" alt="${p.name || ""}" onerror="this.style.display='none'">` : ""}
+          <div>
+            <div class="eyebrow" style="margin-bottom:5px;">${eyebrow}</div>
+            <div class="product__name">${p.name || ""}</div>
+            <div class="product__sub">${p.sub || ""}</div>
           </div>
-          <div class="product__body">
-            ${(reason || p.text) ? `<p class="product__why">${reason || p.text}</p>` : ""}
-            ${claims ? `<div class="product__claims">${claims}</div>` : ""}
-            <button class="mv-btn mv-btn--ghost mv-btn--block" id="product-more" data-link="${p.link || ""}">${p.cta || "Mehr erfahren"}</button>
-            ${p.disclaimer ? `<p class="product__disclaimer">${p.disclaimer}</p>` : ""}
-          </div>
+        </div>
+        <div class="product__body">
+          ${(reason || p.text) ? `<p class="product__why">${reason || p.text}</p>` : ""}
+          ${claims ? `<div class="product__claims">${claims}</div>` : ""}
+          <button class="mv-btn mv-btn--ghost mv-btn--block js-product-more" data-link="${p.link || ""}">${p.cta || "Mehr erfahren"}</button>
+          ${p.disclaimer ? `<p class="product__disclaimer">${p.disclaimer}</p>` : ""}
         </div>
       </div>`;
   }
@@ -1060,7 +1074,7 @@
      Verlinkt auf die echte Produktseite, sobald `link` aus products.md
      gesetzt ist. Ohne Link: sichtbarer Hinweis (kein Dead-End). */
   app.addEventListener("click", (e) => {
-    const btn = e.target.closest("#product-more");
+    const btn = e.target.closest(".js-product-more");
     if (!btn) return;
     const link = btn.getAttribute("data-link");
     if (link) window.open(link, "_blank", "noopener");

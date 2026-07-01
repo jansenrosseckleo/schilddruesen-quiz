@@ -774,6 +774,11 @@
           {
             "text": "Besprich die Einnahme am besten mit deinem Arzt."
           }
+        ],
+        "also": [
+          {
+            "productId": "produzent"
+          }
         ]
       },
       {

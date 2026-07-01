@@ -15,7 +15,8 @@
 
    STAND (2026-07-01):
    • flow = 18 Fragen (Block A–G) + 3 Info-Cards (type:"education", variant:"info")
-     nach F12/F14/F17 (Quelle: content/education.md). Anzeige-/Skip-Logik aktiv.
+     nach F12/F15/F17 (Quelle: content/education.md) + Inline-„info"-Toggle je Frage.
+     Anzeige-/Skip-Logik aktiv; Info-Cards sind reine Vorwärts-Einschübe.
    • outcomes / products / Ergebnis-Texte = KONFIGURIERT (Entwurf, meta.placeholder=true).
      Severity-Bänder A/B/C, personalisierte Segmente + bedingte Insights-Sektion,
      Hero-Bild je Band, Produkt-Auswahl mit rich-Text-`reason`.
@@ -99,7 +100,7 @@ window.QUIZ_CONTENT = {
       sub: "Wähle alles, was zutrifft.",
       options: [
         { key: "muede",    label: "Müdigkeit" },
-        { key: "gewicht",  label: "Gewichtszunahme / schwer abzunehmen" },
+        { key: "gewicht",  label: "Gewichtszunahme / schwer abzunehmen", inlineLabel: "Gewichtszunahme" },
         { key: "frieren",  label: "Frieren" },
         { key: "antrieb",  label: "Antriebslosigkeit" },
         { key: "none",     label: "Nichts davon", exclusive: true },
@@ -112,9 +113,9 @@ window.QUIZ_CONTENT = {
       q: "Was trifft auf Haut, Haare und Äußeres zu?",
       sub: "Wähle alles, was zutrifft.",
       options: [
-        { key: "haut",     label: "Trockene Haut" },
+        { key: "haut",     label: "Trockene Haut", inlineLabel: "trockene Haut" },
         { key: "haare",    label: "Haarausfall" },
-        { key: "naegel",   label: "Brüchige Nägel" },
+        { key: "naegel",   label: "Brüchige Nägel", inlineLabel: "brüchige Nägel" },
         { key: "gesicht",  label: "Aufgedunsenes Gesicht" },
         { key: "none",     label: "Nichts davon", exclusive: true },
       ] },
@@ -394,21 +395,18 @@ window.QUIZ_CONTENT = {
     productRules: [
       { productId: "magenfreund", when: { q: "q6", has: "verstopfung" },
         reason: [
-          { text: "Du hast eine träge Verdauung genannt — ein Thema, das bei einem verlangsamten Stoffwechsel häufig dazugehört." },
-          { text: "Der Magenfreund® ist als ruhige, alltagstaugliche Ergänzung genau dafür gedacht." },
-          { text: "Kein Muss — und kein Ersatz für die ärztliche Abklärung deiner Schilddrüse." },
+          { text: "Du hast eine träge Verdauung genannt — deshalb taucht der Magenfreund® hier als möglicher nächster Schritt auf." },
+          { text: "Er ist der Verdauungs-Komplex aus unserer Range, als ruhige Alltags-Ergänzung gedacht." },
         ] },
       { productId: "immungold", when: { flag: "autoimmune" },
         reason: [
-          { text: "Autoimmun-Themen spielen bei dir eine Rolle — und genau dann lohnt ein Blick auf die Grundversorgung." },
-          { text: "Eine gute Versorgung mit Vitamin D und Omega-3 rückt dann in den Fokus; dafür ist Immungold® gemacht." },
-          { text: "Kein Muss. Besprich Veränderungen am besten mit deinem Arzt." },
+          { text: "Weil bei dir Autoimmun-Angaben vorkommen, zeigen wir dir aus unserer Range Immungold®." },
+          { text: "Es ist ein Komplex mit Vitamin D und Omega-3." },
         ] },
       { productId: "umwandler", when: { q: "q2", is: 2 },                  // core, nur diagnostiziert — Bestseller-Default bei Diagnose
         reason: [
-          { text: "Deine Schilddrüse ist bereits ärztlich diagnostiziert — dann geht es vor allem darum, sie im Alltag verlässlich mit den passenden Nährstoffen zu versorgen." },
-          { text: "Der Umwandler® ist als Ergänzung zu deiner ärztlichen Therapie gedacht, nicht als Ersatz." },
-          { text: "Besprich die Einnahme am besten mit deinem Arzt." },
+          { text: "Deine Schilddrüse ist bereits ärztlich diagnostiziert — dann geht es vor allem darum, sie im Alltag gut zu begleiten." },
+          { text: "Der Umwandler® ist der Leber-Komplex aus unserer Range, gedacht als Ergänzung zu deiner ärztlichen Therapie, nicht als Ersatz." },
         ],
         also: [{ productId: "produzent" }] },                             // Zweit-Empfehlung bei Diagnose (Begründung = products.produzent.text)
       { productId: "kollagen", when: { q: "q4", hasAny: ["haut", "haare", "naegel", "gesicht"] },  // pending
@@ -427,7 +425,7 @@ window.QUIZ_CONTENT = {
     autoimmuneBlock: {
       title: "Ein Hinweis zu deinen Angaben",
       text: [
-        { text: "Einer deiner Angaben — {{autoimmuneFactor}} — gehört zu den bekannten Risikofaktoren für Hashimoto, die häufigste Ursache einer Unterfunktion in Deutschland." },
+        { text: "Eine deiner Angaben — {{autoimmuneFactor}} — gehört zu den bekannten Risikofaktoren für Hashimoto, die häufigste Ursache einer Unterfunktion in Deutschland." },
         { text: "Sprich das beim Arzt aktiv an und bitte ausdrücklich um die TPO-Antikörper; sie werden nicht immer automatisch mitbestimmt." },
       ],
     },
@@ -462,9 +460,9 @@ window.QUIZ_CONTENT = {
         insights: [
           { when: { q: "q3", hasAny: ["frieren", "muede", "antrieb"] }, icon: "observe", title: "Energie & Wärme im Haushalt", text: "Energie, Wärme und Antrieb hängen eng am Stoffwechsel: Läuft er langsamer, stellt der Körper weniger davon bereit. Das erklärt, warum sich mehrere solcher Beschwerden gleichzeitig zeigen können." },
           { when: { q: "q4", hasAny: ["haut", "haare", "naegel"] }, icon: "observe", title: "Haut, Haare & Nägel", text: "Haut, Haare und Nägel reagieren empfindlich auf den Stoffwechsel. Verändern sie sich ohne klaren Grund, kann das ein leises Signal sein — für sich allein aber kein Beweis." },
-          { when: { q: "q5", hasAny: ["fog", "down"] }, icon: "observe", title: "Kopf & Stimmung", text: "Brain Fog und gedrückte Stimmung werden selten mit der Schilddrüse in Verbindung gebracht. Dabei beeinflusst sie mit, wie klar und ausgeglichen du dich fühlst." },
+          { when: { q: "q5", hasAny: ["fog", "down"] }, icon: "observe", title: "Kopf & Stimmung", text: "Kopf und Stimmung reagieren mit auf den Stoffwechsel: Die Schilddrüse beeinflusst, wie klar, wach und ausgeglichen du dich fühlst — ein Zusammenhang, der oft übersehen wird." },
           { when: { q: "q6", has: "verstopfung" }, icon: "observe", title: "Träge Verdauung", text: "Eine langsamere Verdauung passt ins Bild eines gedrosselten Stoffwechsels. Sie ist häufig und lässt sich gut ansprechen." },
-          { when: { q: "q16", hasAny: ["schwellung", "kloss", "heiser"] }, icon: "warn", title: "Zeichen am Hals", text: "Ein Druck- oder Kloßgefühl im Hals gehört einmal ärztlich angeschaut. Häufig ist es harmlos — Klarheit bekommst du aber nur durch einen Blick darauf." },
+          { when: { q: "q16", hasAny: ["schwellung", "kloss", "heiser"] }, icon: "warn", title: "Zeichen am Hals", text: "Veränderungen im Hals- oder Kehlbereich gehören einmal ärztlich angeschaut. Häufig ist es harmlos — Klarheit bekommst du aber nur durch einen Blick darauf." },
           { when: { q: "q7", is: 2 }, icon: "clock", title: "Das begleitet dich schon länger", text: "Beschwerden, die über ein Jahr anhalten, verdienen eine gezielte Abklärung — nicht, weil etwas Schlimmes sein muss, sondern damit du endlich Klarheit hast." },
           { when: { q: "q8", is: 0 }, icon: "clock", title: "Es wird eher mehr", text: "Dass die Beschwerden zunehmen, ist ein guter Grund, jetzt hinzuschauen, statt weiter abzuwarten." },
         ],
@@ -493,7 +491,7 @@ window.QUIZ_CONTENT = {
         mech: {
           title: "Was dahinterstecken kann",
           text: [
-            { text: "Viele dieser Beschwerden sind unspezifisch. Halten sie an oder werden mehr, lohnt ein gezielter Blick auf die Schilddrüse." },
+            { text: "Anzeichen einer Unterfunktion sind oft unspezifisch — halten sie an oder nehmen zu, lohnt ein gezielter Blick auf die Schilddrüse." },
             { when: { q: "q12", is: 4 }, text: "Gerade in den Wechseljahren werden solche Beschwerden leicht den Hormonen zugeschrieben — die Schilddrüse lohnt den gezielten Blick." },
             { when: { q: "q13", hasAny: ["stark", "unregel"] }, text: "Auch stärkere oder unregelmäßige Blutungen können mit der Schilddrüse zusammenhängen." },
           ],
@@ -503,9 +501,9 @@ window.QUIZ_CONTENT = {
         insights: [
           { when: { q: "q3", hasAny: ["frieren", "muede", "antrieb"] }, icon: "observe", title: "Energie & Wärme im Haushalt", text: "Energie, Wärme und Antrieb hängen eng am Stoffwechsel: Läuft er langsamer, stellt der Körper weniger davon bereit. Das erklärt, warum sich mehrere solcher Beschwerden gleichzeitig zeigen können." },
           { when: { q: "q4", hasAny: ["haut", "haare", "naegel"] }, icon: "observe", title: "Haut, Haare & Nägel", text: "Haut, Haare und Nägel reagieren empfindlich auf den Stoffwechsel. Verändern sie sich ohne klaren Grund, kann das ein leises Signal sein — für sich allein aber kein Beweis." },
-          { when: { q: "q5", hasAny: ["fog", "down"] }, icon: "observe", title: "Kopf & Stimmung", text: "Brain Fog und gedrückte Stimmung werden selten mit der Schilddrüse in Verbindung gebracht. Dabei beeinflusst sie mit, wie klar und ausgeglichen du dich fühlst." },
+          { when: { q: "q5", hasAny: ["fog", "down"] }, icon: "observe", title: "Kopf & Stimmung", text: "Kopf und Stimmung reagieren mit auf den Stoffwechsel: Die Schilddrüse beeinflusst, wie klar, wach und ausgeglichen du dich fühlst — ein Zusammenhang, der oft übersehen wird." },
           { when: { q: "q6", has: "verstopfung" }, icon: "observe", title: "Träge Verdauung", text: "Eine langsamere Verdauung passt ins Bild eines gedrosselten Stoffwechsels. Sie ist häufig und lässt sich gut ansprechen." },
-          { when: { q: "q16", hasAny: ["schwellung", "kloss", "heiser"] }, icon: "warn", title: "Zeichen am Hals", text: "Ein Druck- oder Kloßgefühl im Hals gehört einmal ärztlich angeschaut. Häufig ist es harmlos — Klarheit bekommst du aber nur durch einen Blick darauf." },
+          { when: { q: "q16", hasAny: ["schwellung", "kloss", "heiser"] }, icon: "warn", title: "Zeichen am Hals", text: "Veränderungen im Hals- oder Kehlbereich gehören einmal ärztlich angeschaut. Häufig ist es harmlos — Klarheit bekommst du aber nur durch einen Blick darauf." },
           { when: { q: "q7", is: 2 }, icon: "clock", title: "Das begleitet dich schon länger", text: "Beschwerden, die über ein Jahr anhalten, verdienen eine gezielte Abklärung — nicht, weil etwas Schlimmes sein muss, sondern damit du endlich Klarheit hast." },
           { when: { q: "q8", is: 0 }, icon: "clock", title: "Es wird eher mehr", text: "Dass die Beschwerden zunehmen, ist ein guter Grund, jetzt hinzuschauen, statt weiter abzuwarten." },
         ],
@@ -525,6 +523,7 @@ window.QUIZ_CONTENT = {
         heroAlt: "",
         validation: [
           { text: "Deine Antworten sprechen aktuell wenig für eine Unterfunktion. Erst einmal eine gute Nachricht." },
+          { when: { q: "q2", is: 2 }, text: "Du hast bereits eine Diagnose — dass aktuell wenig zusätzliche Hinweise dazukommen, ist ein gutes Zeichen. Behalte deine Einstellung trotzdem im Blick." },
         ],
         mech: {
           title: "Trotzdem gut zu wissen",
