@@ -253,15 +253,6 @@ window.QUIZ_CONTENT = {
         { label: "Weiß nicht" },
       ] },
 
-    // ── Info-Card nach F14 (immer) ──
-    { type: "education", variant: "info", id: "eduHashimoto",
-      graphic: "edu-hashimoto.png",
-      graphicAlt: "Hashimoto ist die häufigste Ursache und tritt familiär gehäuft auf",
-      eyebrow: "Gut zu wissen",
-      title: "Die häufigste Ursache heißt Hashimoto",
-      text: "Die meisten Schilddrüsenunterfunktionen in Deutschland entstehen durch Hashimoto — eine Autoimmun-Reaktion, bei der der Körper die eigene Schilddrüse angreift. Sie tritt familiär gehäuft auf: Gibt es Fälle in deiner Familie, kann dein eigenes Risiko erhöht sein. Kein Grund zur Sorge — aber ein guter Grund, aufmerksam zu sein.",
-      cta: "Weiter" },
-
     // F15 — Eigene Autoimmunerkrankung
     { type: "single", id: "q15", cat: "Risikofaktoren", wirkung: "Scoring + Autoimmun-Flag",
       q: "Hast du selbst eine andere Autoimmunerkrankung?",
@@ -270,6 +261,15 @@ window.QUIZ_CONTENT = {
         { label: "Nein" },
         { label: "Weiß nicht" },
       ] },
+
+    // ── Info-Card nach F15 (immer) — Abstand zur Hormon-Card (nach F12); F14+F15 dazwischen ──
+    { type: "education", variant: "info", id: "eduHashimoto",
+      graphic: "edu-hashimoto.png",
+      graphicAlt: "Hashimoto ist die häufigste Ursache und tritt familiär gehäuft auf",
+      eyebrow: "Gut zu wissen",
+      title: "Die häufigste Ursache heißt Hashimoto",
+      text: "Die meisten Schilddrüsenunterfunktionen in Deutschland entstehen durch Hashimoto — eine Autoimmun-Reaktion, bei der der Körper die eigene Schilddrüse angreift. Sie tritt familiär gehäuft auf: Gibt es Fälle in deiner Familie, kann dein eigenes Risiko erhöht sein. Kein Grund zur Sorge — aber ein guter Grund, aufmerksam zu sein.",
+      cta: "Weiter" },
 
     // F16 — Hals-/Kehlbereich
     { type: "multi", id: "q16", cat: "Risikofaktoren", wirkung: "Scoring + Personalisierung",

@@ -16,7 +16,7 @@
 | Card-ID        | Position (nach) | Sichtbarkeit (`showWhen`)        | Grafik            |
 |----------------|-----------------|----------------------------------|-------------------|
 | `eduHormone`   | F12 (`q12`)     | `{ q:"q0", inAnyOf:[0,2] }` *(erbt Geschlechts-Gate von F12 — Männer sehen die Card nicht)* | `edu-hormone.png` |
-| `eduHashimoto` | F14 (`q14`)     | immer                            | `edu-hashimoto.png` |
+| `eduHashimoto` | F15 (`q15`)     | immer *(nach F15 statt F14 → Abstand zur Hormon-Card, F14+F15 dazwischen)* | `edu-hashimoto.png` |
 | `eduTsh`       | F17 (`q17`)     | immer                            | `edu-tsh.png`     |
 
 Education zählt **nicht** als Frage (Fortschritts-Zähler bleibt stabil, kein Topbar/Counter).
@@ -33,7 +33,7 @@ Education zählt **nicht** als Frage (Fortschritts-Zähler bleibt stabil, kein T
 - **Grafik-Aussage:** Zwei überlappende Kreise „Hormonhaushalt" ↔ „Schilddrüse" mit
   gemeinsamer Schnittmenge (ähnliche Beschwerden). Details → `graphics-spec.md`.
 
-## Card 2 — `eduHashimoto` (nach F14)
+## Card 2 — `eduHashimoto` (nach F15)
 - **eyebrow:** „Gut zu wissen"
 - **title:** „Die häufigste Ursache heißt Hashimoto"
 - **text:** „Die meisten Schilddrüsenunterfunktionen in Deutschland entstehen durch

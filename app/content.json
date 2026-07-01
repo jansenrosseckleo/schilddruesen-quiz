@@ -441,17 +441,6 @@
       ]
     },
     {
-      "type": "education",
-      "variant": "info",
-      "id": "eduHashimoto",
-      "graphic": "edu-hashimoto.png",
-      "graphicAlt": "Hashimoto ist die häufigste Ursache und tritt familiär gehäuft auf",
-      "eyebrow": "Gut zu wissen",
-      "title": "Die häufigste Ursache heißt Hashimoto",
-      "text": "Die meisten Schilddrüsenunterfunktionen in Deutschland entstehen durch Hashimoto — eine Autoimmun-Reaktion, bei der der Körper die eigene Schilddrüse angreift. Sie tritt familiär gehäuft auf: Gibt es Fälle in deiner Familie, kann dein eigenes Risiko erhöht sein. Kein Grund zur Sorge — aber ein guter Grund, aufmerksam zu sein.",
-      "cta": "Weiter"
-    },
-    {
       "type": "single",
       "id": "q15",
       "cat": "Risikofaktoren",
@@ -468,6 +457,17 @@
           "label": "Weiß nicht"
         }
       ]
+    },
+    {
+      "type": "education",
+      "variant": "info",
+      "id": "eduHashimoto",
+      "graphic": "edu-hashimoto.png",
+      "graphicAlt": "Hashimoto ist die häufigste Ursache und tritt familiär gehäuft auf",
+      "eyebrow": "Gut zu wissen",
+      "title": "Die häufigste Ursache heißt Hashimoto",
+      "text": "Die meisten Schilddrüsenunterfunktionen in Deutschland entstehen durch Hashimoto — eine Autoimmun-Reaktion, bei der der Körper die eigene Schilddrüse angreift. Sie tritt familiär gehäuft auf: Gibt es Fälle in deiner Familie, kann dein eigenes Risiko erhöht sein. Kein Grund zur Sorge — aber ein guter Grund, aufmerksam zu sein.",
+      "cta": "Weiter"
     },
     {
       "type": "multi",
