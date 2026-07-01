@@ -45,11 +45,11 @@ window.QUIZ_CONTENT = {
     badge: "Kostenlos",
     badgeWide: "Kostenlos · 3 Min",
     title: "Wie geht es deiner Schilddrüse?",
-    lead: "Eine kostenlose Selbsteinschätzung. In wenigen Minuten bekommst du eine verständliche, ehrliche Einordnung deiner Situation — ganz ohne Diagnose-Versprechen.",
-    leadWide: "Eine kostenlose Selbsteinschätzung mit verständlicher, ehrlicher Einordnung deiner Situation — ganz ohne Diagnose-Versprechen.",
+    lead: "Eine kostenlose Selbsteinschätzung. In wenigen Minuten bekommst du eine verständliche, ehrliche Einordnung deiner Situation, ganz ohne Diagnose-Versprechen.",
+    leadWide: "Eine kostenlose Selbsteinschätzung mit verständlicher, ehrlicher Einordnung deiner Situation, ganz ohne Diagnose-Versprechen.",
     facts: [
       { icon: "clock", text: "Wenige Minuten, {N} kurze Fragen" },
-      { icon: "arrow", text: "Dein Ergebnis sofort — verständlich erklärt" },
+      { icon: "arrow", text: "Dein Ergebnis sofort, verständlich erklärt" },
       { icon: "heart", text: "Mehrwert auch ohne Kauf" },
     ],
     cta: "Quiz starten",
@@ -66,7 +66,7 @@ window.QUIZ_CONTENT = {
     // F0 — Biologisches Geschlecht (Personalisierung + Block-E-Gating; kein Scoring)
     { type: "single", id: "q0", cat: "Einstieg", wirkung: "Steuert Zyklus-Block (Block E); kein Score",
       q: "Welches biologische Geschlecht hast du?",
-      sub: "Wir fragen das nur, weil dein Hormonhaushalt deine Schilddrüse direkt beeinflusst — dadurch sind manche Fragen nur für bestimmte Menschen relevant.",
+      sub: "Wir fragen das nur, weil dein Hormonhaushalt deine Schilddrüse direkt beeinflusst. Dadurch sind manche Fragen nur für bestimmte Menschen relevant.",
       options: [
         { label: "Weiblich" },         // 0
         { label: "Männlich" },         // 1
@@ -102,6 +102,7 @@ window.QUIZ_CONTENT = {
         { key: "muede",    label: "Müdigkeit" },
         { key: "gewicht",  label: "Gewichtszunahme / schwer abzunehmen", inlineLabel: "Gewichtszunahme" },
         { key: "frieren",  label: "Frieren" },
+        { key: "kalt",     label: "Kalte Hände und Füße" },
         { key: "antrieb",  label: "Antriebslosigkeit" },
         { key: "none",     label: "Nichts davon", exclusive: true },
       ] },
@@ -228,7 +229,7 @@ window.QUIZ_CONTENT = {
       graphicAlt: "Hormonhaushalt und Schilddrüse verursachen überlappende Beschwerden",
       eyebrow: "Gut zu wissen",
       title: "Hormone und Schilddrüse sprechen dieselbe Sprache",
-      text: "Müdigkeit, Gewichtsveränderungen, Stimmungstiefs oder ein veränderter Zyklus werden oft allein den Wechseljahren oder „den Hormonen“ zugeschrieben. Dahinter kann aber auch die Schilddrüse stecken — die Beschwerden ähneln sich stark. Genau deshalb lohnt es sich, beides im Blick zu behalten, statt vorschnell einzuordnen.",
+      text: "Müdigkeit, Gewichtsveränderungen, Stimmungstiefs oder ein veränderter Zyklus werden oft allein den Wechseljahren oder „den Hormonen“ zugeschrieben. Dahinter kann aber auch die Schilddrüse stecken, denn die Beschwerden ähneln sich stark. Genau deshalb lohnt es sich, beides im Blick zu behalten, statt vorschnell einzuordnen.",
       cta: "Weiter" },
 
     // F13 — Zyklusveränderungen (nur bei regelmäßigem/unregelmäßigem Zyklus)
@@ -248,7 +249,7 @@ window.QUIZ_CONTENT = {
     // F14 — Familie
     { type: "single", id: "q14", cat: "Risikofaktoren", wirkung: "Scoring + Autoimmun-Flag",
       q: "Gibt es in deiner Familie Schilddrüsen- oder Autoimmunerkrankungen?",
-      info: "Autoimmunerkrankungen sind Erkrankungen, bei denen sich das Immunsystem gegen den eigenen Körper richtet — z. B. Hashimoto, Rheuma, Typ-1-Diabetes, Zöliakie oder Schuppenflechte. Gemeint sind Fälle bei Eltern, Geschwistern oder Großeltern.",
+      info: "Autoimmunerkrankungen sind Erkrankungen, bei denen sich das Immunsystem gegen den eigenen Körper richtet, zum Beispiel Hashimoto, Rheuma, Typ-1-Diabetes, Zöliakie oder Schuppenflechte. Gemeint sind Fälle bei Eltern, Geschwistern oder Großeltern.",
       options: [
         { label: "Ja, Schilddrüse" },
         { label: "Ja, andere Autoimmunerkrankung" },
@@ -259,7 +260,7 @@ window.QUIZ_CONTENT = {
     // F15 — Eigene Autoimmunerkrankung
     { type: "single", id: "q15", cat: "Risikofaktoren", wirkung: "Scoring + Autoimmun-Flag",
       q: "Hast du selbst eine andere Autoimmunerkrankung?",
-      info: "Gemeint ist eine Autoimmunerkrankung bei dir selbst — z. B. Rheuma, Typ-1-Diabetes, Zöliakie oder Schuppenflechte. Solche Erkrankungen treten häufiger gemeinsam auf.",
+      info: "Gemeint ist eine Autoimmunerkrankung bei dir selbst, zum Beispiel Rheuma, Typ-1-Diabetes, Zöliakie oder Schuppenflechte. Solche Erkrankungen treten häufiger gemeinsam auf.",
       options: [
         { label: "Ja" },
         { label: "Nein" },
@@ -272,7 +273,7 @@ window.QUIZ_CONTENT = {
       graphicAlt: "Hashimoto ist die häufigste Ursache und tritt familiär gehäuft auf",
       eyebrow: "Gut zu wissen",
       title: "Die häufigste Ursache heißt Hashimoto",
-      text: "Die meisten Schilddrüsenunterfunktionen in Deutschland entstehen durch Hashimoto — eine Autoimmun-Reaktion, bei der der Körper die eigene Schilddrüse angreift. Sie tritt familiär gehäuft auf: Gibt es Fälle in deiner Familie, kann dein eigenes Risiko erhöht sein. Kein Grund zur Sorge — aber ein guter Grund, aufmerksam zu sein.",
+      text: "Die meisten Schilddrüsenunterfunktionen in Deutschland entstehen durch Hashimoto, eine Autoimmun-Reaktion, bei der der Körper die eigene Schilddrüse angreift. Sie tritt familiär gehäuft auf: Gibt es Fälle in deiner Familie, kann dein eigenes Risiko erhöht sein. Kein Grund zur Sorge, aber ein guter Grund, aufmerksam zu sein.",
       cta: "Weiter" },
 
     // F16 — Hals-/Kehlbereich
@@ -292,7 +293,7 @@ window.QUIZ_CONTENT = {
     // F17 — Blutwerte
     { type: "single", id: "q17", cat: "Werte & Selbstmessung", wirkung: "Action-Point-Steuerung",
       q: "Wurden bei dir in den letzten 12 Monaten die Schilddrüsenwerte überprüft?",
-      info: "Gemeint ist eine Blutabnahme, bei der Schilddrüsenwerte bestimmt wurden — meist der TSH-Wert, manchmal auch fT3/fT4. „Unauffällig“ heißt: die Werte lagen im Normbereich.",
+      info: "Gemeint ist eine Blutabnahme, bei der Schilddrüsenwerte bestimmt wurden, meist der TSH-Wert, manchmal auch fT3/fT4. „Unauffällig“ heißt: die Werte lagen im Normbereich.",
       options: [
         { label: "Ja, unauffällig" },
         { label: "Ja, kenne die Werte aber nicht" },
@@ -305,14 +306,15 @@ window.QUIZ_CONTENT = {
       graphicAlt: "Ein einzelner Normwert wie TSH schließt nicht alles aus",
       eyebrow: "Gut zu wissen",
       title: "Ein „normaler“ TSH ist nicht das ganze Bild",
-      text: "Bei einem Verdacht wird oft nur der TSH-Wert bestimmt. Der kann im Normbereich liegen, obwohl die Schilddrüse noch nicht rund läuft — etwa am Anfang von Hashimoto. Ein vollständigeres Bild geben zusätzliche Werte wie fT3, fT4 und die TPO-Antikörper. Gut zu wissen fürs nächste Arztgespräch.",
+      text: "Bei einem Verdacht wird oft nur der TSH-Wert bestimmt. Der kann im Normbereich liegen, obwohl die Schilddrüse noch nicht rund läuft, etwa am Anfang von Hashimoto. Ein vollständigeres Bild geben zusätzliche Werte wie fT3, fT4 und die TPO-Antikörper. Gut zu wissen fürs nächste Arztgespräch.",
       cta: "Weiter" },
 
     // F18 — Körpertemperatur (Barnes-Selbsttest)
     { type: "number", id: "q18", cat: "Werte & Selbstmessung",
       wirkung: "weicher Zusatz-Hinweis (niedrig ≈ <36,8 °C). Kein diagnostisches Kriterium.",
-      q: "Kennst du deine Körpertemperatur — morgens direkt nach dem Aufwachen gemessen?",
-      sub: "Miss am besten morgens, noch im Liegen. Die Basaltemperatur ist ein weicher, unterstützender Hinweis — kein Beweis.",
+      q: "Kennst du deine Körpertemperatur, morgens direkt nach dem Aufwachen gemessen?",
+      sub: "Miss am besten morgens, noch im Liegen. Deine Basaltemperatur ist ein weicher Zusatz-Hinweis, kein Beweis und ersetzt keine ärztliche Untersuchung.",
+      info: "So misst du richtig: Miss deine Temperatur morgens direkt nach dem Aufwachen (noch im Liegen), mittags und abends, möglichst zu ähnlichen Uhrzeiten. Notiere alle drei Werte pro Tag und bilde daraus den Tagesdurchschnitt. Bleib eine Woche dran, also an sieben Tagen hintereinander. Aus den sieben Tagesdurchschnitten bildest du am Ende deinen Wochendurchschnitt. Wenn du noch deine Periode hast, miss vier Wochen lang, weil deine Körpertemperatur über den Zyklus schwankt.",
       unit: "°C", placeholder: "36,8", min: 34.0, max: 42.0,
       hint: "Gültig zwischen 34,0 und 42,0 °C. Komma oder Punkt sind okay.",
       skipLabel: "Das weiß ich nicht / noch nie gemessen",
@@ -328,8 +330,8 @@ window.QUIZ_CONTENT = {
     placeholder: "deine@email.de",
     optInLabel: "Ja, schickt mir vertiefende Infos zu meinem Ergebnis. Abmeldung jederzeit.",
     cta: "Ergebnis ansehen",
-    skip: "Direkt zum Ergebnis — ohne E-Mail",
-    error: "Bitte gib eine gültige E-Mail-Adresse ein — oder geh ohne E-Mail weiter.",
+    skip: "Direkt zum Ergebnis, ohne E-Mail",
+    error: "Bitte gib eine gültige E-Mail-Adresse ein, oder geh ohne E-Mail weiter.",
   },
 
   /* ----- ANALYSE-ÜBERGANG --------------------------------------- */
@@ -356,7 +358,7 @@ window.QUIZ_CONTENT = {
     // ── Signal-Mapping: Antwort-Identität → { score, flags? } ──
     signalRules: {
       // Symptome F3–F6: je gewähltes Symptom +1
-      "q3.muede": { score: 1 }, "q3.gewicht": { score: 1 }, "q3.frieren": { score: 1 }, "q3.antrieb": { score: 1 },
+      "q3.muede": { score: 1 }, "q3.gewicht": { score: 1 }, "q3.frieren": { score: 1 }, "q3.kalt": { score: 1 }, "q3.antrieb": { score: 1 },
       "q4.haut": { score: 1 }, "q4.haare": { score: 1 }, "q4.naegel": { score: 1 }, "q4.gesicht": { score: 1 },
       "q5.fog": { score: 1 }, "q5.down": { score: 1 }, "q5.unruhe": { score: 1 }, "q5.schlaf": { score: 1 },
       "q6.verstopfung": { score: 1 }, "q6.schmerzen": { score: 1 }, "q6.schwaeche": { score: 1 }, "q6.wasser": { score: 1 },
@@ -395,7 +397,7 @@ window.QUIZ_CONTENT = {
     productRules: [
       { productId: "magenfreund", when: { q: "q6", has: "verstopfung" },
         reason: [
-          { text: "Du hast eine träge Verdauung genannt — deshalb taucht der Magenfreund® hier als möglicher nächster Schritt auf." },
+          { text: "Du hast eine träge Verdauung genannt. Deshalb taucht der Magenfreund® hier als möglicher nächster Schritt auf." },
           { text: "Er ist der Verdauungs-Komplex aus unserer Range, als ruhige Alltags-Ergänzung gedacht." },
         ] },
       { productId: "immungold", when: { flag: "autoimmune" },
@@ -405,19 +407,19 @@ window.QUIZ_CONTENT = {
         ] },
       { productId: "umwandler", when: { q: "q2", is: 2 },                  // core, nur diagnostiziert — Bestseller-Default bei Diagnose
         reason: [
-          { text: "Deine Schilddrüse ist bereits ärztlich diagnostiziert — dann geht es vor allem darum, sie im Alltag gut zu begleiten." },
+          { text: "Deine Schilddrüse ist bereits ärztlich diagnostiziert. Dann geht es vor allem darum, sie im Alltag gut zu begleiten." },
           { text: "Der Umwandler® ist der Leber-Komplex aus unserer Range, gedacht als Ergänzung zu deiner ärztlichen Therapie, nicht als Ersatz." },
         ],
         also: [{ productId: "produzent" }] },                             // Zweit-Empfehlung bei Diagnose (Begründung = products.produzent.text)
       { productId: "kollagen", when: { q: "q4", hasAny: ["haut", "haare", "naegel", "gesicht"] },  // pending
         reason: [
           { text: "Du hast Veränderungen an Haut, Haaren oder Nägeln genannt." },
-          { text: "Kollagen-MCT ist als Ergänzung rund um Haut, Haare und Nägel gedacht — kein Muss." },
+          { text: "Kollagen-MCT ist als Ergänzung rund um Haut, Haare und Nägel gedacht, kein Muss." },
         ] },
       { productId: "aminos", when: { q: "q3", hasAny: ["muede", "antrieb"] },                       // pending
         reason: [
           { text: "Müdigkeit und wenig Antrieb sind bei dir Thema." },
-          { text: "Essentielle Aminosäuren sind ein möglicher Baustein rund um Energie und Muskeln — kein Muss." },
+          { text: "Essentielle Aminosäuren sind ein möglicher Baustein rund um Energie und Muskeln, kein Muss." },
         ] },
     ],
 
@@ -425,7 +427,7 @@ window.QUIZ_CONTENT = {
     autoimmuneBlock: {
       title: "Ein Hinweis zu deinen Angaben",
       text: [
-        { text: "Eine deiner Angaben — {{autoimmuneFactor}} — gehört zu den bekannten Risikofaktoren für Hashimoto, die häufigste Ursache einer Unterfunktion in Deutschland." },
+        { text: "Eine deiner Angaben, {{autoimmuneFactor}}, gehört zu den bekannten Risikofaktoren für Hashimoto, die häufigste Ursache einer Unterfunktion in Deutschland." },
         { text: "Sprich das beim Arzt aktiv an und bitte ausdrücklich um die TPO-Antikörper; sie werden nicht immer automatisch mitbestimmt." },
       ],
     },
@@ -443,37 +445,37 @@ window.QUIZ_CONTENT = {
         validation: [
           { text: "Deine Antworten zeigen mehrere Anzeichen, die mit einer Schilddrüsenunterfunktion in Verbindung stehen können." },
           { when: { hasSymptoms: true }, text: "Konkret: {{symptoms}}." },
-          { text: "Das ist keine Diagnose — aber genug, um es ernst zu nehmen und ärztlich abklären zu lassen." },
-          { when: { q: "q2", is: 2 }, text: "Du hast bereits eine Diagnose — dann deuten deine Antworten darauf hin, dass du aktuell nicht optimal eingestellt sein könntest. Auch das gehört ärztlich besprochen." },
-          { when: { anyOf: [{ q: "q10", is: 2 }, { q: "q11", hasAny: ["stress", "alter", "familie", "anstellen"] }] }, text: "Wenn du oft gehört hast, das sei „nur Stress“ oder „die Hormone“ — du bildest dir das nicht ein." },
+          { text: "Das ist keine Diagnose, aber genug, um es ernst zu nehmen und ärztlich abklären zu lassen." },
+          { when: { q: "q2", is: 2 }, text: "Du hast bereits eine Diagnose. Dann deuten deine Antworten darauf hin, dass du aktuell nicht optimal eingestellt sein könntest. Auch das gehört ärztlich besprochen." },
+          { when: { anyOf: [{ q: "q10", is: 2 }, { q: "q11", hasAny: ["stress", "alter", "familie", "anstellen"] }] }, text: "Wenn du oft gehört hast, das sei „nur Stress“ oder „die Hormone“: Du bildest dir das nicht ein." },
         ],
         mech: {
           title: "Was dahinterstecken kann",
           text: [
             { text: "Die Schilddrüse steuert Stoffwechsel, Energie, Temperatur und Stimmung. Produziert sie zu wenig Hormone, zeigt sich das schleichend in genau solchen Beschwerden." },
-            { when: { q: "q12", is: 4 }, text: "Gerade in den Wechseljahren werden solche Beschwerden leicht den Hormonen zugeschrieben — die Schilddrüse lohnt den gezielten Blick." },
+            { when: { q: "q12", is: 4 }, text: "Gerade in den Wechseljahren werden solche Beschwerden leicht den Hormonen zugeschrieben. Die Schilddrüse lohnt den gezielten Blick." },
             { when: { q: "q13", hasAny: ["stark", "unregel"] }, text: "Auch stärkere oder unregelmäßige Blutungen können mit der Schilddrüse zusammenhängen." },
           ],
           note: "Das ist eine Einordnung, keine Diagnose. Sicherheit gibt nur ein Blutbild.",
         },
         // ── Insights (c): erklärende Karten je Antwort-Cluster; leer → Sektion entfällt ──
         insights: [
-          { when: { q: "q3", hasAny: ["frieren", "muede", "antrieb"] }, icon: "observe", title: "Energie & Wärme im Haushalt", text: "Energie, Wärme und Antrieb hängen eng am Stoffwechsel: Läuft er langsamer, stellt der Körper weniger davon bereit. Das erklärt, warum sich mehrere solcher Beschwerden gleichzeitig zeigen können." },
-          { when: { q: "q4", hasAny: ["haut", "haare", "naegel"] }, icon: "observe", title: "Haut, Haare & Nägel", text: "Haut, Haare und Nägel reagieren empfindlich auf den Stoffwechsel. Verändern sie sich ohne klaren Grund, kann das ein leises Signal sein — für sich allein aber kein Beweis." },
-          { when: { q: "q5", hasAny: ["fog", "down"] }, icon: "observe", title: "Kopf & Stimmung", text: "Kopf und Stimmung reagieren mit auf den Stoffwechsel: Die Schilddrüse beeinflusst, wie klar, wach und ausgeglichen du dich fühlst — ein Zusammenhang, der oft übersehen wird." },
-          { when: { q: "q6", has: "verstopfung" }, icon: "observe", title: "Träge Verdauung", text: "Eine langsamere Verdauung passt ins Bild eines gedrosselten Stoffwechsels. Sie ist häufig und lässt sich gut ansprechen." },
-          { when: { q: "q16", hasAny: ["schwellung", "kloss", "heiser"] }, icon: "warn", title: "Zeichen am Hals", text: "Veränderungen im Hals- oder Kehlbereich gehören einmal ärztlich angeschaut. Häufig ist es harmlos — Klarheit bekommst du aber nur durch einen Blick darauf." },
-          { when: { q: "q7", is: 2 }, icon: "clock", title: "Das begleitet dich schon länger", text: "Beschwerden, die über ein Jahr anhalten, verdienen eine gezielte Abklärung — nicht, weil etwas Schlimmes sein muss, sondern damit du endlich Klarheit hast." },
+          { when: { q: "q3", hasAny: ["frieren", "muede", "antrieb", "kalt"] }, icon: "thermometer", title: "Frieren & wenig Energie", text: "Energie, Wärme und Antrieb hängen eng am Stoffwechsel: Läuft er langsamer, stellt der Körper weniger davon bereit. Das erklärt, warum sich mehrere solcher Beschwerden gleichzeitig zeigen können." },
+          { when: { q: "q4", hasAny: ["haut", "haare", "naegel"] }, icon: "sparkles", title: "Haut, Haare & Nägel", text: "Haut, Haare und Nägel reagieren empfindlich auf den Stoffwechsel. Verändern sie sich ohne klaren Grund, kann das ein leises Signal sein, für sich allein aber kein Beweis." },
+          { when: { q: "q5", hasAny: ["fog", "down"] }, icon: "mind", title: "Kopf & Stimmung", text: "Kopf und Stimmung reagieren mit auf den Stoffwechsel: Die Schilddrüse beeinflusst, wie klar, wach und ausgeglichen du dich fühlst. Ein Zusammenhang, der oft übersehen wird." },
+          { when: { q: "q6", has: "verstopfung" }, icon: "leaf", title: "Träge Verdauung", text: "Eine langsamere Verdauung passt ins Bild eines gedrosselten Stoffwechsels. Sie ist häufig und lässt sich gut ansprechen." },
+          { when: { q: "q16", hasAny: ["schwellung", "kloss", "heiser"] }, icon: "warn", title: "Zeichen am Hals", text: "Veränderungen im Hals- oder Kehlbereich gehören einmal ärztlich angeschaut. Häufig ist es harmlos, Klarheit bekommst du aber nur durch einen Blick darauf." },
+          { when: { q: "q7", is: 2 }, icon: "clock", title: "Das begleitet dich schon länger", text: "Beschwerden, die über ein Jahr anhalten, verdienen eine gezielte Abklärung. Nicht, weil etwas Schlimmes sein muss, sondern damit du endlich Klarheit hast." },
           { when: { q: "q8", is: 0 }, icon: "clock", title: "Es wird eher mehr", text: "Dass die Beschwerden zunehmen, ist ein guter Grund, jetzt hinzuschauen, statt weiter abzuwarten." },
         ],
         advice: [
           { icon: "doctor", title: "Sprich zeitnah mit ärztlicher Begleitung", text: "Nimm deine Beschwerden ernst und such dir zeitnah einen Termin." },
           { icon: "doctor", title: "Bitte gezielt um die richtigen Werte", text: "TSH, fT3, fT4 und TPO-Antikörper." },
-          { when: { q: "q17", is: 0 }, icon: "observe", title: "Erwähne deine bisherigen Werte", text: "Sag, dass deine Werte als unauffällig galten, du aber weiter Beschwerden hast." },
-          { when: { q: "q18", band: 0 }, icon: "observe", title: "Sprich deine Temperatur an", text: "Deine morgendliche Temperatur liegt eher niedrig — ein zusätzliches Zeichen, das du erwähnen kannst." },
-          { when: { q: "q18", skipped: true }, icon: "observe", title: "Miss eine Woche morgens", text: "Liegt die Aufwach-Temperatur wiederholt unter ~36,8 °C, nimm die Werte mit zum Termin." },
+          { when: { q: "q17", is: 0 }, icon: "clipboard", title: "Erwähne deine bisherigen Werte", text: "Sag, dass deine Werte als unauffällig galten, du aber weiter Beschwerden hast." },
+          { when: { q: "q18", band: 0 }, icon: "thermometer", title: "Sprich deine Temperatur an", text: "Deine morgendliche Temperatur liegt eher niedrig, ein zusätzliches Zeichen, das du erwähnen kannst." },
+          { when: { q: "q18", skipped: true }, icon: "thermometer", title: "Miss eine Woche morgens", text: "Wenn du magst, nimm dir bei Gelegenheit einmal eine Woche Zeit und miss morgens, mittags und abends deine Temperatur. Aus den Tageswerten bildest du den Wochendurchschnitt und kannst ihn beim Termin erwähnen." },
         ],
-        empower: { title: "Du musst da nicht allein durch.", text: "Mit den richtigen Werten bekommst du endlich Antworten — wir begleiten dich mit verständlichem Wissen." },
+        empower: { title: "Du musst da nicht allein durch.", text: "Mit den richtigen Werten bekommst du endlich Antworten, wir begleiten dich mit verständlichem Wissen." },
       } },
 
       /* ===== B — Mögliche Hinweise ===== */
@@ -483,34 +485,34 @@ window.QUIZ_CONTENT = {
         heroImage: "result-hero-b.jpg",
         heroAlt: "",
         validation: [
-          { text: "Deine Antworten zeigen einige Anzeichen, die mit einer Unterfunktion in Verbindung stehen können — aktuell aber kein eindeutiges Bild." },
+          { text: "Deine Antworten zeigen einige Anzeichen, die mit einer Unterfunktion in Verbindung stehen können, aktuell aber kein eindeutiges Bild." },
           { when: { hasSymptoms: true }, text: "Konkret: {{symptoms}}." },
-          { text: "Keine Diagnose, kein Grund zur Sorge — aber ein guter Anlass, genauer hinzuschauen." },
-          { when: { q: "q2", is: 2 }, text: "Du hast bereits eine Diagnose — dann lohnt der Blick, ob deine aktuelle Einstellung noch gut zu dir passt." },
+          { text: "Keine Diagnose, kein Grund zur Sorge, aber ein guter Anlass, genauer hinzuschauen." },
+          { when: { q: "q2", is: 2 }, text: "Hast du bereits eine Diagnose, lohnt der Blick, ob deine aktuelle Einstellung noch gut zu dir passt." },
         ],
         mech: {
           title: "Was dahinterstecken kann",
           text: [
-            { text: "Anzeichen einer Unterfunktion sind oft unspezifisch — halten sie an oder nehmen zu, lohnt ein gezielter Blick auf die Schilddrüse." },
-            { when: { q: "q12", is: 4 }, text: "Gerade in den Wechseljahren werden solche Beschwerden leicht den Hormonen zugeschrieben — die Schilddrüse lohnt den gezielten Blick." },
+            { text: "Anzeichen einer Unterfunktion sind oft unspezifisch. Halten sie an oder nehmen zu, lohnt ein gezielter Blick auf die Schilddrüse." },
+            { when: { q: "q12", is: 4 }, text: "Gerade in den Wechseljahren werden solche Beschwerden leicht den Hormonen zugeschrieben. Die Schilddrüse lohnt den gezielten Blick." },
             { when: { q: "q13", hasAny: ["stark", "unregel"] }, text: "Auch stärkere oder unregelmäßige Blutungen können mit der Schilddrüse zusammenhängen." },
           ],
           note: "Das ist eine Einordnung, keine Diagnose. Sicherheit gibt nur ein Blutbild.",
         },
         // ── Insights (c): erklärende Karten je Antwort-Cluster; leer → Sektion entfällt ──
         insights: [
-          { when: { q: "q3", hasAny: ["frieren", "muede", "antrieb"] }, icon: "observe", title: "Energie & Wärme im Haushalt", text: "Energie, Wärme und Antrieb hängen eng am Stoffwechsel: Läuft er langsamer, stellt der Körper weniger davon bereit. Das erklärt, warum sich mehrere solcher Beschwerden gleichzeitig zeigen können." },
-          { when: { q: "q4", hasAny: ["haut", "haare", "naegel"] }, icon: "observe", title: "Haut, Haare & Nägel", text: "Haut, Haare und Nägel reagieren empfindlich auf den Stoffwechsel. Verändern sie sich ohne klaren Grund, kann das ein leises Signal sein — für sich allein aber kein Beweis." },
-          { when: { q: "q5", hasAny: ["fog", "down"] }, icon: "observe", title: "Kopf & Stimmung", text: "Kopf und Stimmung reagieren mit auf den Stoffwechsel: Die Schilddrüse beeinflusst, wie klar, wach und ausgeglichen du dich fühlst — ein Zusammenhang, der oft übersehen wird." },
-          { when: { q: "q6", has: "verstopfung" }, icon: "observe", title: "Träge Verdauung", text: "Eine langsamere Verdauung passt ins Bild eines gedrosselten Stoffwechsels. Sie ist häufig und lässt sich gut ansprechen." },
-          { when: { q: "q16", hasAny: ["schwellung", "kloss", "heiser"] }, icon: "warn", title: "Zeichen am Hals", text: "Veränderungen im Hals- oder Kehlbereich gehören einmal ärztlich angeschaut. Häufig ist es harmlos — Klarheit bekommst du aber nur durch einen Blick darauf." },
-          { when: { q: "q7", is: 2 }, icon: "clock", title: "Das begleitet dich schon länger", text: "Beschwerden, die über ein Jahr anhalten, verdienen eine gezielte Abklärung — nicht, weil etwas Schlimmes sein muss, sondern damit du endlich Klarheit hast." },
+          { when: { q: "q3", hasAny: ["frieren", "muede", "antrieb", "kalt"] }, icon: "thermometer", title: "Frieren & wenig Energie", text: "Energie, Wärme und Antrieb hängen eng am Stoffwechsel: Läuft er langsamer, stellt der Körper weniger davon bereit. Das erklärt, warum sich mehrere solcher Beschwerden gleichzeitig zeigen können." },
+          { when: { q: "q4", hasAny: ["haut", "haare", "naegel"] }, icon: "sparkles", title: "Haut, Haare & Nägel", text: "Haut, Haare und Nägel reagieren empfindlich auf den Stoffwechsel. Verändern sie sich ohne klaren Grund, kann das ein leises Signal sein, für sich allein aber kein Beweis." },
+          { when: { q: "q5", hasAny: ["fog", "down"] }, icon: "mind", title: "Kopf & Stimmung", text: "Kopf und Stimmung reagieren mit auf den Stoffwechsel: Die Schilddrüse beeinflusst, wie klar, wach und ausgeglichen du dich fühlst. Ein Zusammenhang, der oft übersehen wird." },
+          { when: { q: "q6", has: "verstopfung" }, icon: "leaf", title: "Träge Verdauung", text: "Eine langsamere Verdauung passt ins Bild eines gedrosselten Stoffwechsels. Sie ist häufig und lässt sich gut ansprechen." },
+          { when: { q: "q16", hasAny: ["schwellung", "kloss", "heiser"] }, icon: "warn", title: "Zeichen am Hals", text: "Veränderungen im Hals- oder Kehlbereich gehören einmal ärztlich angeschaut. Häufig ist es harmlos, Klarheit bekommst du aber nur durch einen Blick darauf." },
+          { when: { q: "q7", is: 2 }, icon: "clock", title: "Das begleitet dich schon länger", text: "Beschwerden, die über ein Jahr anhalten, verdienen eine gezielte Abklärung. Nicht, weil etwas Schlimmes sein muss, sondern damit du endlich Klarheit hast." },
           { when: { q: "q8", is: 0 }, icon: "clock", title: "Es wird eher mehr", text: "Dass die Beschwerden zunehmen, ist ein guter Grund, jetzt hinzuschauen, statt weiter abzuwarten." },
         ],
         advice: [
-          { icon: "observe", title: "Beobachte die nächsten Wochen", text: "Ein kurzes Beschwerde-Tagebuch hilft, Muster zu erkennen." },
+          { icon: "calendar", title: "Beobachte die nächsten Wochen", text: "Ein kurzes Beschwerde-Tagebuch hilft, Muster zu erkennen." },
           { icon: "doctor", title: "Sprich es beim nächsten Arztbesuch an", text: "Frag nach einer Basisdiagnostik (TSH, ggf. fT3/fT4)." },
-          { when: { q: "q18", skipped: true }, icon: "observe", title: "Kleiner Selbsttest", text: "Miss eine Woche lang morgens deine Temperatur." },
+          { when: { q: "q18", skipped: true }, icon: "thermometer", title: "Kleiner Selbsttest", text: "Wenn du magst, miss eine Woche lang morgens, mittags und abends deine Temperatur und bilde daraus deinen Wochendurchschnitt." },
         ],
         empower: { title: "Du musst nicht warten, bis es „schlimm genug“ ist.", text: "Wir geben dir das Wissen für ein gutes Gespräch." },
       } },
@@ -523,7 +525,7 @@ window.QUIZ_CONTENT = {
         heroAlt: "",
         validation: [
           { text: "Deine Antworten sprechen aktuell wenig für eine Unterfunktion. Erst einmal eine gute Nachricht." },
-          { when: { q: "q2", is: 2 }, text: "Du hast bereits eine Diagnose — dass aktuell wenig zusätzliche Hinweise dazukommen, ist ein gutes Zeichen. Behalte deine Einstellung trotzdem im Blick." },
+          { when: { q: "q2", is: 2 }, text: "Du hast bereits eine Diagnose. Dass aktuell wenig zusätzliche Hinweise dazukommen, ist ein gutes Zeichen. Behalte deine Einstellung trotzdem im Blick." },
         ],
         mech: {
           title: "Trotzdem gut zu wissen",
@@ -552,7 +554,7 @@ window.QUIZ_CONTENT = {
       active: false,   // Stock-Toggle: aktuell nicht verfügbar → Engine empfiehlt ihn nicht (im Backend umschaltbar)
       // TODO(Leo): Magenfreund-Key-Visual fehlt noch → Datei nach app/assets/ legen
       //            (Konvention: magenfreund-hero.webp), dann image-Feld ergänzen.
-      text: "Eine ruhige Ergänzung, wenn deine Verdauung träge ist — kein Muss.",
+      text: "Eine ruhige Ergänzung, wenn deine Verdauung träge ist, kein Muss.",
       claims: ["Chlorid trägt zu einer normalen Verdauung bei, indem es zur Bildung von Magensäure beiträgt.<sup>1</sup>"],
       cta: "Mehr über den Magenfreund", link: "https://miavola.de/products/magenfreund",
       disclaimer: "Kein Muss. Bitte besprich Veränderungen mit deinem Arzt.",
@@ -568,18 +570,18 @@ window.QUIZ_CONTENT = {
     produzent: {
       name: "Der Produzent®", sub: "Schilddrüsen-Komplex",
       image: "produzent-hero.webp",
-      text: "Für eine bereits diagnostizierte Schilddrüse — als Ergänzung zur ärztlichen Therapie, nicht als Ersatz.",
+      text: "Für eine bereits diagnostizierte Schilddrüse: als Ergänzung zur ärztlichen Therapie, nicht als Ersatz.",
       claims: [
         "Jod trägt zu einer normalen Produktion von Schilddrüsenhormonen und zu einer normalen Funktion der Schilddrüse bei.<sup>3</sup>",
         "Selen trägt zu einer normalen Schilddrüsenfunktion bei.<sup>4</sup>",
       ],
       cta: "Mehr über den Produzenten", link: "https://miavola.de/products/der-produzent",
-      disclaimer: "Enthält Jod — nicht bei Überfunktion/Basedow ohne ärztliche Rücksprache. Kein Ersatz für deine Therapie.",
+      disclaimer: "Enthält Jod: nicht bei Überfunktion/Basedow ohne ärztliche Rücksprache. Kein Ersatz für deine Therapie.",
     },
     umwandler: {
       name: "Der Umwandler®", sub: "Leber-Komplex",
       image: "umwandler-hero.webp",
-      text: "Unterstützung rund um Leber und Hormon-Umwandlung — für diagnostizierte Verläufe.",
+      text: "Unterstützung rund um Leber und Hormon-Umwandlung, für diagnostizierte Verläufe.",
       claims: [
         "Cholin trägt zur Aufrechterhaltung einer normalen Leberfunktion bei.<sup>5</sup>",
         "Selen trägt zu einer normalen Schilddrüsenfunktion bei.<sup>4</sup>",
@@ -590,13 +592,13 @@ window.QUIZ_CONTENT = {
     heldenduo: {
       name: "Das Heldenduo", sub: "Produzent + Umwandler",
       image: "heldenduo-30-tage.jpg",
-      text: "Produzent und Umwandler im Set — für diagnostizierte Verläufe, die beides abdecken möchten.",
+      text: "Produzent und Umwandler im Set, für diagnostizierte Verläufe, die beides abdecken möchten.",
       claims: [
         "Jod trägt zu einer normalen Produktion von Schilddrüsenhormonen bei.<sup>3</sup>",
         "Selen trägt zu einer normalen Schilddrüsenfunktion bei.<sup>4</sup>",
       ],
       cta: "Mehr über das Heldenduo", link: "https://miavola.de/products/heldenduo",
-      disclaimer: "Enthält Jod — nicht bei Überfunktion ohne ärztliche Rücksprache.",
+      disclaimer: "Enthält Jod: nicht bei Überfunktion ohne ärztliche Rücksprache.",
     },
     // pending → Engine zeigt diese (noch) NICHT (EFSA-Claim unbestätigt, §9.5)
     kollagen: {
