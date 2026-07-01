@@ -106,11 +106,14 @@ Medizinische Einschätzung (A/B/C + Action-Points) steht vorn. Produktblock ist
 Siehe `outcomes.md §5` (`productRules` + `coreProductIds`). Kurz: erste passende Regel
 gewinnt, `pending` wird übersprungen, Core nur bei Diagnose, Band C nie.
 
-## Bilder (Bug #1)
-Vorhanden in `app/assets/`: `produzent-hero.png`, `heldenduo-30-tage.jpg` → nur diese als
-`image` gesetzt. Übrige Produkte **ohne** `image` (Engine rendert dann kein `<img>`),
-zusätzlich `onerror`-Fallback. Fehlende Hero-Bilder bei Bedarf liefern: umwandler,
-magenfreund, kollagen, aminos, immungold.
+## Bilder (Bug #1) — Update 2026-07-01
+Vorhanden in `app/assets/`: `produzent-hero.png`, `heldenduo-30-tage.jpg`.
+**Erwartete Dateinamen** sind jetzt für alle sichtbaren Produkte in `content.js →
+products[id].image` **hinterlegt** (Konvention `<id>-hero.png`): `magenfreund-hero.png`,
+`immungold-hero.png`, `umwandler-hero.png`. Sobald Leo die Datei in `app/assets/` legt,
+erscheint sie automatisch; bis dahin greift der `onerror`-Fallback (kein `<img>`, Block intakt).
+`pending`-Produkte (kollagen, aminos) werden ohnehin nicht gezeigt — Dateinamen dennoch
+vermerkt (`kollagen-hero.png`, `aminos-hero.png`). Specs → `content/graphics-spec.md`.
 
 ## EFSA-Claim-Register (Wortlaut final gegen VO (EU) 432/2012 bestätigen — §9.5)
 - `[1]` Chlorid — normale Verdauung (Magensäure)

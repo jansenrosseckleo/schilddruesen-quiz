@@ -145,10 +145,17 @@
     while (i >= 0 && i < FLOW.length && !isVisible(i)) i += dir;
     return i;
   }
+  // Info-/Meilenstein-Screens sind reine Vorwärts-Einschübe (nur „Weiter", kein Zurück).
+  // Bei Rückwärts-Navigation werden sie übersprungen, damit man die vorige Frage erreicht
+  // (sonst Sackgasse: Zurück landet auf der Info-Card, die nur vorwärts führt).
+  const FORWARD_ONLY = new Set(["education", "milestone"]);
   function go(delta) {
     // delta ist immer ±1; überspringt unsichtbare (geskippte) Schritte
     const dir = delta < 0 ? -1 : 1;
-    const ni = nextVisibleIndex(state.step, dir);
+    let ni = nextVisibleIndex(state.step, dir);
+    if (dir < 0) {
+      while (ni >= 0 && ni < FLOW.length && FORWARD_ONLY.has(FLOW[ni].type)) ni = nextVisibleIndex(ni, dir);
+    }
     if (ni < 0 || ni >= FLOW.length) return;
     state.step = ni;
     render();
@@ -324,7 +331,7 @@
     const ctx = buildCtx(flags, bandId);
     const sel = primary ? selectProduct(ctx, bandId) : null;
     const productId = sel ? sel.productId : null;
-    const productReason = sel && sel.reason ? tok(sel.reason, ctx) : "";
+    const productReason = sel && sel.reason ? rich(sel.reason, ctx) : "";  // rich() akzeptiert String ODER Segment-Array
     return { configured: !!primary, primary, band: bandId, total, flags, productId, productReason, secondary: [], summary, ctx };
   }
 
@@ -387,7 +394,7 @@
         <div class="wrap">
           <div class="intro__inner-wide">
             <div class="intro__col-text">
-              <img src="${ASSET}logo-black.png" alt="miavola" style="height:22px;width:auto;opacity:.85;margin-bottom:34px;align-self:flex-start;">
+              <img src="${ASSET}logo-black.png" alt="miavola" style="height:40px;width:auto;opacity:.9;margin-bottom:34px;align-self:flex-start;">
               <span class="pill pill--sage" style="align-self:flex-start;margin-bottom:22px;">${t.badgeWide}</span>
               <h2 class="intro__title intro__title--wide">${t.title}</h2>
               <p class="intro__lead" style="font-size:17px;max-width:42ch;">${t.leadWide}</p>
@@ -572,10 +579,13 @@
             <span class="numfield__unit">${s.unit}</span>
           </label>
           <div class="field-hint" id="hint" aria-live="polite"></div>
+          <label class="numskip" for="numskip">
+            <input type="checkbox" id="numskip">
+            <span>${s.skipLabel}</span>
+          </label>
         </div>
         <div class="wrap q__foot">
           <button class="mv-btn mv-btn--burg mv-btn--block" id="next">Weiter</button>
-          <button class="link-btn link-btn--muted" id="skip">${s.skipLabel}</button>
         </div>
       </div>`);
 
@@ -608,7 +618,10 @@
     }
     q.querySelector("#next").addEventListener("click", commit);
     input.addEventListener("keydown", (e) => { if (e.key === "Enter") commit(); });
-    q.querySelector("#skip").addEventListener("click", () => { state.answers[s.id] = { value: null }; go(1); });
+    q.querySelector("#numskip").addEventListener("change", (e) => {
+      // „weiß nicht / noch nie gemessen“ → weich überspringen und direkt weiter
+      if (e.target.checked) { state.answers[s.id] = { value: null }; go(1); }
+    });
     screen.appendChild(q);
     return screen;
   }
@@ -630,6 +643,22 @@
           </div>
           <div class="edu__foot"><button class="mv-btn mv-btn--block mv-btn--light" id="next">${s.cta}</button></div>
         </div>`));
+    } else if (s.variant === "info") {
+      // Info-Card (Wissens-Einschub im Flow): helle Karte, Grafik oben + Text.
+      // Grafik über onerror-Fallback abgesichert — Card rendert sauber ohne Bild.
+      const node = el(`
+        <div class="edu edu--info">
+          <div class="edu__inner edu__inner--info">
+            ${s.graphic ? `<img class="edu__graphic" src="${ASSET}${s.graphic}" alt="" onerror="this.style.display='none'">` : ""}
+            <div class="edu__eyebrow edu__eyebrow--info">${s.eyebrow || "Gut zu wissen"}</div>
+            <h2 class="edu__title edu__title--info">${s.title}</h2>
+            <p class="edu__text edu__text--info">${s.text}</p>
+            ${s.src ? `<p class="edu__src edu__src--info">${s.src}</p>` : ""}
+          </div>
+          <div class="edu__foot"><button class="mv-btn mv-btn--burg mv-btn--block" id="next">${s.cta || "Weiter"}</button></div>
+        </div>`);
+      if (s.graphicAlt) { const g = node.querySelector(".edu__graphic"); if (g) g.setAttribute("alt", s.graphicAlt); }
+      screen.appendChild(node);
     } else {
       screen.appendChild(el(`
         <div class="edu">
@@ -766,6 +795,12 @@
     const wide = window.matchMedia("(min-width:880px)").matches;
     const screen = el(`<section class="screen ${wide ? "result--wide" : ""}"></section>`);
 
+    // Hero-Bild je Band (onerror-Fallback → Block verschwindet, Seite bleibt intakt).
+    const heroHTML = cp.heroImage ? `
+      <div class="result__hero">
+        <img src="${ASSET}${cp.heroImage}" alt="${cp.heroAlt || ""}" onerror="this.closest('.result__hero').style.display='none'">
+      </div>` : "";
+
     const headerHTML = `
       <div class="result__header">
         <img class="bgmark" src="${ASSET}butterfly-mark.png" alt="" onerror="this.style.display='none'">
@@ -790,10 +825,24 @@
         ${mech.note ? `<div class="note-box"><strong>Wichtig:</strong> ${mech.note}</div>` : ""}
       </div>` : "";
 
-    const adviceItems = (cp.advice || []).filter((ad) => matches(ad.when, ctx));
-    const c = adviceItems.length ? `
+    // Insights (c): erklärende Karten je Antwort-Cluster; leer → Sektion entfällt (modular).
+    const insightItems = (cp.insights || []).filter((it) => matches(it.when, ctx));
+    const cInsights = insightItems.length ? `
       <div class="result__section">
-        <div class="sec-head"><span class="sec-head__alpha">c</span><span class="eyebrow">Was das für dich heißt</span></div>
+        <div class="sec-head"><span class="sec-head__alpha">c</span><span class="eyebrow">Was deine Angaben im Einzelnen zeigen</span></div>
+        <div class="advice">
+          ${insightItems.map((it) => `
+            <div class="advice-card">${icon(it.icon)}
+              <div><div class="advice-card__title">${it.title}</div><p>${tok(it.text, ctx)}</p></div>
+            </div>`).join("")}
+        </div>
+      </div>` : "";
+
+    // Action-Points (d): handlungsleitend.
+    const adviceItems = (cp.advice || []).filter((ad) => matches(ad.when, ctx));
+    const dAdvice = adviceItems.length ? `
+      <div class="result__section">
+        <div class="sec-head"><span class="sec-head__alpha">d</span><span class="eyebrow">Was das für dich heißt</span></div>
         <div class="advice">
           ${adviceItems.map((ad) => `
             <div class="advice-card">${icon(ad.icon)}
@@ -812,10 +861,10 @@
         </div>
       </div>` : "";
 
-    // Produkt (d): aus der Auswahllogik — kein Treffer → kein Block (kein erfundenes Produkt).
-    const d = ev.productId ? renderProductSection(ev.productId, ev.productReason) : "";
+    // Produkt (e): aus der Auswahllogik — kein Treffer → kein Block (kein erfundenes Produkt).
+    const eProduct = ev.productId ? renderProductSection(ev.productId, ev.productReason) : "";
 
-    const e = cp.empower ? `
+    const empower = cp.empower ? `
       <div class="empower">
         <img src="${ASSET}butterfly-mark.png" alt="" onerror="this.style.display='none'">
         <h3>${cp.empower.title || ""}</h3>
@@ -829,19 +878,21 @@
     screen.appendChild(el(`
       <div class="result">
         <div class="result__logobar"><img src="${ASSET}logo-black.png" alt="miavola" onerror="this.style.display='none'"></div>
+        ${heroHTML}
         ${headerHTML}
         ${a}${a ? '<div class="sec-divider"></div>' : ""}
         ${b}${b ? '<div class="sec-divider"></div>' : ""}
-        ${c}${c ? '<div class="sec-divider"></div>' : ""}
+        ${cInsights}${cInsights ? '<div class="sec-divider"></div>' : ""}
+        ${dAdvice}${dAdvice ? '<div class="sec-divider"></div>' : ""}
         ${autoimmune}
-        ${d}${e}${cta}
+        ${eProduct}${empower}${cta}
       </div>`));
 
     renderCta(screen.querySelector("#cta"));
     return screen;
   }
 
-  // Produktblock (Abschnitt d) — gekoppelt an products-Registry / products.md.
+  // Produktblock (Abschnitt e) — gekoppelt an products-Registry / products.md.
   // Kein Mapping/Produkt → sichtbarer TODO-Hinweis, KEIN Produkt erfunden.
   function renderProductSection(productId, reason) {
     const R = C.result;
@@ -849,14 +900,14 @@
     if (!p) {
       return `
         <div class="result__section">
-          <div class="sec-head"><span class="sec-head__alpha">d</span><span class="eyebrow">Ein möglicher nächster Schritt</span></div>
+          <div class="sec-head"><span class="sec-head__alpha">e</span><span class="eyebrow">Ein möglicher nächster Schritt</span></div>
           <div class="todo-note">${R.todo.productSlot}</div>
         </div>`;
     }
     const claims = (p.claims || []).map((cl) => `<div class="product__claim">${icon("checkSage")}${cl}</div>`).join("");
     return `
       <div class="result__section">
-        <div class="sec-head"><span class="sec-head__alpha">d</span><span class="eyebrow">Ein möglicher nächster Schritt</span></div>
+        <div class="sec-head"><span class="sec-head__alpha">e</span><span class="eyebrow">Ein möglicher nächster Schritt</span></div>
         <div class="product">
           <div class="product__top">
             ${p.image ? `<img class="product__img" src="${ASSET}${p.image}" alt="${p.name || ""}" onerror="this.style.display='none'">` : ""}

@@ -55,8 +55,11 @@ Ergebnistexte mit Bedingungs-Builder) + Live-Vorschau + Export `content.json` + 
 - ⬜ **E-Mail-Backend**: `app.js → renderEmail()`/`renderCta()` haben `TODO(Backend)`-Hooks
   (an CRM/Newsletter, z. B. Klaviyo, anbinden). Aktuell nur State.
 - ⬜ **Produktlinks** (miavola.de) in `content.js → products[id].link` bestätigen.
-- ⬜ **Fehlende Hero-Bilder**: umwandler, magenfreund, kollagen, aminos, immungold
-  (vorhanden: `produzent-hero.png`, `heldenduo-30-tage.jpg`).
+- 🟡 **Produkt-Key-Visuals** (Stand 2026-07-01): echte PDP-Visuals eingebunden als `.webp`
+  (`produzent-hero.webp` [neu], `umwandler-hero.webp`, `immungold-hero.webp`,
+  `kollagen-hero.webp`, `aminos-hero.webp`); Produktkarte zeigt sie als volles Banner
+  (kein `multiply`-Thumbnail mehr). **Fehlt noch: `magenfreund-hero.webp`** (kein reales
+  Foto geliefert) → Magenfreund läuft bis dahin ohne Bild (Engine-Fallback greift).
 - ⬜ **Immungold®** (in §6 eingeführt): Katalog/Bild bestätigen (nicht im gefundenen Katalog).
 - ⬜ **Wissens-Einschübe** (nach F12/F14/F17) im Flow platzieren (Engine kann `education`-Screens).
 

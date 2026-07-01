@@ -17,6 +17,22 @@ zutrifft, in Reihenfolge. `advice`-Karten tragen optional `when` (Filter).
 `{flag}` `{hasSymptoms}` `{outcomeIn}` `{anyOf}` `{allOf}` `{not}`.
 **Tokens:** `{{symptoms}}` (gewählte Symptome F3–F6), `{{autoimmuneFactor}}` (Risikofaktor-Phrase).
 
+### Modularitäts-Regel (verbindlich — Design 2026-07-01)
+Jeder Block **und** jedes Segment muss sich **eigenständig** lesen. Weil bedingte Blöcke
+je nach Antworten **wegfallen**, gilt:
+1. **Kein Block/Segment verweist auf einen nachfolgenden** (kein „wie unten", „im nächsten
+   Abschnitt", „außerdem empfehlen wir dir gleich …").
+2. Übergangswörter am Segment-Anfang („Auch …", „Zudem …") nur, wenn das Segment auch als
+   erstes/einziges noch sinnvoll ist — sonst neutral formulieren.
+3. **Keine Doppelung** über Blöcke: `validation` benennt Symptome, `mech` erklärt allgemein,
+   `insights` erklärt **je Antwort-Cluster** — inhaltlich getrennt.
+Verifikation: mehrere Personas durchspielen, jede gerenderte Seite auf hängende Verweise lesen.
+
+### Hero-Bild je Band
+Jedes Outcome trägt `heroImage` (+ `heroAlt`) → oben auf der Ergebnisseite (`onerror`-Fallback).
+Dateien: A `result-hero-a.jpg` · B `result-hero-b.jpg` · C `result-hero-c.jpg`
+(Prompts → `content/image-prompts.md`).
+
 Gemeinsame Bausteine (mehrfach verwendet):
 - **Wechseljahre-Einschub** `{q:"q12", is:4}`: „Gerade in den Wechseljahren werden solche Beschwerden leicht den Hormonen zugeschrieben — die Schilddrüse lohnt den gezielten Blick."
 - **Zyklus-Einschub** `{q:"q13", hasAny:["stark","unregel"]}`: „Auch stärkere oder unregelmäßige Blutungen können mit der Schilddrüse zusammenhängen."
@@ -106,6 +122,40 @@ Gemeinsame Bausteine (mehrfach verwendet):
 **d) productId:** `null` (bei wenig Hinweisen kein Produkt). **e) empower:**
 - title: „Bleib neugierig auf deinen Körper."
 - text: „Wir sind da, wenn du mehr wissen möchtest."
+
+---
+
+## Insights-Sektion (`copy.insights`) — NEU, bedingt, nur A/B
+
+Karten zwischen b) mech und c) advice: „Was deine Angaben im Einzelnen zeigen". Rein
+**erklärend** (nicht handlungsleitend — das ist `advice`). Shape `{ when, icon, title, text }`,
+Filter über `matches`. Kein Match → **Sektion entfällt komplett**. Jede Karte self-contained.
+Buchstabe der Sektion: **c** (advice rückt auf d, product auf e).
+
+Karten (identisch für A und B, außer Ton; C hat **keine** Insights):
+
+1. `{q:"q3", hasAny:["frieren","muede","antrieb"]}` · `observe` — „Energie & Wärme im Haushalt"
+   „Energie, Wärme und Antrieb hängen eng am Stoffwechsel: Läuft er langsamer, stellt der
+   Körper weniger davon bereit. Das erklärt, warum sich mehrere solcher Beschwerden
+   gleichzeitig zeigen können." *(bewusst allgemein — Trigger feuert schon bei einem Symptom)*
+2. `{q:"q4", hasAny:["haut","haare","naegel"]}` · `observe` — „Haut, Haare & Nägel"
+   „Haut, Haare und Nägel reagieren empfindlich auf den Stoffwechsel. Verändern sie sich ohne
+   klaren Grund, kann das ein leises Signal sein — für sich allein aber kein Beweis."
+3. `{q:"q5", hasAny:["fog","down"]}` · `observe` — „Kopf & Stimmung"
+   „Brain Fog und gedrückte Stimmung werden selten mit der Schilddrüse in Verbindung gebracht.
+   Dabei beeinflusst sie mit, wie klar und ausgeglichen du dich fühlst."
+4. `{q:"q6", has:"verstopfung"}` · `observe` — „Träge Verdauung"
+   „Eine langsamere Verdauung passt ins Bild eines gedrosselten Stoffwechsels. Sie ist häufig
+   und lässt sich gut ansprechen."
+5. `{q:"q16", hasAny:["schwellung","kloss","heiser"]}` · `warn` — „Zeichen am Hals"
+   „Ein Druck- oder Kloßgefühl im Hals gehört einmal ärztlich angeschaut. Häufig ist es
+   harmlos — Klarheit bekommst du aber nur durch einen Blick darauf."
+6. `{q:"q7", is:2}` · `clock` — „Das begleitet dich schon länger"
+   „Beschwerden, die über ein Jahr anhalten, verdienen eine gezielte Abklärung — nicht, weil
+   etwas Schlimmes sein muss, sondern damit du endlich Klarheit hast."
+7. `{q:"q8", is:0}` · `clock` — „Es wird eher mehr"
+   „Dass die Beschwerden zunehmen, ist ein guter Grund, jetzt hinzuschauen, statt weiter
+   abzuwarten."
 
 ---
 

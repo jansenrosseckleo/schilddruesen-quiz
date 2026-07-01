@@ -263,6 +263,15 @@ html, body {
 }
 .field-hint svg { margin-top: 1px; flex: none; }
 .field-hint--error { color: var(--miavola-error); }
+/* Weicher „weiß ich nicht“-Skip: Checkbox direkt unter dem Eingabefeld, klickt → geht automatisch weiter */
+.numskip {
+  display: flex; align-items: center; gap: 10px; margin-top: 18px; cursor: pointer;
+  font: 400 14px/1.4 var(--font-sans); color: var(--miavola-ink-600);
+}
+.numskip input {
+  width: 20px; height: 20px; flex: none; cursor: pointer;
+  accent-color: var(--miavola-wine-700);
+}
 
 /* Text input (email) */
 .textfield {
@@ -358,6 +367,18 @@ html, body {
 .edu .mv-btn--light { background: #fff; color: var(--miavola-wine-800); }
 .edu .mv-btn--light:hover { background: var(--miavola-cream-100); }
 
+/* ----- Info-Card (Wissens-Einschub im Flow) — helle Variante, Grafik oben + Text ----- */
+.edu--info { background: var(--miavola-cream-100); color: var(--miavola-ink-900); }
+.edu__inner--info {
+  justify-content: center; align-items: center; text-align: center;
+  padding-top: 34px; padding-bottom: 12px;
+}
+.edu__graphic { width: 100%; max-width: 240px; height: auto; margin: 0 auto 28px; display: block; }
+.edu__eyebrow--info { color: var(--miavola-wine-600); margin-bottom: 14px; padding-top: 0; }
+.edu__title--info { color: var(--miavola-ink-900); max-width: 22ch; }
+.edu__text--info { color: var(--miavola-ink-700); max-width: 40ch; margin-bottom: 0; }
+.edu__src--info { color: var(--miavola-ink-400); border-top-color: var(--border); }
+
 /* ================================================================
    MILESTONE
    ================================================================ */
@@ -432,6 +453,13 @@ html, body {
 .result__logobar { display: flex; justify-content: center; padding: 18px 0 6px; }
 .result__logobar img { height: 16px; opacity: .85; }
 
+/* Hero-Bild je Ergebnis-Band (oben auf der Seite; onerror blendet Container aus) */
+.result__hero {
+  margin: 8px 14px 0; border-radius: var(--radius); overflow: hidden;
+  aspect-ratio: 16 / 9; background: var(--mv-tint-produzent-x);
+}
+.result__hero img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
 .result__header {
   position: relative; overflow: hidden; border-radius: var(--radius);
   margin: 8px 14px 0; padding: 26px 22px;
@@ -487,8 +515,10 @@ html, body {
 
 /* Soft product block */
 .product { border: 1px solid #e7ddd4; border-radius: var(--radius); overflow: hidden; background: #fff; }
-.product__top { display: flex; gap: 14px; align-items: center; padding: 18px; background: var(--mv-tint-produzent); }
-.product__img { width: 84px; height: 84px; object-fit: cover; border-radius: var(--radius); mix-blend-mode: multiply; flex: none; }
+.product__top { display: flex; flex-direction: column; background: var(--mv-tint-produzent); }
+/* Volles Key-Visual als Banner oben (eigener Markenhintergrund) — kein multiply, kein Crop (Quelle ist quadratisch). */
+.product__img { width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover; display: block; }
+.product__top > div { padding: 18px; }
 .product__name { font-family: var(--font-display); font-weight: 600; font-size: 19px; letter-spacing: -.01em; }
 .product__sub { font-size: 12.5px; color: var(--miavola-ink-500); }
 .product__body { padding: 18px; }

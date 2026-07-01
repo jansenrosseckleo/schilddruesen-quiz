@@ -111,9 +111,14 @@ Details + Claims in `products.md`. Logik:
 - **Harte Jod-Sicherung:** `coreProductIds` werden nur bei **F2 = „Ja"** (diagnostiziert)
   gezeigt — doppelt gesichert (Regel-Bedingung **und** Engine-Gate).
 - Produkte mit Status `pending` (unbestätigter EFSA-Claim) werden **übersprungen**.
-- Jede Regel trägt eine `reason` — die kurze, personalisierte „warum passt das zu dir"-Begründung,
+- Jede Regel trägt eine `reason` — die personalisierte „warum passt das zu dir"-Begründung,
   die im Produktblock über den Claims erscheint (bezieht sich auf den Auswahlgrund, **kein**
   Heilversprechen; die zugelassene Wirkung steht separat in `products[id].claims`).
+- **`reason` ist ein rich-Text-Array** `[{text, when?}]` (Design 2026-07-01) → 2–4 Sätze,
+  bedingt/modular, gerendert über `rich()`. Aufbau: *warum ausgewählt (aus deinen Antworten)*
+  → *wie es zu deiner Situation passt* → sanfter „kein Muss"-Rahmen. **Modularitäts-Regel**
+  (results-copy.md) gilt: kein Segment verweist auf ein nachfolgendes; Claims werden **nicht**
+  in der `reason` wiederholt (sie stehen in `claims`). Tokens (`{{autoimmuneFactor}}`) erlaubt.
 
 ```
 coreProductIds: ["produzent", "umwandler", "heldenduo"],   // Jod-haltig → nur diagnostiziert

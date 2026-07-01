@@ -13,13 +13,13 @@
    ⚠️  QUELLE DER WAHRHEIT für Inhalte sind die Dateien in /content/*.md.
        NICHTS hier erfinden.
 
-   STAND:
-   • flow (18 Fragen) = von Leo gelieferte Spec (Block A–G), 1:1 umgesetzt
-     inkl. Anzeige-/Skip-Logik. Antwort-Wording & Design der Antwort-Steine
-     werden im nächsten Schritt finalisiert.
-   • outcomes / products / Ergebnis-Texte → weiterhin LEER → TODO-Ergebnisseite.
-     Scoring/Personalisierung/Flags sind je Frage als `wirkung` dokumentiert,
-     aber NICHT zu Ergebnissen verdrahtet (kommt mit outcomes.md).
+   STAND (2026-07-01):
+   • flow = 18 Fragen (Block A–G) + 3 Info-Cards (type:"education", variant:"info")
+     nach F12/F14/F17 (Quelle: content/education.md). Anzeige-/Skip-Logik aktiv.
+   • outcomes / products / Ergebnis-Texte = KONFIGURIERT (Entwurf, meta.placeholder=true).
+     Severity-Bänder A/B/C, personalisierte Segmente + bedingte Insights-Sektion,
+     Hero-Bild je Band, Produkt-Auswahl mit rich-Text-`reason`.
+     Quellen: content/outcomes.md · content/results-copy.md · content/products.md.
 
    ── ANZEIGE-LOGIK (`showWhen`) — von der Engine interpretiert ──
    • "hasSymptoms"               → nur zeigen, wenn in den Symptomfragen
@@ -219,6 +219,16 @@ window.QUIZ_CONTENT = {
         { label: "Keine Menstruation (anderer Grund)" }, // 5
       ] },
 
+    // ── Info-Card nach F12 (nur weiblich/keine Angabe — erbt Geschlechts-Gate von F12) ──
+    { type: "education", variant: "info", id: "eduHormone",
+      showWhen: { q: "q0", inAnyOf: [0, 2] },
+      graphic: "edu-hormone.png",
+      graphicAlt: "Hormonhaushalt und Schilddrüse verursachen überlappende Beschwerden",
+      eyebrow: "Gut zu wissen",
+      title: "Hormone und Schilddrüse sprechen dieselbe Sprache",
+      text: "Müdigkeit, Gewichtsveränderungen, Stimmungstiefs oder ein veränderter Zyklus werden oft allein den Wechseljahren oder „den Hormonen“ zugeschrieben. Dahinter kann aber auch die Schilddrüse stecken — die Beschwerden ähneln sich stark. Genau deshalb lohnt es sich, beides im Blick zu behalten, statt vorschnell einzuordnen.",
+      cta: "Weiter" },
+
     // F13 — Zyklusveränderungen (nur bei regelmäßigem/unregelmäßigem Zyklus)
     { type: "multi", id: "q13", cat: "Zyklus & Hormone", showWhen: { q: "q12", inAnyOf: [0, 1] },
       wirkung: "Scoring (stärkere Blutungen) + Personalisierung",
@@ -242,6 +252,15 @@ window.QUIZ_CONTENT = {
         { label: "Nein" },
         { label: "Weiß nicht" },
       ] },
+
+    // ── Info-Card nach F14 (immer) ──
+    { type: "education", variant: "info", id: "eduHashimoto",
+      graphic: "edu-hashimoto.png",
+      graphicAlt: "Hashimoto ist die häufigste Ursache und tritt familiär gehäuft auf",
+      eyebrow: "Gut zu wissen",
+      title: "Die häufigste Ursache heißt Hashimoto",
+      text: "Die meisten Schilddrüsenunterfunktionen in Deutschland entstehen durch Hashimoto — eine Autoimmun-Reaktion, bei der der Körper die eigene Schilddrüse angreift. Sie tritt familiär gehäuft auf: Gibt es Fälle in deiner Familie, kann dein eigenes Risiko erhöht sein. Kein Grund zur Sorge — aber ein guter Grund, aufmerksam zu sein.",
+      cta: "Weiter" },
 
     // F15 — Eigene Autoimmunerkrankung
     { type: "single", id: "q15", cat: "Risikofaktoren", wirkung: "Scoring + Autoimmun-Flag",
@@ -273,6 +292,15 @@ window.QUIZ_CONTENT = {
         { label: "Ja, kenne die Werte aber nicht" },
         { label: "Nein, noch nie" },
       ] },
+
+    // ── Info-Card nach F17 (immer) ──
+    { type: "education", variant: "info", id: "eduTsh",
+      graphic: "edu-tsh.png",
+      graphicAlt: "Ein einzelner Normwert wie TSH schließt nicht alles aus",
+      eyebrow: "Gut zu wissen",
+      title: "Ein „normaler“ TSH ist nicht das ganze Bild",
+      text: "Bei einem Verdacht wird oft nur der TSH-Wert bestimmt. Der kann im Normbereich liegen, obwohl die Schilddrüse noch nicht rund läuft — etwa am Anfang von Hashimoto. Ein vollständigeres Bild geben zusätzliche Werte wie fT3, fT4 und die TPO-Antikörper. Gut zu wissen fürs nächste Arztgespräch.",
+      cta: "Weiter" },
 
     // F18 — Körpertemperatur (Barnes-Selbsttest)
     { type: "number", id: "q18", cat: "Werte & Selbstmessung",
@@ -352,20 +380,41 @@ window.QUIZ_CONTENT = {
     ],
 
     // ── Produkt-Auswahl: erste passende Regel (Details/Claims → products) ──
-    // `reason` = kurze, personalisierte „warum passt das zu dir"-Begründung
-    // (bezieht sich auf den Auswahlgrund; KEIN Heilversprechen — die zugelassene
-    //  Wirkung steht separat in products[id].claims).
+    // `reason` = personalisierte „warum passt das zu dir"-Begründung als rich-Text-Array
+    //  [{ text, when? }] (2–4 modulare Sätze, gerendert über rich()). Aufbau: warum
+    //  ausgewählt → wie es zu deiner Situation passt → sanfter „kein Muss"-Rahmen.
+    //  KEIN Heilversprechen; zugelassene Wirkung steht separat in products[id].claims
+    //  (wird hier NICHT wiederholt). Modularitäts-Regel: kein Segment verweist auf ein
+    //  nachfolgendes. Tokens ({{autoimmuneFactor}}) erlaubt.
     productRules: [
       { productId: "magenfreund", when: { q: "q6", has: "verstopfung" },
-        reason: "Du hast Verdauungsbeschwerden genannt — deshalb könnte der Magenfreund® zu dir passen." },
+        reason: [
+          { text: "Du hast eine träge Verdauung genannt — ein Thema, das bei einem verlangsamten Stoffwechsel häufig dazugehört." },
+          { text: "Der Magenfreund® ist als ruhige, alltagstaugliche Ergänzung genau dafür gedacht." },
+          { text: "Kein Muss — und kein Ersatz für die ärztliche Abklärung deiner Schilddrüse." },
+        ] },
       { productId: "immungold", when: { flag: "autoimmune" },
-        reason: "Bei dir spielen Autoimmun-Themen eine Rolle — deshalb könnte Immungold® mit Vitamin D zu dir passen." },
+        reason: [
+          { text: "Autoimmun-Themen spielen bei dir eine Rolle — und genau dann lohnt ein Blick auf die Grundversorgung." },
+          { text: "Eine gute Versorgung mit Vitamin D und Omega-3 rückt dann in den Fokus; dafür ist Immungold® gemacht." },
+          { text: "Kein Muss. Besprich Veränderungen am besten mit deinem Arzt." },
+        ] },
       { productId: "umwandler", when: { q: "q2", is: 2 },                  // core, nur diagnostiziert — Bestseller-Default bei Diagnose
-        reason: "Deine Schilddrüse ist bereits diagnostiziert — als Ergänzung zu deiner ärztlichen Therapie könnte Der Umwandler® zu dir passen." },
+        reason: [
+          { text: "Deine Schilddrüse ist bereits ärztlich diagnostiziert — dann geht es vor allem darum, sie im Alltag verlässlich mit den passenden Nährstoffen zu versorgen." },
+          { text: "Der Umwandler® ist als Ergänzung zu deiner ärztlichen Therapie gedacht, nicht als Ersatz." },
+          { text: "Besprich die Einnahme am besten mit deinem Arzt." },
+        ] },
       { productId: "kollagen", when: { q: "q4", hasAny: ["haut", "haare", "naegel", "gesicht"] },  // pending
-        reason: "Du hast Veränderungen an Haut, Haaren oder Nägeln genannt — deshalb könnte Kollagen-MCT zu dir passen." },
+        reason: [
+          { text: "Du hast Veränderungen an Haut, Haaren oder Nägeln genannt." },
+          { text: "Kollagen-MCT ist als Ergänzung rund um Haut, Haare und Nägel gedacht — kein Muss." },
+        ] },
       { productId: "aminos", when: { q: "q3", hasAny: ["muede", "antrieb"] },                       // pending
-        reason: "Müdigkeit und Antrieb sind bei dir Thema — deshalb könnten essentielle Aminosäuren zu dir passen." },
+        reason: [
+          { text: "Müdigkeit und wenig Antrieb sind bei dir Thema." },
+          { text: "Essentielle Aminosäuren sind ein möglicher Baustein rund um Energie und Muskeln — kein Muss." },
+        ] },
     ],
 
     // ── Autoimmun-Hinweis (zusätzlich bei A/B, wenn Flag) ──
@@ -385,6 +434,8 @@ window.QUIZ_CONTENT = {
       { id: "A", label: "Deutliche Hinweise", copy: {
         headerEyebrow: "Deine Einschätzung",
         title: "Deine Antworten zeigen deutliche Hinweise",
+        heroImage: "result-hero-a.jpg",
+        heroAlt: "",
         validation: [
           { text: "Deine Antworten zeigen mehrere Anzeichen, die mit einer Schilddrüsenunterfunktion in Verbindung stehen können." },
           { when: { hasSymptoms: true }, text: "Konkret: {{symptoms}}." },
@@ -401,6 +452,16 @@ window.QUIZ_CONTENT = {
           ],
           note: "Das ist eine Einordnung, keine Diagnose. Sicherheit gibt nur ein Blutbild.",
         },
+        // ── Insights (c): erklärende Karten je Antwort-Cluster; leer → Sektion entfällt ──
+        insights: [
+          { when: { q: "q3", hasAny: ["frieren", "muede", "antrieb"] }, icon: "observe", title: "Energie & Wärme im Haushalt", text: "Energie, Wärme und Antrieb hängen eng am Stoffwechsel: Läuft er langsamer, stellt der Körper weniger davon bereit. Das erklärt, warum sich mehrere solcher Beschwerden gleichzeitig zeigen können." },
+          { when: { q: "q4", hasAny: ["haut", "haare", "naegel"] }, icon: "observe", title: "Haut, Haare & Nägel", text: "Haut, Haare und Nägel reagieren empfindlich auf den Stoffwechsel. Verändern sie sich ohne klaren Grund, kann das ein leises Signal sein — für sich allein aber kein Beweis." },
+          { when: { q: "q5", hasAny: ["fog", "down"] }, icon: "observe", title: "Kopf & Stimmung", text: "Brain Fog und gedrückte Stimmung werden selten mit der Schilddrüse in Verbindung gebracht. Dabei beeinflusst sie mit, wie klar und ausgeglichen du dich fühlst." },
+          { when: { q: "q6", has: "verstopfung" }, icon: "observe", title: "Träge Verdauung", text: "Eine langsamere Verdauung passt ins Bild eines gedrosselten Stoffwechsels. Sie ist häufig und lässt sich gut ansprechen." },
+          { when: { q: "q16", hasAny: ["schwellung", "kloss", "heiser"] }, icon: "warn", title: "Zeichen am Hals", text: "Ein Druck- oder Kloßgefühl im Hals gehört einmal ärztlich angeschaut. Häufig ist es harmlos — Klarheit bekommst du aber nur durch einen Blick darauf." },
+          { when: { q: "q7", is: 2 }, icon: "clock", title: "Das begleitet dich schon länger", text: "Beschwerden, die über ein Jahr anhalten, verdienen eine gezielte Abklärung — nicht, weil etwas Schlimmes sein muss, sondern damit du endlich Klarheit hast." },
+          { when: { q: "q8", is: 0 }, icon: "clock", title: "Es wird eher mehr", text: "Dass die Beschwerden zunehmen, ist ein guter Grund, jetzt hinzuschauen, statt weiter abzuwarten." },
+        ],
         advice: [
           { icon: "doctor", title: "Sprich zeitnah mit ärztlicher Begleitung", text: "Nimm deine Beschwerden ernst und such dir zeitnah einen Termin." },
           { icon: "doctor", title: "Bitte gezielt um die richtigen Werte", text: "TSH, fT3, fT4 und TPO-Antikörper." },
@@ -415,6 +476,8 @@ window.QUIZ_CONTENT = {
       { id: "B", label: "Mögliche Hinweise", copy: {
         headerEyebrow: "Deine Einschätzung",
         title: "Deine Antworten zeigen einige mögliche Hinweise",
+        heroImage: "result-hero-b.jpg",
+        heroAlt: "",
         validation: [
           { text: "Deine Antworten zeigen einige Anzeichen, die mit einer Unterfunktion in Verbindung stehen können — aktuell aber kein eindeutiges Bild." },
           { when: { hasSymptoms: true }, text: "Konkret: {{symptoms}}." },
@@ -430,6 +493,16 @@ window.QUIZ_CONTENT = {
           ],
           note: "Das ist eine Einordnung, keine Diagnose. Sicherheit gibt nur ein Blutbild.",
         },
+        // ── Insights (c): erklärende Karten je Antwort-Cluster; leer → Sektion entfällt ──
+        insights: [
+          { when: { q: "q3", hasAny: ["frieren", "muede", "antrieb"] }, icon: "observe", title: "Energie & Wärme im Haushalt", text: "Energie, Wärme und Antrieb hängen eng am Stoffwechsel: Läuft er langsamer, stellt der Körper weniger davon bereit. Das erklärt, warum sich mehrere solcher Beschwerden gleichzeitig zeigen können." },
+          { when: { q: "q4", hasAny: ["haut", "haare", "naegel"] }, icon: "observe", title: "Haut, Haare & Nägel", text: "Haut, Haare und Nägel reagieren empfindlich auf den Stoffwechsel. Verändern sie sich ohne klaren Grund, kann das ein leises Signal sein — für sich allein aber kein Beweis." },
+          { when: { q: "q5", hasAny: ["fog", "down"] }, icon: "observe", title: "Kopf & Stimmung", text: "Brain Fog und gedrückte Stimmung werden selten mit der Schilddrüse in Verbindung gebracht. Dabei beeinflusst sie mit, wie klar und ausgeglichen du dich fühlst." },
+          { when: { q: "q6", has: "verstopfung" }, icon: "observe", title: "Träge Verdauung", text: "Eine langsamere Verdauung passt ins Bild eines gedrosselten Stoffwechsels. Sie ist häufig und lässt sich gut ansprechen." },
+          { when: { q: "q16", hasAny: ["schwellung", "kloss", "heiser"] }, icon: "warn", title: "Zeichen am Hals", text: "Ein Druck- oder Kloßgefühl im Hals gehört einmal ärztlich angeschaut. Häufig ist es harmlos — Klarheit bekommst du aber nur durch einen Blick darauf." },
+          { when: { q: "q7", is: 2 }, icon: "clock", title: "Das begleitet dich schon länger", text: "Beschwerden, die über ein Jahr anhalten, verdienen eine gezielte Abklärung — nicht, weil etwas Schlimmes sein muss, sondern damit du endlich Klarheit hast." },
+          { when: { q: "q8", is: 0 }, icon: "clock", title: "Es wird eher mehr", text: "Dass die Beschwerden zunehmen, ist ein guter Grund, jetzt hinzuschauen, statt weiter abzuwarten." },
+        ],
         advice: [
           { icon: "observe", title: "Beobachte die nächsten Wochen", text: "Ein kurzes Beschwerde-Tagebuch hilft, Muster zu erkennen." },
           { icon: "doctor", title: "Sprich es beim nächsten Arztbesuch an", text: "Frag nach einer Basisdiagnostik (TSH, ggf. fT3/fT4)." },
@@ -442,6 +515,8 @@ window.QUIZ_CONTENT = {
       { id: "C", label: "Wenig Hinweise", copy: {
         headerEyebrow: "Deine Einschätzung",
         title: "Aktuell sprechen deine Antworten für wenig Hinweise",
+        heroImage: "result-hero-c.jpg",
+        heroAlt: "",
         validation: [
           { text: "Deine Antworten sprechen aktuell wenig für eine Unterfunktion. Erst einmal eine gute Nachricht." },
         ],
@@ -469,6 +544,8 @@ window.QUIZ_CONTENT = {
   products: {
     magenfreund: {
       name: "Der Magenfreund®", sub: "Verdauungs-Komplex",
+      // TODO(Leo): Magenfreund-Key-Visual fehlt noch → Datei nach app/assets/ legen
+      //            (Konvention: magenfreund-hero.webp), dann image-Feld ergänzen.
       text: "Eine ruhige Ergänzung, wenn deine Verdauung träge ist — kein Muss.",
       claims: ["Chlorid trägt zu einer normalen Verdauung bei, indem es zur Bildung von Magensäure beiträgt.<sup>1</sup>"],
       cta: "Mehr über den Magenfreund", link: "https://miavola.de/products/magenfreund",
@@ -476,6 +553,7 @@ window.QUIZ_CONTENT = {
     },
     immungold: {
       name: "Immungold®", sub: "Omega-3 + Vitamin D",
+      image: "immungold-hero.webp",
       text: "Wenn Autoimmun-Themen bei dir eine Rolle spielen, kann eine gute Vitamin-D-Versorgung sinnvoll sein.",
       claims: ["Vitamin D trägt zu einer normalen Funktion des Immunsystems bei.<sup>2</sup>"],
       cta: "Mehr über Immungold", link: "https://miavola.de/products/immungold",
@@ -483,7 +561,7 @@ window.QUIZ_CONTENT = {
     },
     produzent: {
       name: "Der Produzent®", sub: "Schilddrüsen-Komplex",
-      image: "produzent-hero.png",
+      image: "produzent-hero.webp",
       text: "Für eine bereits diagnostizierte Schilddrüse — als Ergänzung zur ärztlichen Therapie, nicht als Ersatz.",
       claims: [
         "Jod trägt zu einer normalen Produktion von Schilddrüsenhormonen und zu einer normalen Funktion der Schilddrüse bei.<sup>3</sup>",
@@ -494,6 +572,7 @@ window.QUIZ_CONTENT = {
     },
     umwandler: {
       name: "Der Umwandler®", sub: "Leber-Komplex",
+      image: "umwandler-hero.webp",
       text: "Unterstützung rund um Leber und Hormon-Umwandlung — für diagnostizierte Verläufe.",
       claims: [
         "Cholin trägt zur Aufrechterhaltung einer normalen Leberfunktion bei.<sup>5</sup>",
@@ -516,6 +595,7 @@ window.QUIZ_CONTENT = {
     // pending → Engine zeigt diese (noch) NICHT (EFSA-Claim unbestätigt, §9.5)
     kollagen: {
       name: "Kollagen-MCT", sub: "Kollagen + MCT",
+      image: "kollagen-hero.webp",
       text: "Für Haut, Haare & Nägel.",
       claims: [], pending: true,
       cta: "Mehr über Kollagen-MCT", link: "https://miavola.de/products/kollagen-mct",
@@ -523,6 +603,7 @@ window.QUIZ_CONTENT = {
     },
     aminos: {
       name: "Essentielle Aminosäuren", sub: "EAA-Komplex",
+      image: "aminos-hero.webp",
       text: "Bausteine für Energie & Muskeln.",
       claims: [], pending: true,
       cta: "Mehr über Essentielle Aminosäuren", link: "https://miavola.de/products/essentielle-aminosaeuren",
