@@ -421,6 +421,7 @@
     const screen = el(`<section class="screen"></section>`);
 
     if (wide) {
+      screen.classList.add("screen--intro-wide");
       screen.appendChild(el(`
         <div class="wrap">
           <div class="intro__inner-wide">
