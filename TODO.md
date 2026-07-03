@@ -99,6 +99,10 @@ Ergebnistexte mit Bedingungs-Builder) + Live-Vorschau + Export `content.json` + 
 - ⬜ **Umwandler-Etikett bestätigen** (2026-07-03): von der Jod-Core-Liste genommen
   (Cholin + Selen laut products.md, kein Jod) und als Zweit-Empfehlung zu Immungold
   auch ohne Diagnose freigegeben. Falls doch Jod enthalten → zurück in `coreProductIds`!
+- ⬜ **⚠️ Produzent ohne Diagnose (Leo, 2026-07-03) HWG-prüfen:** Der Produzent (enthält
+  Jod!) wird jetzt bei Band A auch ohne Diagnose empfohlen (Leos ausdrückliche
+  Entscheidung). Eingebaute Ausnahme: bei q17 = „Ja, auffällig" (Befund unklar, könnte
+  Überfunktion sein) wird KEIN Jod-Produkt gezeigt. Bitte mit Compliance gegenprüfen.
 - ⬜ **§9.7 Evas Review** zu Fragen + Ergebnisseiten einarbeiten.
 
 ## Offene technische Punkte (nicht blockierend)

@@ -740,7 +740,6 @@
       }
     ],
     "coreProductIds": [
-      "produzent",
       "heldenduo"
     ],
     "signalRules": {
@@ -939,6 +938,32 @@
                 "text": "Kein Muss, als ruhige Alltags-Ergänzung gedacht."
               }
             ]
+          }
+        ]
+      },
+      {
+        "productId": "produzent",
+        "when": {
+          "allOf": [
+            {
+              "outcomeIn": [
+                "A"
+              ]
+            },
+            {
+              "not": {
+                "q": "q17",
+                "is": 1
+              }
+            }
+          ]
+        },
+        "reason": [
+          {
+            "text": "Deine Antworten zeigen deutliche Hinweise, auch wenn eine ärztliche Abklärung noch aussteht. Aus unserer Range zeigen wir dir deshalb den Produzenten®, den Schilddrüsen-Komplex."
+          },
+          {
+            "text": "Er ersetzt keine Abklärung: Lass deine Werte zuerst ärztlich prüfen, gerade weil er Jod enthält."
           }
         ]
       },
