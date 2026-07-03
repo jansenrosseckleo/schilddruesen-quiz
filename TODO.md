@@ -96,6 +96,9 @@ Ergebnistexte mit Bedingungs-Builder) + Live-Vorschau + Export `content.json` + 
 - ⬜ **§9.2 Produkt-Scoring** final: Produzent vs. Umwandler vs. Heldenduo bei Diagnose
   (+ ggf. Frage „Produktion vs. Umwandlung"); Jod-/Selen-Eigeneinnahme-Gegenregel.
 - ⬜ **§9.3 Temperatur-Schwelle** 36,5 vs. 36,8 °C final (aktuell `band:0` = <36,5).
+- ⬜ **Umwandler-Etikett bestätigen** (2026-07-03): von der Jod-Core-Liste genommen
+  (Cholin + Selen laut products.md, kein Jod) und als Zweit-Empfehlung zu Immungold
+  auch ohne Diagnose freigegeben. Falls doch Jod enthalten → zurück in `coreProductIds`!
 - ⬜ **§9.7 Evas Review** zu Fragen + Ergebnisseiten einarbeiten.
 
 ## Offene technische Punkte (nicht blockierend)

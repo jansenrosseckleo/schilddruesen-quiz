@@ -133,12 +133,15 @@ Details + Claims in `products.md`. Logik:
   in der `reason` wiederholt (sie stehen in `claims`). Tokens (`{{autoimmuneFactor}}`) erlaubt.
 
 ```
-coreProductIds: ["produzent", "umwandler", "heldenduo"],   // Jod-haltig → nur diagnostiziert
+coreProductIds: ["produzent", "heldenduo"],   // Jod-haltig → nur diagnostiziert.
+// Umwandler von der Core-Liste genommen (Leo, 2026-07-03): Cholin + Selen, kein Jod
+// → als Zweit-Empfehlung auch ohne Diagnose zulässig. [TODO Leo: Etikett bestätigen]
 
 productRules: [
-  { productId: "umwandler",   when: { q:"q2", is:2 } },                               // core, nur diagnostiziert — Bestseller-Default bei Diagnose (+ produzent als Zweit-Empfehlung)
+  { productId: "umwandler",   when: { q:"q2", is:2 } },                               // Bestseller-Default bei Diagnose (+ produzent als Zweit-Empfehlung)
   { productId: "magenfreund", when: { q:"q6", has:"verstopfung" } },                 // Verdauung
-  { productId: "immungold",   when: { flag:"autoimmune" } },                          // Immun (kein Jod) — nur noch Nicht-Diagnostizierte
+  { productId: "immungold",   when: { flag:"autoimmune" },                            // Immun (kein Jod) — nur noch Nicht-Diagnostizierte
+    also: [{ productId:"umwandler" }] },                                              // + Umwandler ergänzend (Leo, 2026-07-03)
   { productId: "kollagen",    when: { q:"q4", hasAny:["haut","haare","naegel","rillen","brauen","gesicht"] } }, // pending
   { productId: "aminos",      when: { q:"q3", hasAny:["muede","antrieb"] } },         // pending
 ]
