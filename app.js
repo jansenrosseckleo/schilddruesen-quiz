@@ -429,7 +429,7 @@
               <span class="pill pill--sage" style="align-self:flex-start;margin-bottom:22px;">${t.badgeWide}</span>
               <h2 class="intro__title intro__title--wide">${t.title}</h2>
               <p class="intro__lead" style="font-size:17px;max-width:42ch;">${t.leadWide}</p>
-              <div style="display:flex;gap:14px;align-items:center;">
+              <div style="display:flex;flex-direction:column;gap:12px;align-items:flex-start;">
                 <button class="mv-btn mv-btn--burg mv-btn--lg" id="start">${t.cta}</button>
                 <span style="font-size:13px;color:var(--miavola-ink-400);">Kein Login nötig</span>
               </div>
