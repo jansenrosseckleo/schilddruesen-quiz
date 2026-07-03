@@ -326,19 +326,15 @@ html, body {
    INTRO
    ================================================================ */
 .intro { flex: 1; display: flex; flex-direction: column; }
-/* Logo linksbündig mit dem Text (gleiche .wrap-Spalte, 22px Seitenpadding).
-   Die Logo-PNG hat links ~40% ihrer Höhe transparenten Eigenrand
-   (1061px bei 2640px Bildhöhe) → per negativem Margin ausgleichen. */
-.intro__logobar { display: flex; justify-content: flex-start; padding-top: 24px; }
-.intro__logobar img { height: 48px; opacity: .9; margin-left: -19px; }
+/* Mobile: Logo oben mittig zentriert (transparenter PNG-Eigenrand ist
+   symmetrisch, Zentrierung stimmt daher ohne Ausgleich). Desktop-Logo
+   sitzt linksbündig in der Textspalte (inline in app.js, mit Ausgleich). */
+.intro__logobar { display: flex; justify-content: center; padding-top: 24px; }
+.intro__logobar img { height: 48px; opacity: .9; }
 .intro__body { flex: 1; padding-top: 26px; display: flex; flex-direction: column; }
-.intro__hero {
-  position: relative; border-radius: var(--radius);
-  background: var(--mv-tint-produzent-x); height: 260px; margin-bottom: 26px;
-  overflow: hidden; display: grid; place-items: center;
-}
-/* Foto-Hero: füllt die Karte, Gesicht im oberen Bilddrittel sichtbar halten */
-.intro__hero img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 26%; }
+/* Mobile: kein Hero-Bild — Badge direkt über dem Titel, damit der
+   Start-Button ohne Scrollen erreichbar bleibt. Foto nur im Desktop-Layout. */
+.intro__badge { align-self: flex-start; margin-bottom: 16px; }
 .intro__title {
   font-family: var(--font-display); font-weight: 600;
   font-size: clamp(28px, 8vw, 34px); line-height: 1.08; letter-spacing: -.02em;
@@ -362,7 +358,6 @@ html, body {
 }
 .pill--sage { color: #fff; background: var(--miavola-sage-600); }
 .pill--butter { color: var(--miavola-wine-800); background: var(--miavola-butter-300); }
-.intro__hero .pill { position: absolute; top: 14px; left: 14px; }
 
 /* ================================================================
    EDUCATION INTERSTITIAL (burgundy)
