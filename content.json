@@ -266,11 +266,48 @@
       "type": "education",
       "variant": "info",
       "id": "eduSchaltzentrale",
-      "graphic": "edu-schaltzentrale.png",
       "graphicAlt": "Die Schilddrüse beeinflusst viele Körperfunktionen gleichzeitig",
       "eyebrow": "Gut zu wissen",
       "title": "Deine Schilddrüse: die Schaltzentrale des Körpers",
       "text": "Die Schilddrüse ist nur wenige Zentimeter groß, aber ihre Hormone wirken praktisch überall: Sie beeinflussen Energie, Körpertemperatur, Herzschlag, Verdauung, Haut und Haare, sogar Stimmung und Konzentration. Arbeitet sie langsamer, kann sich das an vielen Stellen gleichzeitig bemerkbar machen. Genau deshalb fragen wir so breit durch den ganzen Körper.",
+      "infographic": {
+        "variant": "hub",
+        "title": "Die Schaltzentrale des Körpers",
+        "sub": "Wenige Zentimeter groß und überall beteiligt",
+        "items": [
+          {
+            "icon": "bolt",
+            "title": "Energie",
+            "sub": "Antrieb & Stoffwechsel"
+          },
+          {
+            "icon": "thermo",
+            "title": "Temperatur",
+            "sub": "Frieren oder Schwitzen"
+          },
+          {
+            "icon": "heart",
+            "title": "Herzschlag",
+            "sub": "Puls & Kreislauf"
+          },
+          {
+            "icon": "drop",
+            "title": "Verdauung",
+            "sub": "Tempo im Darm"
+          },
+          {
+            "icon": "strands",
+            "title": "Haut & Haare",
+            "sub": "Struktur & Wachstum"
+          },
+          {
+            "icon": "brain",
+            "title": "Stimmung & Fokus",
+            "sub": "Kopf & Gefühl"
+          }
+        ],
+        "foot": "Arbeitet sie langsamer, zeigt sich das oft an mehreren Stellen gleichzeitig."
+      },
       "cta": "Weiter"
     },
     {
@@ -416,11 +453,25 @@
           2
         ]
       },
-      "graphic": "edu-hormone.png",
       "graphicAlt": "Hormonhaushalt und Schilddrüse verursachen überlappende Beschwerden",
       "eyebrow": "Gut zu wissen",
       "title": "Hormone und Schilddrüse sprechen dieselbe Sprache",
       "text": "Müdigkeit, Gewichtsveränderungen, Stimmungstiefs oder ein veränderter Zyklus werden oft allein den Wechseljahren oder „den Hormonen“ zugeschrieben. Dahinter kann aber auch die Schilddrüse stecken, denn die Beschwerden ähneln sich stark. Genau deshalb lohnt es sich, beides im Blick zu behalten, statt vorschnell einzuordnen.",
+      "infographic": {
+        "variant": "venn",
+        "title": "Wechseljahre oder Schilddrüse?",
+        "sub": "Viele Beschwerden ähneln sich stark",
+        "left": "Wechseljahre<br>& Hormone",
+        "right": "Schilddrüsen-<br>unterfunktion",
+        "centerLabel": "Beides möglich",
+        "chips": [
+          "Müdigkeit",
+          "Gewichts&shy;veränderung",
+          "Stimmungstiefs",
+          "veränderter Zyklus"
+        ],
+        "foot": "Beides im Blick behalten, statt vorschnell einzuordnen."
+      },
       "cta": "Weiter"
     },
     {
@@ -502,11 +553,32 @@
       "type": "education",
       "variant": "info",
       "id": "eduHashimoto",
-      "graphic": "edu-hashimoto.png",
       "graphicAlt": "Hashimoto ist die häufigste Ursache und tritt familiär gehäuft auf",
       "eyebrow": "Gut zu wissen",
       "title": "Die häufigste Ursache heißt Hashimoto",
       "text": "Die meisten Schilddrüsenunterfunktionen in Deutschland entstehen durch Hashimoto, eine Autoimmun-Reaktion, bei der der Körper die eigene Schilddrüse angreift. Sie tritt familiär gehäuft auf: Gibt es Fälle in deiner Familie, kann dein eigenes Risiko erhöht sein. Kein Grund zur Sorge, aber ein guter Grund, aufmerksam zu sein.",
+      "infographic": {
+        "variant": "cards",
+        "title": "Hashimoto, kurz erklärt",
+        "cards": [
+          {
+            "icon": "gland",
+            "title": "Autoimmun-Reaktion",
+            "text": "Das Immunsystem richtet sich gegen die eigene Schilddrüse."
+          },
+          {
+            "badge": "Nr.&thinsp;1",
+            "title": "Häufigste Ursache",
+            "text": "Die meisten Schilddrüsen&shy;unterfunktionen in Deutschland entstehen so."
+          },
+          {
+            "icon": "family",
+            "title": "Familiär gehäuft",
+            "text": "Fälle in der Familie können dein eigenes Risiko erhöhen."
+          }
+        ],
+        "foot": "Kein Grund zur Sorge, aber ein guter Grund, aufmerksam zu sein."
+      },
       "cta": "Weiter"
     },
     {
@@ -563,11 +635,32 @@
       "type": "education",
       "variant": "info",
       "id": "eduTsh",
-      "graphic": "edu-tsh.png",
       "graphicAlt": "Ein einzelner Normwert wie TSH schließt nicht alles aus",
       "eyebrow": "Gut zu wissen",
       "title": "Ein „normaler“ TSH ist nicht das ganze Bild",
       "text": "Bei einem Verdacht wird oft nur der TSH-Wert bestimmt. Der kann im Normbereich liegen, obwohl die Schilddrüse noch nicht rund läuft, etwa am Anfang von Hashimoto. Ein vollständigeres Bild geben zusätzliche Werte wie fT3, fT4 und die TPO-Antikörper. Gut zu wissen fürs nächste Arztgespräch.",
+      "infographic": {
+        "variant": "compare",
+        "title": "TSH allein ist nicht das ganze Bild",
+        "left": {
+          "big": "TSH",
+          "badge": "Wird meist gemessen",
+          "points": [
+            "kann im Normbereich liegen …",
+            "… obwohl die Schilddrüse noch nicht rund läuft"
+          ]
+        },
+        "arrowLabel": "ergänzt um<br>weitere Werte",
+        "right": {
+          "big": "fT4 · fT3 · TPO-AK",
+          "badge": "Das vollständigere Bild",
+          "points": [
+            "fT4 & fT3: die eigentlichen Hormone",
+            "TPO-Antikörper: Hinweis auf Hashimoto"
+          ]
+        },
+        "foot": "Gut zu wissen fürs nächste Arztgespräch."
+      },
       "cta": "Weiter"
     },
     {

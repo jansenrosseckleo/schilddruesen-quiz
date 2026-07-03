@@ -692,6 +692,74 @@
     return screen;
   }
 
+  /* ---------------- INFOGRAFIKEN (Info-Cards) ----------------
+     Datengetrieben: content → flow[].infographic { variant, ... }.
+     Vier Layout-Varianten (venn/cards/compare/hub), responsive: auf Mobile
+     stapeln die Elemente vertikal (styles.css). Texte kommen aus dem Content,
+     Icons präsentational aus IG_ICONS (Design-Quelle: Claude-Design-Export). */
+  const IG_ICONS = {
+    gland: '<svg width="34" height="34" viewBox="0 0 24 25" fill="none" stroke="#833241" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12.15 12.56C12.15 12.56 10.22 12.8 9.37 10.91C8.53 9.02 7.07 5.8 7.07 5.8C7.07 5.8 6.42 4.57 5.53 4.57C4.64 4.57 3.98 5.26 3.79 6.1C3.6 6.93 4.39 8.78 2.98 10.53C1.58 12.28 2.53 17.91 5.62 19.47C8.72 21.03 9.68 17.2 12.15 17.2"/><path d="M11.92 12.56C11.92 12.56 13.84 12.8 14.67 10.92C15.51 9.04 16.96 5.85 16.96 5.85C16.96 5.85 17.62 4.63 18.49 4.63C19.37 4.63 20.03 5.3 20.22 6.14C20.41 6.98 19.63 8.81 21.02 10.54C22.4 12.27 21.47 17.86 18.4 19.42C15.33 20.98 14.37 17.16 11.92 17.16"/><path d="M10.51 10.08C10.51 10.08 12.56 10.38 13.79 10.08"/><path d="M9.77 7.85C9.77 7.85 12.75 8.27 14.53 7.85"/><path d="M10.51 19.72C10.51 19.72 12.56 20.01 13.79 19.72"/></svg>',
+    family: '<svg width="30" height="30" viewBox="0 0 48 48" fill="none" stroke="#833241" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13" cy="17" r="5"/><path d="M5 32 A 8 8 0 0 1 21 32"/><circle cx="30" cy="15" r="4"/><path d="M23.5 27 A 6.5 6.5 0 0 1 36.5 27"/><circle cx="41" cy="19" r="3.2"/><path d="M35.8 29 A 5.2 5.2 0 0 1 46.2 29"/></svg>',
+    bolt: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#833241" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polyline points="14,3 7.5,13 11.7,13 9.5,21"/></svg>',
+    thermo: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#833241" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="9.5" y="2.5" width="5" height="11" rx="2.5"/><circle cx="12" cy="17.5" r="3.6"/></svg>',
+    heart: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#833241" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20 C 3.5 14.5 3.5 6.5 8.5 6.5 C 10.8 6.5 12 8.5 12 10 C 12 8.5 13.2 6.5 15.5 6.5 C 20.5 6.5 20.5 14.5 12 20 Z"/></svg>',
+    drop: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#833241" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5 C 18 8 18 15 12 20.5 C 6 15 6 8 12 3.5 Z"/><path d="M12 6.5 L 12 17.5"/></svg>',
+    strands: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#833241" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3.5 C 4.5 8 9 9.5 7 14 C 5.5 17 7.5 18.5 7 20.5"/><path d="M12 3.5 C 9.5 8 14 9.5 12 14 C 10.5 17 12.5 18.5 12 20.5"/><path d="M17 3.5 C 14.5 8 19 9.5 17 14 C 15.5 17 17.5 18.5 17 20.5"/></svg>',
+    brain: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#833241" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 C 7.5 4 5 7 5.7 9.9 C 3.9 11.4 4.6 14.8 7 15.7 C 7.9 18 10.6 18.7 12 17.1 C 13.4 18.7 16.1 18 17 15.7 C 19.4 14.8 20.1 11.4 18.3 9.9 C 19 7 16.5 4 12 4 Z"/><path d="M12 5.5 C 13.1 8.2 10.9 10.9 12 13.5 L 12 16.5"/></svg>',
+  };
+
+  function infographicHTML(g) {
+    if (!g || !g.variant) return "";
+    const head = (g.title ? `<div class="ig__title">${g.title}</div>` : "")
+      + (g.sub ? `<div class="ig__sub">${g.sub}</div>` : "");
+    const foot = g.foot ? `<div class="ig__foot">${g.foot}</div>` : "";
+
+    if (g.variant === "venn") {
+      const chips = (g.chips || []).map((c) => `<div class="venn__chip">${c}</div>`).join("");
+      return `<div class="ig ig--venn">${head}
+        <div class="venn">
+          <div class="venn__circle venn__circle--rose"><span>${g.left || ""}</span></div>
+          <div class="venn__mid">
+            ${g.centerLabel ? `<div class="venn__label">${g.centerLabel}</div>` : ""}${chips}
+          </div>
+          <div class="venn__circle venn__circle--gold"><span>${g.right || ""}</span></div>
+        </div>${foot}</div>`;
+    }
+    if (g.variant === "cards") {
+      const cards = (g.cards || []).map((c) => `
+        <div class="ig-card">
+          <div class="ig-card__icon${c.badge ? " ig-card__icon--gold" : ""}">${c.badge ? `<span>${c.badge}</span>` : (IG_ICONS[c.icon] || "")}</div>
+          <div class="ig-card__body"><div class="ig-card__title">${c.title}</div><div class="ig-card__text">${c.text}</div></div>
+        </div>`).join("");
+      return `<div class="ig ig--cards">${head}<div class="ig-cards">${cards}</div>${foot}</div>`;
+    }
+    if (g.variant === "compare") {
+      const side = (s2, hi) => `
+        <div class="ig-cmp__card${hi ? " ig-cmp__card--hi" : ""}">
+          <div class="ig-cmp__big">${s2.big || ""}</div>
+          ${s2.badge ? `<div class="ig-cmp__badge">${s2.badge}</div>` : ""}
+          <div class="ig-cmp__points">${(s2.points || []).map((p) => `<div class="ig-cmp__point"><span></span><em>${p}</em></div>`).join("")}</div>
+        </div>`;
+      return `<div class="ig ig--compare">${head}
+        <div class="ig-cmp">
+          ${side(g.left || {}, false)}
+          <div class="ig-cmp__arrow"><svg width="40" height="22" viewBox="0 0 52 28" fill="none"><path d="M2 14 H 46 M34 3 L 47 14 L 34 25" stroke="#9E8047" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><span>${g.arrowLabel || ""}</span></div>
+          ${side(g.right || {}, true)}
+        </div>${foot}</div>`;
+    }
+    if (g.variant === "hub") {
+      const items = (g.items || []).map((i) => `
+        <div class="ig-hub__item">
+          <div class="ig-hub__icon">${IG_ICONS[i.icon] || ""}</div>
+          <div><div class="ig-hub__title">${i.title}</div>${i.sub ? `<div class="ig-hub__sub">${i.sub}</div>` : ""}</div>
+        </div>`).join("");
+      return `<div class="ig ig--hub">${head}
+        <div class="ig-hub__center">${IG_ICONS.gland}</div>
+        <div class="ig-hub__grid">${items}</div>${foot}</div>`;
+    }
+    return "";
+  }
+
   /* ---------------- EDUCATION ---------------- */
   function renderEducation(s) {
     const screen = el(`<section class="screen"></section>`);
@@ -710,20 +778,22 @@
           <div class="edu__foot"><button class="mv-btn mv-btn--block mv-btn--light" id="next">${s.cta}</button></div>
         </div>`));
     } else if (s.variant === "info") {
-      // Info-Card (Wissens-Einschub im Flow): helle Karte, Grafik oben + Text.
-      // Grafik über onerror-Fallback abgesichert — Card rendert sauber ohne Bild.
-      const node = el(`
-        <div class="edu edu--info">
-          <div class="edu__inner edu__inner--info">
+      // Info-Card (Wissens-Einschub im Flow): helle Karte.
+      // Mit `infographic`: responsive HTML-Infografik (Titel/Text stecken darin).
+      // Sonst: Grafik oben (onerror-Fallback) + Eyebrow/Titel/Text.
+      const ig = s.infographic ? infographicHTML(s.infographic) : "";
+      const inner = ig || `
             ${s.graphic ? `<img class="edu__graphic" src="${ASSET}${s.graphic}" alt="" onerror="this.style.display='none'">` : ""}
             <div class="edu__eyebrow edu__eyebrow--info">${s.eyebrow || "Gut zu wissen"}</div>
             <h2 class="edu__title edu__title--info">${s.title}</h2>
             <p class="edu__text edu__text--info">${s.text}</p>
-            ${s.src ? `<p class="edu__src edu__src--info">${s.src}</p>` : ""}
-          </div>
+            ${s.src ? `<p class="edu__src edu__src--info">${s.src}</p>` : ""}`;
+      const node = el(`
+        <div class="edu edu--info">
+          <div class="edu__inner edu__inner--info${ig ? " edu__inner--ig" : ""}">${inner}</div>
           <div class="edu__foot"><button class="mv-btn mv-btn--burg mv-btn--block" id="next">${s.cta || "Weiter"}</button></div>
         </div>`);
-      if (s.graphicAlt) { const g = node.querySelector(".edu__graphic"); if (g) g.setAttribute("alt", s.graphicAlt); }
+      if (!ig && s.graphicAlt) { const g = node.querySelector(".edu__graphic"); if (g) g.setAttribute("alt", s.graphicAlt); }
       screen.appendChild(node);
     } else {
       screen.appendChild(el(`

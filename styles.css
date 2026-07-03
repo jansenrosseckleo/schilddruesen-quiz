@@ -671,3 +671,101 @@ sup { font-size: .7em; opacity: .7; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; }
 }
+
+/* ================================================================
+   Infografiken (Info-Cards) — datengetrieben (content → infographic),
+   Layout-Varianten venn/cards/compare/hub. Design-Quelle: Claude-Design-
+   Export (1200px-Artboards), hier responsive übersetzt: Mobile = vertikal.
+   ================================================================ */
+.edu__inner--ig { max-width: 660px; padding-left: 14px; padding-right: 14px; }
+.ig {
+  width: 100%; background: #F7F2EA; border-radius: var(--radius-lg);
+  padding: 32px 20px 24px; position: relative; overflow: hidden;
+  text-align: center; box-sizing: border-box;
+}
+.ig::before {
+  content: ""; position: absolute; top: 16px; right: 18px; width: 54px; height: 46px;
+  background: url("assets/butterfly-rose-tint.png") center/contain no-repeat; pointer-events: none;
+}
+.ig::after {
+  content: ""; position: absolute; bottom: -8px; left: -8px; width: 50px; height: 42px;
+  transform: rotate(-14deg);
+  background: url("assets/butterfly-sand-tint.png") center/contain no-repeat; pointer-events: none;
+}
+.ig__title {
+  font-family: var(--font-display); font-weight: 700; font-size: 25px;
+  letter-spacing: -.02em; line-height: 1.08; color: var(--miavola-ink-900);
+  position: relative; z-index: 1; padding: 0 30px;
+}
+.ig__sub { margin-top: 8px; font-size: 15px; color: #57503F; position: relative; z-index: 1; }
+.ig__foot { margin-top: 20px; font-size: 14px; color: #6E6656; position: relative; z-index: 1; }
+
+/* ── Venn (Hormone vs. Schilddrüse) ── */
+.venn { display: flex; align-items: center; justify-content: center; margin-top: 22px; position: relative; z-index: 1; }
+.venn__circle { width: 196px; aspect-ratio: 1; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex: none; }
+.venn__circle--rose { background: #F1D9E0; }
+.venn__circle--gold { background: #F0E3C0; mix-blend-mode: multiply; }
+.venn__circle span { font-family: var(--font-display); font-weight: 700; font-size: 17px; line-height: 1.18; letter-spacing: -.01em; }
+.venn__circle--rose span { color: #6E2E3E; }
+.venn__circle--gold span { color: #6E5A22; }
+.venn__mid { display: flex; flex-direction: column; align-items: center; gap: 7px; margin: 0 -30px; z-index: 2; position: relative; }
+.venn__label { font-weight: 600; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #5C4A33; margin-bottom: 2px; }
+.venn__chip { background: #FDFBF6; border-radius: 999px; padding: 7px 15px; font-size: 13px; font-weight: 500; white-space: nowrap; box-shadow: 0 1px 2px rgba(33,30,27,.05); }
+
+/* ── Cards (Hashimoto, kurz erklärt) ── */
+.ig-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 22px; text-align: left; position: relative; z-index: 1; }
+.ig-card { background: #fff; border-radius: 16px; padding: 18px 16px; display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
+.ig-card__icon {
+  width: 48px; height: 48px; border-radius: 50%; background: #F2DBE0;
+  display: flex; align-items: center; justify-content: center; flex: none;
+}
+.ig-card__icon--gold { background: #F6E7BC; }
+.ig-card__icon--gold span { font-family: var(--font-display); font-weight: 700; font-size: 15px; color: var(--miavola-ink-900); }
+.ig-card__title { font-family: var(--font-display); font-weight: 700; font-size: 16px; letter-spacing: -.01em; color: var(--miavola-ink-900); }
+.ig-card__text { font-size: 13px; line-height: 1.4; color: #443F37; margin-top: 3px; }
+
+/* ── Compare (TSH → weitere Werte) ── */
+.ig-cmp { display: flex; align-items: stretch; gap: 8px; margin-top: 22px; text-align: left; position: relative; z-index: 1; }
+.ig-cmp__card { flex: 1; background: #fff; border-radius: 16px; padding: 18px 16px; display: flex; flex-direction: column; gap: 11px; min-width: 0; box-sizing: border-box; }
+.ig-cmp__card--hi { border: 1.5px solid #E0CB92; }
+.ig-cmp__big { font-family: var(--font-display); font-weight: 700; font-size: 22px; letter-spacing: -.02em; color: var(--miavola-ink-900); }
+.ig-cmp__badge {
+  align-self: flex-start; background: #EFE7D2; border-radius: 999px; padding: 6px 12px;
+  font-weight: 600; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: #4A4438;
+}
+.ig-cmp__card--hi .ig-cmp__badge { background: #F6E7BC; }
+.ig-cmp__points { display: flex; flex-direction: column; gap: 9px; }
+.ig-cmp__point { display: flex; gap: 8px; align-items: baseline; font-size: 13px; line-height: 1.35; }
+.ig-cmp__point span { width: 7px; height: 7px; border-radius: 50%; background: #B99A4E; flex: none; position: relative; top: -2px; }
+.ig-cmp__point em { font-style: normal; }
+.ig-cmp__arrow {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+  flex: none; width: 68px; font-size: 10.5px; line-height: 1.3; color: #8A8172; text-align: center;
+}
+
+/* ── Hub (Schaltzentrale) ── */
+.ig-hub__center {
+  margin: 16px auto 0; width: 68px; height: 68px; border-radius: 50%; background: #F2DBE0;
+  display: flex; align-items: center; justify-content: center; position: relative; z-index: 1;
+}
+.ig-hub__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 16px; text-align: left; position: relative; z-index: 1; }
+.ig-hub__item { background: #fff; border-radius: 14px; padding: 12px 14px; display: flex; align-items: center; gap: 12px; }
+.ig-hub__icon { width: 42px; height: 42px; border-radius: 50%; background: #F2DBE0; display: flex; align-items: center; justify-content: center; flex: none; }
+.ig-hub__title { font-family: var(--font-display); font-weight: 700; font-size: 15px; letter-spacing: -.01em; color: var(--miavola-ink-900); }
+.ig-hub__sub { font-size: 12.5px; color: #57503F; margin-top: 1px; }
+
+/* ── Mobile: alles vertikal stapeln ── */
+@media (max-width: 560px) {
+  .ig { padding: 28px 16px 22px; }
+  .ig__title { font-size: 22px; padding: 0 22px; }
+  .venn { flex-direction: column; }
+  .venn__circle { width: 200px; }
+  .venn__mid { margin: -26px 0; }
+  .ig-cards { grid-template-columns: 1fr; }
+  .ig-card { flex-direction: row; align-items: flex-start; gap: 14px; }
+  .ig-cmp { flex-direction: column; }
+  .ig-cmp__arrow { width: auto; flex-direction: row; gap: 10px; padding: 2px 0; }
+  .ig-cmp__arrow svg { transform: rotate(90deg); width: 26px; }
+  .ig-cmp__arrow br { display: none; }
+  .ig-hub__grid { grid-template-columns: 1fr; }
+}
