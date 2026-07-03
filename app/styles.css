@@ -65,9 +65,19 @@ html, body {
 @keyframes mvspin  { to { transform: rotate(360deg); } }
 @keyframes mvpulse { 0%,100% { opacity:.35; } 50% { opacity:1; } }
 
-/* ===== Buttons: align design-system .mv-btn to use the brand sans
-   in running text but keep the display face for labels =========== */
-.mv-btn { font-family: var(--font-display); }
+/* ===== Buttons: typischer miavola.de-Shop-Button ==================
+   Quelle: theme.css auf miavola.de → .btn { padding: 16px 32px;
+   border-radius: 32px 6px; font: Satoshi 16px/108%; }
+   Die asymmetrische Rundung (32px oben-links/unten-rechts, 6px
+   oben-rechts/unten-links) ist die Signatur-Form der Marke. */
+.mv-btn {
+  font: 500 16px/1.08 var(--font-sans);
+  letter-spacing: 0;
+  padding: 16px 32px;
+  border-radius: 32px 6px;
+}
+.mv-btn--sm { border-radius: 24px 5px; }
+.mv-btn--lg { padding: 20px 40px; border-radius: 32px 6px; }
 .mv-btn[disabled] {
   background: var(--miavola-cream-200);
   color: var(--miavola-ink-300);
@@ -140,7 +150,10 @@ html, body {
   margin: 0 0 20px;
 }
 .q__foot {
-  padding: 18px 0 calc(26px + env(safe-area-inset-bottom));
+  /* Nur vertikal — das Seitenpadding (22px) kommt vom .wrap darüber.
+     (Shorthand `padding: 18px 0 …` hatte es auf Mobile auf 0 überschrieben.) */
+  padding-top: 18px;
+  padding-bottom: calc(26px + env(safe-area-inset-bottom));
   display: flex; flex-direction: column; gap: 10px;
 }
 .q__hint {
@@ -313,9 +326,10 @@ html, body {
    INTRO
    ================================================================ */
 .intro { flex: 1; display: flex; flex-direction: column; }
-.intro__logobar { display: flex; justify-content: center; padding: 24px 0 0; }
+/* Logo linksbündig mit dem Text (gleiche .wrap-Spalte, 22px Seitenpadding) */
+.intro__logobar { display: flex; justify-content: flex-start; padding-top: 24px; }
 .intro__logobar img { height: 48px; opacity: .9; }
-.intro__body { flex: 1; padding: 26px 0 0; display: flex; flex-direction: column; }
+.intro__body { flex: 1; padding-top: 26px; display: flex; flex-direction: column; }
 .intro__hero {
   position: relative; border-radius: var(--radius);
   background: var(--mv-tint-produzent-x); height: 200px; margin-bottom: 26px;
@@ -418,7 +432,7 @@ html, body {
    EMAIL CAPTURE
    ================================================================ */
 .email { flex: 1; display: flex; flex-direction: column; }
-.email__body { flex: 1; padding: 30px 0 0; }
+.email__body { flex: 1; padding-top: 30px; }
 .email__title {
   font-family: var(--font-display); font-weight: 600;
   font-size: clamp(25px, 7vw, 28px); line-height: 1.12; letter-spacing: -.02em;

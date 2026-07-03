@@ -442,7 +442,7 @@
         `<div class="fact">${icon(f.icon)}<span>${f.text.replace("{N}", MAX_QUESTIONS)}</span></div>`).join("");
       screen.appendChild(el(`
         <div class="intro">
-          <div class="intro__logobar"><img src="${ASSET}logo-black.png" alt="miavola"></div>
+          <div class="wrap intro__logobar"><img src="${ASSET}logo-black.png" alt="miavola"></div>
           <div class="wrap intro__body">
             <div class="intro__hero">
               <span class="pill pill--sage">${t.badge}</span>
