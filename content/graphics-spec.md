@@ -16,7 +16,7 @@
 
 ---
 
-## A · Info-Card-Grafiken (3×) — quadratisch/breit, transparent
+## A · Info-Card-Grafiken (4×) — quadratisch/breit, transparent
 
 ### 1) `edu-hormone.png` — Card „Hormone & Schilddrüse"
 - **Kern-Aussage:** Hormonhaushalt und Schilddrüse verursachen **überlappende**
@@ -40,6 +40,14 @@
   die drei weiteren (fT3, fT4, TPO) als offene, noch ungeprüfte Felder (gestrichelt). Keine
   echten Zahlen, keine Beschriftung im Bild (Labels macht die UI).
 - **Format:** 1024 × 1024 oder 4:3 breit, transparent, PNG.
+
+### 4) `edu-schaltzentrale.png` — Card „Schaltzentrale des Körpers" (NEU 2026-07-03)
+- **Kern-Aussage:** Die Schilddrüse wirkt auf **viele Körperfunktionen gleichzeitig**
+  (Energie, Temperatur, Herz, Verdauung, Haut/Haare, Stimmung).
+- **Motiv:** Zentrale stilisierte Schmetterlings-Schilddrüse, von der feine Linien
+  sternförmig zu 5–6 kleinen, einfachen Symbolen ausgehen (Blitz/Energie, Thermometer,
+  Herz, Blatt/Verdauung, Haarsträhne, Gehirn). Ruhig, symmetrisch, kein Diagramm-Look.
+- **Format:** 1024 × 1024, transparent, PNG.
 
 ---
 
