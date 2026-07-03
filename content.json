@@ -1,7 +1,12 @@
 {
   "meta": {
-    "placeholder": true,
-    "placeholderLabel": "Entwurf · Inhalte vor Livegang HWG/EFSA-Freigabe"
+    "placeholder": false,
+    "placeholderLabel": "Entwurf · Inhalte vor Livegang HWG/EFSA-Freigabe",
+    "klaviyo": {
+      "companyId": "QQjWAk",
+      "listId": "UEPkJi",
+      "source": "Schilddrüsen-Quiz"
+    }
   },
   "intro": {
     "badge": "Kostenlos",
@@ -147,6 +152,16 @@
           "inlineLabel": "brüchige Nägel"
         },
         {
+          "key": "rillen",
+          "label": "Längsrillen in den Fingernägeln",
+          "inlineLabel": "Längsrillen in den Fingernägeln"
+        },
+        {
+          "key": "brauen",
+          "label": "Ausdünnen der Augenbrauen (außen)",
+          "inlineLabel": "ausgedünnte Augenbrauen"
+        },
+        {
           "key": "gesicht",
           "label": "Aufgedunsenes Gesicht",
           "inlineLabel": "ein aufgedunsenes Gesicht"
@@ -246,6 +261,17 @@
           "label": "Nicht sicher"
         }
       ]
+    },
+    {
+      "type": "education",
+      "variant": "info",
+      "id": "eduSchaltzentrale",
+      "graphic": "edu-schaltzentrale.png",
+      "graphicAlt": "Die Schilddrüse beeinflusst viele Körperfunktionen gleichzeitig",
+      "eyebrow": "Gut zu wissen",
+      "title": "Deine Schilddrüse: die Schaltzentrale des Körpers",
+      "text": "Die Schilddrüse ist nur wenige Zentimeter groß, aber ihre Hormone wirken praktisch überall: Sie beeinflussen Energie, Körpertemperatur, Herzschlag, Verdauung, Haut und Haare, sogar Stimmung und Konzentration. Arbeitet sie langsamer, kann sich das an vielen Stellen gleichzeitig bemerkbar machen. Genau deshalb fragen wir so breit durch den ganzen Körper.",
+      "cta": "Weiter"
     },
     {
       "type": "single",
@@ -459,7 +485,7 @@
       "cat": "Risikofaktoren",
       "wirkung": "Scoring + Autoimmun-Flag",
       "q": "Hast du selbst eine andere Autoimmunerkrankung?",
-      "info": "Gemeint ist eine Autoimmunerkrankung bei dir selbst, zum Beispiel Rheuma, Typ-1-Diabetes, Zöliakie oder Schuppenflechte. Solche Erkrankungen treten häufiger gemeinsam auf.",
+      "info": "Gemeint ist eine Autoimmunerkrankung bei dir selbst, zum Beispiel Hashimoto (eine Autoimmunerkrankung der Schilddrüse), Rheuma, Typ-1-Diabetes, Zöliakie oder Schuppenflechte. Solche Erkrankungen treten häufiger gemeinsam auf.",
       "options": [
         {
           "label": "Ja"
@@ -523,6 +549,9 @@
           "label": "Ja, unauffällig"
         },
         {
+          "label": "Ja, auffällig"
+        },
+        {
           "label": "Ja, kenne die Werte aber nicht"
         },
         {
@@ -572,8 +601,7 @@
     "placeholder": "deine@email.de",
     "optInLabel": "Ja, schickt mir vertiefende Infos zu meinem Ergebnis. Abmeldung jederzeit.",
     "cta": "Ergebnis ansehen",
-    "skip": "Direkt zum Ergebnis, ohne E-Mail",
-    "error": "Bitte gib eine gültige E-Mail-Adresse ein, oder geh ohne E-Mail weiter."
+    "error": "Bitte gib eine gültige E-Mail-Adresse ein oder lass das Feld leer."
   },
   "analysis": {
     "title": "Wir werten deine<br>Antworten aus …",
@@ -600,6 +628,22 @@
       {
         "id": "C",
         "min": 0
+      }
+    ],
+    "bandOverrides": [
+      {
+        "when": {
+          "q": "q2",
+          "is": 2
+        },
+        "band": "A"
+      },
+      {
+        "when": {
+          "q": "q17",
+          "is": 1
+        },
+        "band": "A"
       }
     ],
     "coreProductIds": [
@@ -630,6 +674,12 @@
         "score": 1
       },
       "q4.naegel": {
+        "score": 1
+      },
+      "q4.rillen": {
+        "score": 1
+      },
+      "q4.brauen": {
         "score": 1
       },
       "q4.gesicht": {
@@ -739,6 +789,26 @@
     ],
     "productRules": [
       {
+        "productId": "umwandler",
+        "when": {
+          "q": "q2",
+          "is": 2
+        },
+        "reason": [
+          {
+            "text": "Deine Schilddrüse ist bereits ärztlich diagnostiziert. Dann geht es vor allem darum, sie im Alltag gut zu begleiten."
+          },
+          {
+            "text": "Der Umwandler® ist der Leber-Komplex aus unserer Range, gedacht als Ergänzung zu deiner ärztlichen Therapie, nicht als Ersatz."
+          }
+        ],
+        "also": [
+          {
+            "productId": "produzent"
+          }
+        ]
+      },
+      {
         "productId": "magenfreund",
         "when": {
           "q": "q6",
@@ -768,26 +838,6 @@
         ]
       },
       {
-        "productId": "umwandler",
-        "when": {
-          "q": "q2",
-          "is": 2
-        },
-        "reason": [
-          {
-            "text": "Deine Schilddrüse ist bereits ärztlich diagnostiziert. Dann geht es vor allem darum, sie im Alltag gut zu begleiten."
-          },
-          {
-            "text": "Der Umwandler® ist der Leber-Komplex aus unserer Range, gedacht als Ergänzung zu deiner ärztlichen Therapie, nicht als Ersatz."
-          }
-        ],
-        "also": [
-          {
-            "productId": "produzent"
-          }
-        ]
-      },
-      {
         "productId": "kollagen",
         "when": {
           "q": "q4",
@@ -795,6 +845,8 @@
             "haut",
             "haare",
             "naegel",
+            "rillen",
+            "brauen",
             "gesicht"
           ]
         },
@@ -938,7 +990,9 @@
                 "hasAny": [
                   "haut",
                   "haare",
-                  "naegel"
+                  "naegel",
+                  "rillen",
+                  "brauen"
                 ]
               },
               "icon": "sparkles",
@@ -1119,7 +1173,9 @@
                 "hasAny": [
                   "haut",
                   "haare",
-                  "naegel"
+                  "naegel",
+                  "rillen",
+                  "brauen"
                 ]
               },
               "icon": "sparkles",
@@ -1347,7 +1403,6 @@
   },
   "result": {
     "headerEyebrow": "Deine Einschätzung",
-    "ctaSave": "Ergebnis per Mail sichern",
     "restart": "Quiz neu starten",
     "legalDisclaimer": "Dieses Quiz ersetzt keine ärztliche Untersuchung oder Diagnose. Bei anhaltenden Beschwerden wende dich bitte an deine Ärztin oder deinen Arzt.",
     "todo": {
