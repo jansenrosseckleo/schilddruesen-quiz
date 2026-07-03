@@ -1094,7 +1094,13 @@
     const R = C.result;
     cta.innerHTML = "";
     // „Ergebnis per Mail sichern" bewusst entfernt (Leo, 2026-07-03) — kommt später
-    // als Klaviyo-Event + Flow zurück. Bis dahin nur Neustart.
+    // als Klaviyo-Event + Flow zurück. Bis dahin: zurück zum Shop + Neustart.
+    if (R.backLink) {
+      const back = el(`<a class="mv-btn mv-btn--burg mv-btn--block" style="text-align:center;text-decoration:none;"></a>`);
+      back.textContent = R.ctaBack || "Zurück zu miavola.de";
+      back.setAttribute("href", R.backLink);
+      cta.appendChild(back);
+    }
     const restart = el(`<button class="link-btn link-btn--muted" style="align-self:center;"></button>`);
     restart.textContent = R.restart;
     restart.addEventListener("click", () => {

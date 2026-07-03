@@ -582,7 +582,7 @@ window.QUIZ_CONTENT = {
       //            (Konvention: magenfreund-hero.webp), dann image-Feld ergänzen.
       text: "Eine ruhige Ergänzung, wenn deine Verdauung träge ist, kein Muss.",
       claims: ["Chlorid trägt zu einer normalen Verdauung bei, indem es zur Bildung von Magensäure beiträgt.<sup>1</sup>"],
-      cta: "Mehr über den Magenfreund", link: "https://miavola.de/products/magenfreund",
+      cta: "Mehr über den Magenfreund", link: "https://miavola.de/products/der-magenfreund",
       disclaimer: "Kein Muss. Bitte besprich Veränderungen mit deinem Arzt.",
     },
     immungold: {
@@ -623,7 +623,7 @@ window.QUIZ_CONTENT = {
         "Jod trägt zu einer normalen Produktion von Schilddrüsenhormonen bei.<sup>3</sup>",
         "Selen trägt zu einer normalen Schilddrüsenfunktion bei.<sup>4</sup>",
       ],
-      cta: "Mehr über das Heldenduo", link: "https://miavola.de/products/heldenduo",
+      cta: "Mehr über das Heldenduo", link: "https://miavola.de/products/das-heldenduo-30-tage-vorrat",
       disclaimer: "Enthält Jod: nicht bei Überfunktion ohne ärztliche Rücksprache.",
     },
     // pending → Engine zeigt diese (noch) NICHT (EFSA-Claim unbestätigt, §9.5)
@@ -640,7 +640,7 @@ window.QUIZ_CONTENT = {
       image: "aminos-hero.webp",
       text: "Bausteine für Energie & Muskeln.",
       claims: [], pending: true,
-      cta: "Mehr über Essentielle Aminosäuren", link: "https://miavola.de/products/essentielle-aminosaeuren",
+      cta: "Mehr über Essentielle Aminosäuren", link: "https://miavola.de/products/essentielle-aminosauren",
       disclaimer: "Kein Muss.",
     },
   },
@@ -648,6 +648,8 @@ window.QUIZ_CONTENT = {
   /* ----- ERGEBNISSEITE: statische UI-Bausteine (kein medizinischer Claim) */
   result: {
     headerEyebrow: "Deine Einschätzung",
+    ctaBack: "Zurück zu miavola.de",
+    backLink: "https://miavola.de",
     restart: "Quiz neu starten",
     legalDisclaimer: "Dieses Quiz ersetzt keine ärztliche Untersuchung oder Diagnose. Bei anhaltenden Beschwerden wende dich bitte an deine Ärztin oder deinen Arzt.",
     todo: {

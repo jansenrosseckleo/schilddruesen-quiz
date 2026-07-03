@@ -102,7 +102,8 @@ Ergebnistexte mit Bedingungs-Builder) + Live-Vorschau + Export `content.json` + 
 - ✅ **E-Mail-Backend (Opt-in)**: Klaviyo-Subscribe angebunden (s. Stand 2026-07-03).
 - ⬜ **Ergebnis-Mail** (später): Klaviyo-Event „Quiz abgeschlossen" + Flow (klickt Leo im
   Klaviyo-UI) + E-Mail-Template (baut Claude per API); Button auf Ergebnisseite reaktivieren.
-- ⬜ **Produktlinks** (miavola.de) in `content.js → products[id].link` bestätigen.
+- ✅ **Produktlinks** gegen den Shop verifiziert (2026-07-03, alle 200): 3 Slugs korrigiert
+  (`der-magenfreund`, `das-heldenduo-30-tage-vorrat`, `essentielle-aminosauren`).
 - 🟡 **Produkt-Key-Visuals** (Stand 2026-07-01): echte PDP-Visuals eingebunden als `.webp`
   (`produzent-hero.webp` [neu], `umwandler-hero.webp`, `immungold-hero.webp`,
   `kollagen-hero.webp`, `aminos-hero.webp`); Produktkarte zeigt sie als volles Banner
