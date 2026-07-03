@@ -1,0 +1,50 @@
+/* Shared styles for design system preview cards */
+@import url('../colors_and_type.css');
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: var(--miavola-cream-50);
+  color: var(--miavola-ink-900);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.card {
+  padding: 24px;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.row { display: flex; gap: 12px; align-items: stretch; flex-wrap: wrap; }
+.col { display: flex; flex-direction: column; gap: 8px; }
+
+.swatch {
+  flex: 1;
+  min-width: 80px;
+  border-radius: 12px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 88px;
+  box-shadow: inset 0 0 0 1px rgba(26,23,20,0.04);
+}
+.swatch .name { font-size: 11px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; opacity: 0.85; }
+.swatch .hex { font-size: 11px; font-family: var(--font-mono); opacity: 0.75; }
+.swatch.dark { color: white; }
+.swatch.light { color: var(--miavola-ink-900); }
+
+.label-curve-bg {
+  position: relative;
+  overflow: hidden;
+}
+.label-curve-bg::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: radial-gradient(180% 110% at 110% 50%, transparent 49.6%, rgba(255,255,255,0.10) 49.8% 50.2%, transparent 50.4%);
+  pointer-events: none;
+}
