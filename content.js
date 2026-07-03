@@ -377,7 +377,10 @@ window.QUIZ_CONTENT = {
       { when: { q: "q2", is: 2 }, band: "A" },         // Schilddrüsenerkrankung diagnostiziert
       { when: { q: "q17", is: 1 }, band: "A" },        // Werte in den letzten 12 Monaten auffällig
     ],
-    coreProductIds: ["produzent", "umwandler", "heldenduo"],  // jodhaltig → nur diagnostiziert
+    // Jod-Sicherung: jodhaltige Produkte nur bei Diagnose. Umwandler entfernt
+    // (Leo, 2026-07-03): Leber-Komplex mit Cholin + Selen, laut products.md OHNE Jod
+    // → darf als Zweitempfehlung auch ohne Diagnose erscheinen. [TODO Leo: Etikett bestätigen]
+    coreProductIds: ["produzent", "heldenduo"],
 
     // ── Signal-Mapping: Antwort-Identität → { score, flags? } ──
     signalRules: {
@@ -436,7 +439,11 @@ window.QUIZ_CONTENT = {
         reason: [
           { text: "Weil bei dir Autoimmun-Angaben vorkommen, zeigen wir dir aus unserer Range Immungold®." },
           { text: "Es ist ein Komplex mit Vitamin D und Omega-3." },
-        ] },
+        ],
+        also: [{ productId: "umwandler", reason: [                          // Zweit-Empfehlung (Leo, 2026-07-03) — kein Jod
+          { text: "Ergänzend dazu kann der Umwandler® zu dir passen: der Leber-Komplex aus unserer Range, rund um Leber und Hormon-Umwandlung." },
+          { text: "Kein Muss, als ruhige Alltags-Ergänzung gedacht." },
+        ] }] },
       { productId: "kollagen", when: { q: "q4", hasAny: ["haut", "haare", "naegel", "rillen", "brauen", "gesicht"] },  // pending
         reason: [
           { text: "Du hast Veränderungen an Haut, Haaren oder Nägeln genannt." },

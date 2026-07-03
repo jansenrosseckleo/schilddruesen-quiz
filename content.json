@@ -648,7 +648,6 @@
     ],
     "coreProductIds": [
       "produzent",
-      "umwandler",
       "heldenduo"
     ],
     "signalRules": {
@@ -834,6 +833,19 @@
           },
           {
             "text": "Es ist ein Komplex mit Vitamin D und Omega-3."
+          }
+        ],
+        "also": [
+          {
+            "productId": "umwandler",
+            "reason": [
+              {
+                "text": "Ergänzend dazu kann der Umwandler® zu dir passen: der Leber-Komplex aus unserer Range, rund um Leber und Hormon-Umwandlung."
+              },
+              {
+                "text": "Kein Muss, als ruhige Alltags-Ergänzung gedacht."
+              }
+            ]
           }
         ]
       },
