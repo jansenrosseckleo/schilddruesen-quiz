@@ -425,7 +425,7 @@
         <div class="wrap">
           <div class="intro__inner-wide">
             <div class="intro__col-text">
-              <img src="${ASSET}logo-black.png" alt="miavola" style="height:72px;width:auto;opacity:.9;margin-bottom:34px;align-self:flex-start;">
+              <img src="${ASSET}logo-black.png" alt="miavola" style="height:72px;width:auto;opacity:.9;margin-bottom:34px;align-self:flex-start;margin-left:-29px;">
               <span class="pill pill--sage" style="align-self:flex-start;margin-bottom:22px;">${t.badgeWide}</span>
               <h2 class="intro__title intro__title--wide">${t.title}</h2>
               <p class="intro__lead" style="font-size:17px;max-width:42ch;">${t.leadWide}</p>

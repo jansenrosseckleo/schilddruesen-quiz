@@ -326,9 +326,11 @@ html, body {
    INTRO
    ================================================================ */
 .intro { flex: 1; display: flex; flex-direction: column; }
-/* Logo linksbündig mit dem Text (gleiche .wrap-Spalte, 22px Seitenpadding) */
+/* Logo linksbündig mit dem Text (gleiche .wrap-Spalte, 22px Seitenpadding).
+   Die Logo-PNG hat links ~40% ihrer Höhe transparenten Eigenrand
+   (1061px bei 2640px Bildhöhe) → per negativem Margin ausgleichen. */
 .intro__logobar { display: flex; justify-content: flex-start; padding-top: 24px; }
-.intro__logobar img { height: 48px; opacity: .9; }
+.intro__logobar img { height: 48px; opacity: .9; margin-left: -19px; }
 .intro__body { flex: 1; padding-top: 26px; display: flex; flex-direction: column; }
 .intro__hero {
   position: relative; border-radius: var(--radius);
