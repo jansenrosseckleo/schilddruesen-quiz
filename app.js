@@ -434,7 +434,7 @@
                 <span style="font-size:13px;color:var(--miavola-ink-400);">Kein Login nötig</span>
               </div>
             </div>
-            <div class="intro__col-media"><img src="${ASSET}butterflies-trio.png" alt=""></div>
+            <div class="intro__col-media"><img src="${ASSET}intro-header.jpg" alt="" onerror="this.style.display='none'"></div>
           </div>
         </div>`));
     } else {
@@ -446,7 +446,7 @@
           <div class="wrap intro__body">
             <div class="intro__hero">
               <span class="pill pill--sage">${t.badge}</span>
-              <img src="${ASSET}butterflies-trio.png" alt="">
+              <img src="${ASSET}intro-header.jpg" alt="" onerror="this.style.display='none'">
             </div>
             <h2 class="intro__title">${t.title}</h2>
             <p class="intro__lead">${t.lead}</p>
