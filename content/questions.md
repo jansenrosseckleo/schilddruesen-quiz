@@ -26,7 +26,7 @@ Ein gerader Weg, **keine** Verzweigung. F2 verzweigt nicht (steuert nur Wording 
 ## Block B · Symptome (multi, je „Nichts davon"; immer sichtbar; Scoring +1 je Symptom)
 
 **F3 (`q3`)** Energie & Körpergefühl — Müdigkeit · Gewichtszunahme/schwer abzunehmen · Frieren · Antriebslosigkeit
-**F4 (`q4`)** Haut, Haare & Äußeres — trockene Haut · Haarausfall · brüchige Nägel · aufgedunsenes Gesicht  · **[bestätigen: „Nichts davon" ergänzt — in §3 nicht gelistet, für einheitliche Skip-Logik]**
+**F4 (`q4`)** Haut, Haare & Äußeres — trockene Haut · Haarausfall · brüchige Nägel · Längsrillen in den Fingernägeln · Ausdünnen der Augenbrauen (außen) · aufgedunsenes Gesicht  *(Längsrillen + Augenbrauen ergänzt, Leo 2026-07-03, je +1)*  · **[bestätigen: „Nichts davon" ergänzt — in §3 nicht gelistet, für einheitliche Skip-Logik]**
 **F5 (`q5`)** Kopf & Stimmung — Brain Fog · Niedergeschlagenheit · innere Unruhe · Schlafprobleme
 **F6 (`q6`)** Körper & Verdauung — Verstopfung · Muskel-/Gelenkschmerzen · Muskelschwäche · Wassereinlagerungen *(Verstopfung → ggf. Magenfreund)*
 
@@ -55,13 +55,14 @@ Ein gerader Weg, **keine** Verzweigung. F2 verzweigt nicht (steuert nur Wording 
 
 ## Block G · Werte & Selbstmessung
 
-**F17 (`q17`, single, Action-Point)** — „In den letzten 12 Monaten Schilddrüsenwerte überprüft?" — ja, unauffällig · ja, kenne Werte nicht · nein, noch nie
+**F17 (`q17`, single, Action-Point + Band-Override)** — „In den letzten 12 Monaten Schilddrüsenwerte überprüft?" — ja, unauffällig · **ja, auffällig** *(neu, Leo 2026-07-03 → Band-Override A, s. outcomes §3)* · ja, kenne Werte nicht · nein, noch nie
 **F18 (`q18`, number, weicher Zusatz-Hinweis)** — „Kennst du deine Körpertemperatur morgens nach dem Aufwachen?" — Zahl °C (34–42, 1 Nachkommastelle, Komma/Punkt) **oder** „weiß ich nicht".
 - Bänder: `band:0` < 36,8 °C (niedrig, +1) · `band:1` ≥ 36,8 (normal/hoch, 0)
 
 ## Wissens-Einschübe (Info-Cards, kein Produkt) — §3 · PLATZIERT (2026-07-01)
 Ganzseitige Info-Cards (`type:"education", variant:"info"`, Grafik oben + Text). Quelle:
 `content/education.md`. Reine Vorwärts-Einschübe (bei Rückwärts-Navigation übersprungen).
+- **nach F7** (`eduSchaltzentrale`, immer): „Deine Schilddrüse: die Schaltzentrale des Körpers." *(neu, Leo 2026-07-03)*
 - **nach F12** (`eduHormone`, nur weiblich/keine Angabe): „Hormone und Schilddrüse sprechen dieselbe Sprache."
 - **nach F15** (`eduHashimoto`): „Die häufigste Ursache heißt Hashimoto." *(nach F15 statt F14 → Abstand zur Hormon-Card)*
 - **nach F17** (`eduTsh`): „Ein ‚normaler' TSH ist nicht das ganze Bild."

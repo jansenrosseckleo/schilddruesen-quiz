@@ -14,8 +14,8 @@
        NICHTS hier erfinden.
 
    STAND (2026-07-01):
-   • flow = 18 Fragen (Block A–G) + 3 Info-Cards (type:"education", variant:"info")
-     nach F12/F15/F17 (Quelle: content/education.md) + Inline-„info"-Toggle je Frage.
+   • flow = 18 Fragen (Block A–G) + 4 Info-Cards (type:"education", variant:"info")
+     nach F7/F12/F15/F17 (Quelle: content/education.md) + Inline-„info"-Toggle je Frage.
      Anzeige-/Skip-Logik aktiv; Info-Cards sind reine Vorwärts-Einschübe.
    • outcomes / products / Ergebnis-Texte = KONFIGURIERT (Entwurf, meta.placeholder=true).
      Severity-Bänder A/B/C, personalisierte Segmente + bedingte Insights-Sektion,
@@ -34,10 +34,15 @@ window.QUIZ_CONTENT = {
 
   /* ----- META --------------------------------------------------- */
   meta: {
-    // Sichtbares Entwurfs-Signal: Inhalte stehen, aber Compliance-Freigabe fehlt.
-    // Auf false setzen, sobald HWG/EFSA-Freigabe erteilt ist.
-    placeholder: true,
+    // Entwurfs-Ribbon aus (Leo, 2026-07-03). Die HWG/EFSA-Freigabe selbst bleibt als Punkt in TODO.md.
+    placeholder: false,
     placeholderLabel: "Entwurf · Inhalte vor Livegang HWG/EFSA-Freigabe",
+    // Klaviyo-Anbindung (Opt-in auf dem E-Mail-Screen; client-seitig, kein Backend)
+    klaviyo: {
+      companyId: "QQjWAk",              // Public API Key (Site-ID) des miavola-Kontos
+      listId: "UEPkJi",                 // Liste „Schilddrüsen-Quiz Leads (neu)" — Double-Opt-in via Klaviyo
+      source: "Schilddrüsen-Quiz",      // custom_source am Profil
+    },
   },
 
   /* ----- INTRO -------------------------------------------------- */
@@ -117,6 +122,8 @@ window.QUIZ_CONTENT = {
         { key: "haut",     label: "Trockene Haut", inlineLabel: "trockene Haut" },
         { key: "haare",    label: "Haarausfall" },
         { key: "naegel",   label: "Brüchige Nägel", inlineLabel: "brüchige Nägel" },
+        { key: "rillen",   label: "Längsrillen in den Fingernägeln", inlineLabel: "Längsrillen in den Fingernägeln" },
+        { key: "brauen",   label: "Ausdünnen der Augenbrauen (außen)", inlineLabel: "ausgedünnte Augenbrauen" },
         { key: "gesicht",  label: "Aufgedunsenes Gesicht", inlineLabel: "ein aufgedunsenes Gesicht" },
         { key: "none",     label: "Nichts davon", exclusive: true },
       ] },
@@ -158,6 +165,15 @@ window.QUIZ_CONTENT = {
         { label: "Länger als 1 Jahr" },
         { label: "Nicht sicher" },
       ] },
+
+    // ── Info-Card nach F7 (immer — auch ohne Symptome sinnvoll) ──
+    { type: "education", variant: "info", id: "eduSchaltzentrale",
+      graphic: "edu-schaltzentrale.png",
+      graphicAlt: "Die Schilddrüse beeinflusst viele Körperfunktionen gleichzeitig",
+      eyebrow: "Gut zu wissen",
+      title: "Deine Schilddrüse: die Schaltzentrale des Körpers",
+      text: "Die Schilddrüse ist nur wenige Zentimeter groß, aber ihre Hormone wirken praktisch überall: Sie beeinflussen Energie, Körpertemperatur, Herzschlag, Verdauung, Haut und Haare, sogar Stimmung und Konzentration. Arbeitet sie langsamer, kann sich das an vielen Stellen gleichzeitig bemerkbar machen. Genau deshalb fragen wir so breit durch den ganzen Körper.",
+      cta: "Weiter" },
 
     // F8 — Verlauf
     { type: "single", id: "q8", cat: "Verlauf & Belastung", showWhen: "hasSymptoms",
@@ -260,7 +276,7 @@ window.QUIZ_CONTENT = {
     // F15 — Eigene Autoimmunerkrankung
     { type: "single", id: "q15", cat: "Risikofaktoren", wirkung: "Scoring + Autoimmun-Flag",
       q: "Hast du selbst eine andere Autoimmunerkrankung?",
-      info: "Gemeint ist eine Autoimmunerkrankung bei dir selbst, zum Beispiel Rheuma, Typ-1-Diabetes, Zöliakie oder Schuppenflechte. Solche Erkrankungen treten häufiger gemeinsam auf.",
+      info: "Gemeint ist eine Autoimmunerkrankung bei dir selbst, zum Beispiel Hashimoto (eine Autoimmunerkrankung der Schilddrüse), Rheuma, Typ-1-Diabetes, Zöliakie oder Schuppenflechte. Solche Erkrankungen treten häufiger gemeinsam auf.",
       options: [
         { label: "Ja" },
         { label: "Nein" },
@@ -295,9 +311,10 @@ window.QUIZ_CONTENT = {
       q: "Wurden bei dir in den letzten 12 Monaten die Schilddrüsenwerte überprüft?",
       info: "Gemeint ist eine Blutabnahme, bei der Schilddrüsenwerte bestimmt wurden, meist der TSH-Wert, manchmal auch fT3/fT4. „Unauffällig“ heißt: die Werte lagen im Normbereich.",
       options: [
-        { label: "Ja, unauffällig" },
-        { label: "Ja, kenne die Werte aber nicht" },
-        { label: "Nein, noch nie" },
+        { label: "Ja, unauffällig" },                    // 0
+        { label: "Ja, auffällig" },                      // 1 → Band-Override A (ärztlicher Befund)
+        { label: "Ja, kenne die Werte aber nicht" },     // 2
+        { label: "Nein, noch nie" },                     // 3
       ] },
 
     // ── Info-Card nach F17 (immer) ──
@@ -322,7 +339,8 @@ window.QUIZ_CONTENT = {
   ],
 
   /* ----- E-MAIL-CAPTURE (soft, optional, kein Gate) -------------
-     ⚠️ Backend offen: Absenden speichert nur im State. CRM/Newsletter → TODO.md. */
+     Feld leer → direkt weiter. Mail + Opt-in → Klaviyo-Subscribe (meta.klaviyo),
+     fire-and-forget: ein Fehler blockiert nie den Weg zum Ergebnis. */
   email: {
     eyebrow: "Fast geschafft",
     title: "Dein Ergebnis ist fertig.",
@@ -330,8 +348,7 @@ window.QUIZ_CONTENT = {
     placeholder: "deine@email.de",
     optInLabel: "Ja, schickt mir vertiefende Infos zu meinem Ergebnis. Abmeldung jederzeit.",
     cta: "Ergebnis ansehen",
-    skip: "Direkt zum Ergebnis, ohne E-Mail",
-    error: "Bitte gib eine gültige E-Mail-Adresse ein, oder geh ohne E-Mail weiter.",
+    error: "Bitte gib eine gültige E-Mail-Adresse ein oder lass das Feld leer.",
   },
 
   /* ----- ANALYSE-ÜBERGANG --------------------------------------- */
@@ -353,13 +370,20 @@ window.QUIZ_CONTENT = {
       { id: "B", min: 4 },                             // Mögliche Hinweise (4–7)
       { id: "C", min: 0 },                             // Wenig Hinweise (<4)
     ],
+
+    // ── Band-Overrides: ärztlicher Befund schlägt Score (erster Treffer gewinnt) ──
+    // Das Quiz widerspricht keinem Arzt: Diagnose oder auffällige Werte → immer Band A.
+    bandOverrides: [
+      { when: { q: "q2", is: 2 }, band: "A" },         // Schilddrüsenerkrankung diagnostiziert
+      { when: { q: "q17", is: 1 }, band: "A" },        // Werte in den letzten 12 Monaten auffällig
+    ],
     coreProductIds: ["produzent", "umwandler", "heldenduo"],  // jodhaltig → nur diagnostiziert
 
     // ── Signal-Mapping: Antwort-Identität → { score, flags? } ──
     signalRules: {
       // Symptome F3–F6: je gewähltes Symptom +1
       "q3.muede": { score: 1 }, "q3.gewicht": { score: 1 }, "q3.frieren": { score: 1 }, "q3.kalt": { score: 1 }, "q3.antrieb": { score: 1 },
-      "q4.haut": { score: 1 }, "q4.haare": { score: 1 }, "q4.naegel": { score: 1 }, "q4.gesicht": { score: 1 },
+      "q4.haut": { score: 1 }, "q4.haare": { score: 1 }, "q4.naegel": { score: 1 }, "q4.rillen": { score: 1 }, "q4.brauen": { score: 1 }, "q4.gesicht": { score: 1 },
       "q5.fog": { score: 1 }, "q5.down": { score: 1 }, "q5.unruhe": { score: 1 }, "q5.schlaf": { score: 1 },
       "q6.verstopfung": { score: 1 }, "q6.schmerzen": { score: 1 }, "q6.schwaeche": { score: 1 }, "q6.wasser": { score: 1 },
       // Verlauf & Dauer
@@ -395,6 +419,14 @@ window.QUIZ_CONTENT = {
     //  (wird hier NICHT wiederholt). Modularitäts-Regel: kein Segment verweist auf ein
     //  nachfolgendes. Tokens ({{autoimmuneFactor}}) erlaubt.
     productRules: [
+      // Diagnose zuerst (Leo, 2026-07-03): Diagnostizierte bekommen immer Umwandler + Produzent,
+      // nie Immungold — das Autoimmun-Flag feuerte vorher zu breit (z. B. Familie).
+      { productId: "umwandler", when: { q: "q2", is: 2 },                  // core, nur diagnostiziert — Bestseller-Default bei Diagnose
+        reason: [
+          { text: "Deine Schilddrüse ist bereits ärztlich diagnostiziert. Dann geht es vor allem darum, sie im Alltag gut zu begleiten." },
+          { text: "Der Umwandler® ist der Leber-Komplex aus unserer Range, gedacht als Ergänzung zu deiner ärztlichen Therapie, nicht als Ersatz." },
+        ],
+        also: [{ productId: "produzent" }] },                             // Zweit-Empfehlung bei Diagnose (Begründung = products.produzent.text)
       { productId: "magenfreund", when: { q: "q6", has: "verstopfung" },
         reason: [
           { text: "Du hast eine träge Verdauung genannt. Deshalb taucht der Magenfreund® hier als möglicher nächster Schritt auf." },
@@ -405,13 +437,7 @@ window.QUIZ_CONTENT = {
           { text: "Weil bei dir Autoimmun-Angaben vorkommen, zeigen wir dir aus unserer Range Immungold®." },
           { text: "Es ist ein Komplex mit Vitamin D und Omega-3." },
         ] },
-      { productId: "umwandler", when: { q: "q2", is: 2 },                  // core, nur diagnostiziert — Bestseller-Default bei Diagnose
-        reason: [
-          { text: "Deine Schilddrüse ist bereits ärztlich diagnostiziert. Dann geht es vor allem darum, sie im Alltag gut zu begleiten." },
-          { text: "Der Umwandler® ist der Leber-Komplex aus unserer Range, gedacht als Ergänzung zu deiner ärztlichen Therapie, nicht als Ersatz." },
-        ],
-        also: [{ productId: "produzent" }] },                             // Zweit-Empfehlung bei Diagnose (Begründung = products.produzent.text)
-      { productId: "kollagen", when: { q: "q4", hasAny: ["haut", "haare", "naegel", "gesicht"] },  // pending
+      { productId: "kollagen", when: { q: "q4", hasAny: ["haut", "haare", "naegel", "rillen", "brauen", "gesicht"] },  // pending
         reason: [
           { text: "Du hast Veränderungen an Haut, Haaren oder Nägeln genannt." },
           { text: "Kollagen-MCT ist als Ergänzung rund um Haut, Haare und Nägel gedacht, kein Muss." },
@@ -461,7 +487,7 @@ window.QUIZ_CONTENT = {
         // ── Insights (c): erklärende Karten je Antwort-Cluster; leer → Sektion entfällt ──
         insights: [
           { when: { q: "q3", hasAny: ["frieren", "muede", "antrieb", "kalt"] }, icon: "thermometer", title: "Frieren & wenig Energie", text: "Energie, Wärme und Antrieb hängen eng am Stoffwechsel: Läuft er langsamer, stellt der Körper weniger davon bereit. Das erklärt, warum sich mehrere solcher Beschwerden gleichzeitig zeigen können." },
-          { when: { q: "q4", hasAny: ["haut", "haare", "naegel"] }, icon: "sparkles", title: "Haut, Haare & Nägel", text: "Haut, Haare und Nägel reagieren empfindlich auf den Stoffwechsel. Verändern sie sich ohne klaren Grund, kann das ein leises Signal sein, für sich allein aber kein Beweis." },
+          { when: { q: "q4", hasAny: ["haut", "haare", "naegel", "rillen", "brauen"] }, icon: "sparkles", title: "Haut, Haare & Nägel", text: "Haut, Haare und Nägel reagieren empfindlich auf den Stoffwechsel. Verändern sie sich ohne klaren Grund, kann das ein leises Signal sein, für sich allein aber kein Beweis." },
           { when: { q: "q5", hasAny: ["fog", "down"] }, icon: "mind", title: "Kopf & Stimmung", text: "Auch Kopf und Stimmung reagieren auf den Stoffwechsel: Die Schilddrüse beeinflusst, wie klar, wach und ausgeglichen du dich fühlst. Ein Zusammenhang, der oft übersehen wird." },
           { when: { q: "q6", has: "verstopfung" }, icon: "leaf", title: "Träge Verdauung", text: "Eine langsamere Verdauung passt ins Bild eines gedrosselten Stoffwechsels. Sie ist häufig und lässt sich gut ansprechen." },
           { when: { q: "q16", hasAny: ["schwellung", "kloss", "heiser"] }, icon: "warn", title: "Zeichen am Hals", text: "Veränderungen im Hals- oder Kehlbereich gehören einmal ärztlich angeschaut. Häufig ist es harmlos, Klarheit bekommst du aber nur durch einen Blick darauf." },
@@ -502,7 +528,7 @@ window.QUIZ_CONTENT = {
         // ── Insights (c): erklärende Karten je Antwort-Cluster; leer → Sektion entfällt ──
         insights: [
           { when: { q: "q3", hasAny: ["frieren", "muede", "antrieb", "kalt"] }, icon: "thermometer", title: "Frieren & wenig Energie", text: "Energie, Wärme und Antrieb hängen eng am Stoffwechsel: Läuft er langsamer, stellt der Körper weniger davon bereit. Das erklärt, warum sich mehrere solcher Beschwerden gleichzeitig zeigen können." },
-          { when: { q: "q4", hasAny: ["haut", "haare", "naegel"] }, icon: "sparkles", title: "Haut, Haare & Nägel", text: "Haut, Haare und Nägel reagieren empfindlich auf den Stoffwechsel. Verändern sie sich ohne klaren Grund, kann das ein leises Signal sein, für sich allein aber kein Beweis." },
+          { when: { q: "q4", hasAny: ["haut", "haare", "naegel", "rillen", "brauen"] }, icon: "sparkles", title: "Haut, Haare & Nägel", text: "Haut, Haare und Nägel reagieren empfindlich auf den Stoffwechsel. Verändern sie sich ohne klaren Grund, kann das ein leises Signal sein, für sich allein aber kein Beweis." },
           { when: { q: "q5", hasAny: ["fog", "down"] }, icon: "mind", title: "Kopf & Stimmung", text: "Auch Kopf und Stimmung reagieren auf den Stoffwechsel: Die Schilddrüse beeinflusst, wie klar, wach und ausgeglichen du dich fühlst. Ein Zusammenhang, der oft übersehen wird." },
           { when: { q: "q6", has: "verstopfung" }, icon: "leaf", title: "Träge Verdauung", text: "Eine langsamere Verdauung passt ins Bild eines gedrosselten Stoffwechsels. Sie ist häufig und lässt sich gut ansprechen." },
           { when: { q: "q16", hasAny: ["schwellung", "kloss", "heiser"] }, icon: "warn", title: "Zeichen am Hals", text: "Veränderungen im Hals- oder Kehlbereich gehören einmal ärztlich angeschaut. Häufig ist es harmlos, Klarheit bekommst du aber nur durch einen Blick darauf." },
@@ -622,7 +648,6 @@ window.QUIZ_CONTENT = {
   /* ----- ERGEBNISSEITE: statische UI-Bausteine (kein medizinischer Claim) */
   result: {
     headerEyebrow: "Deine Einschätzung",
-    ctaSave: "Ergebnis per Mail sichern",
     restart: "Quiz neu starten",
     legalDisclaimer: "Dieses Quiz ersetzt keine ärztliche Untersuchung oder Diagnose. Bei anhaltenden Beschwerden wende dich bitte an deine Ärztin oder deinen Arzt.",
     todo: {

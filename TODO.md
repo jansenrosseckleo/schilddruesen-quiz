@@ -54,9 +54,28 @@ Adversariales Multi-Agent-Review (26 Roh-Funde → 12 „minor" → alle behoben
 - ✅ **Deliverable-Docs** für Leo: `content/graphics-spec.md` (Grafik-Steckbriefe + Produktbild-
   Liste) · `content/image-prompts.md` (Image-Gen-2.0-Prompts der 3 Band-Hero-Fotos).
 
+## ✅ Stand 2026-07-03 — Finale Anpassungen (Logik · Klaviyo · E-Mail-Screen)
+Umgesetzt nach `docs/superpowers/specs/2026-07-03-finale-anpassungen-design.md`:
+- ✅ **q17 neue Antwort „Ja, auffällig"** (Index 1).
+- ✅ **`outcomes.bandOverrides`** (neue Engine-Fähigkeit): Diagnose (q2=Ja) oder
+  auffällige Werte (q17=1) → **immer Band A** — das Quiz widerspricht keinem Arzt.
+- ✅ **Produktregeln umsortiert**: Diagnose-Regel (Umwandler + Produzent) vor Immungold —
+  Diagnostizierte bekamen vorher zu oft Immungold (Autoimmun-Flag feuert breit).
+- ✅ **q4 + „Längsrillen in den Fingernägeln" + „Ausdünnen der Augenbrauen (außen)"**
+  (je +1, in Kollagen-Regel + Insights aufgenommen).
+- ✅ **q15-Info + Hashimoto**; **neue Info-Card nach F7** (`eduSchaltzentrale`).
+- ✅ **Klaviyo-Opt-in** (client-seitig): E-Mail + Häkchen → Subscribe Liste `UEPkJi`
+  („Schilddrüsen-Quiz Leads (neu)", Double-Opt-in) mit `quiz_band`/`quiz_produkt`/
+  `quiz_autoimmun` als Profil-Properties. Config: `content → meta.klaviyo`. Fire-and-forget.
+- ✅ **E-Mail-Screen**: Skip-Link raus — ein Button, Feld leer → direkt weiter.
+- ✅ **„Ergebnis per Mail sichern"-Button entfernt** (Ergebnis-Mail = späteres Paket:
+  Klaviyo-Event „Quiz abgeschlossen" + Flow + Template).
+- ✅ **Entwurf-Ribbon aus** (`meta.placeholder=false`) — HWG/EFSA-Freigabe bleibt unten offen!
+
 ### ⬜ Von Leo zu liefern (Assets für diese Features)
-- ⬜ **3 Info-Card-Grafiken** (Claude Design): `edu-hormone.png` · `edu-hashimoto.png` ·
-  `edu-tsh.png` → `app/assets/` (Steckbriefe: `content/graphics-spec.md`).
+- ⬜ **4 Info-Card-Grafiken** (Image Gen 2.0, Prompts von Claude geliefert 2026-07-03):
+  `edu-hormone.png` · `edu-hashimoto.png` · `edu-tsh.png` · `edu-schaltzentrale.png`
+  → `app/assets/` (Steckbriefe: `content/graphics-spec.md`).
 - ⬜ **3 Band-Hero-Fotos** (Image Gen 2.0): `result-hero-a.jpg` · `-b.jpg` · `-c.jpg`
   (Prompts: `content/image-prompts.md`).
 - ⬜ **`magenfreund-hero.*`** (einziges sichtbares Produkt ohne Bild) → danach `image`-Feld setzen.
@@ -66,9 +85,11 @@ Adversariales Multi-Agent-Review (26 Roh-Funde → 12 „minor" → alle behoben
 Eigener Plan noch zu schreiben. Spec §3/§5/§7: 4 Panels (Fragen · Scoring · Produkte ·
 Ergebnistexte mit Bedingungs-Builder) + Live-Vorschau + Export `content.json` + Validierung.
 
-## ⛔ Vor Livegang — nur Leo / Compliance (meta.placeholder bleibt true bis dahin)
-- ⬜ **§9.6 Finaler HWG/EFSA-Check** aller Ergebnis- & Produkttexte. Danach
-  `content.js → meta.placeholder = false`.
+## ⛔ Vor Livegang — nur Leo / Compliance
+**Achtung:** Der Entwurf-Ribbon ist seit 2026-07-03 auf Leos Wunsch **aus**
+(`meta.placeholder=false`) — die Freigabe selbst steht aber noch aus:
+- ⬜ **§9.6 Finaler HWG/EFSA-Check** aller Ergebnis- & Produkttexte
+  (inkl. neuer Texte: eduSchaltzentrale-Card, q4-Ergänzungen).
 - ⬜ **§9.5 EFSA-Claims** im exakten Register-Wortlaut bestätigen. **Kollagen-MCT & Aminosäuren**
   haben noch *keinen* bestätigten Claim → bleiben `pending` (werden nicht gezeigt), bis geliefert.
 - ⬜ **§9.1 Schwellen** 8 / 4 mit echten Personas kalibrieren (`outcomes.bands`).
@@ -78,8 +99,9 @@ Ergebnistexte mit Bedingungs-Builder) + Live-Vorschau + Export `content.json` + 
 - ⬜ **§9.7 Evas Review** zu Fragen + Ergebnisseiten einarbeiten.
 
 ## Offene technische Punkte (nicht blockierend)
-- ⬜ **E-Mail-Backend**: `app.js → renderEmail()`/`renderCta()` haben `TODO(Backend)`-Hooks
-  (an CRM/Newsletter, z. B. Klaviyo, anbinden). Aktuell nur State.
+- ✅ **E-Mail-Backend (Opt-in)**: Klaviyo-Subscribe angebunden (s. Stand 2026-07-03).
+- ⬜ **Ergebnis-Mail** (später): Klaviyo-Event „Quiz abgeschlossen" + Flow (klickt Leo im
+  Klaviyo-UI) + E-Mail-Template (baut Claude per API); Button auf Ergebnisseite reaktivieren.
 - ⬜ **Produktlinks** (miavola.de) in `content.js → products[id].link` bestätigen.
 - 🟡 **Produkt-Key-Visuals** (Stand 2026-07-01): echte PDP-Visuals eingebunden als `.webp`
   (`produzent-hero.webp` [neu], `umwandler-hero.webp`, `immungold-hero.webp`,

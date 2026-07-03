@@ -124,7 +124,7 @@
   /* ----------------------------------------------------------------
      STATE
      ---------------------------------------------------------------- */
-  const state = { step: 0, answers: {}, email: "", optIn: false, saved: false };
+  const state = { step: 0, answers: {}, email: "", optIn: false };
   const app = document.getElementById("app");
 
   /* ---------------- Helpers ---------------- */
@@ -333,6 +333,11 @@
     const sorted = bands.slice().sort((x, y) => y.min - x.min);
     for (const b of sorted) { if (total >= b.min) { bandId = b.id; break; } }
     if (bandId == null && sorted.length) bandId = sorted[sorted.length - 1].id;
+    // Band-Overrides (outcomes.bandOverrides): ärztlicher Befund schlägt Score —
+    // z. B. Diagnose oder auffällige Werte → immer Band A. Erster Treffer gewinnt.
+    for (const ov of (O.bandOverrides || [])) {
+      if (ov && ov.band != null && matches(ov.when, { flags })) { bandId = ov.band; break; }
+    }
     const primary = list.find((o) => o.id === bandId) || null;
     const ctx = buildCtx(flags, bandId);
     const sel = primary ? selectProduct(ctx, bandId) : null;
@@ -777,7 +782,6 @@
         </div>
         <div class="wrap q__foot">
           <button class="mv-btn mv-btn--burg mv-btn--block" id="next">${t.cta}</button>
-          <button class="link-btn link-btn--underline" id="skip">${t.skip}</button>
         </div>
       </div>`);
 
@@ -799,13 +803,48 @@
         return;
       }
       state.email = v;
-      // TODO(Backend): hier E-Mail + optIn an CRM/Newsletter (z. B. Klaviyo) senden.
+      if (v && state.optIn) subscribeKlaviyo(v);   // fire-and-forget, blockiert nie
       go(1);
     });
-    node.querySelector("#skip").addEventListener("click", () => { state.email = ""; state.optIn = false; go(1); });
     input.addEventListener("input", () => { field.classList.remove("textfield--error"); hint.hidden = true; });
     screen.appendChild(node);
     return screen;
+  }
+
+  /* ---------------- KLAVIYO OPT-IN (client-seitig, ohne Backend) ----------------
+     Konfiguration: content → meta.klaviyo { companyId, listId, source }.
+     Double-Opt-in übernimmt Klaviyo (Listen-Einstellung). Fire-and-forget:
+     Fehler landen nur in der Konsole und blockieren nie den Weg zum Ergebnis. */
+  function subscribeKlaviyo(email) {
+    const k = C.meta && C.meta.klaviyo;
+    if (!k || !k.companyId || !k.listId) return;
+    let props = {};
+    try {
+      const r = evaluate();
+      props = {
+        quiz_band: r.band || "",
+        quiz_produkt: r.productId || "",
+        quiz_autoimmun: !!(r.flags && r.flags.autoimmune),
+      };
+    } catch (e) { /* Ergebnis-Properties sind optional */ }
+    const body = {
+      data: {
+        type: "subscription",
+        attributes: {
+          custom_source: k.source || "Quiz",
+          profile: { data: { type: "profile", attributes: { email, properties: props } } },
+        },
+        relationships: { list: { data: { type: "list", id: k.listId } } },
+      },
+    };
+    fetch(`https://a.klaviyo.com/client/subscriptions/?company_id=${encodeURIComponent(k.companyId)}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", revision: "2024-10-15" },
+      body: JSON.stringify(body),
+      keepalive: true,
+    }).then((res) => {
+      if (!res.ok) console.warn("Klaviyo-Opt-in: HTTP", res.status);
+    }).catch((e) => console.warn("Klaviyo-Opt-in fehlgeschlagen:", e));
   }
 
   /* ---------------- ANALYSIS ---------------- */
@@ -1054,23 +1093,12 @@
     if (!cta) return;
     const R = C.result;
     cta.innerHTML = "";
-    if (state.saved) {
-      const saved = el(`<div class="saved">${icon("checkSage")}<span>Ergebnis an <span class="saved__addr"></span> gesendet.</span></div>`);
-      saved.querySelector(".saved__addr").textContent = state.email; // Nutzereingabe sicher als Text
-      cta.appendChild(saved);
-    } else if (state.email) {
-      const b = el(`<button class="mv-btn mv-btn--block mv-btn--ink">${R.ctaSave}</button>`);
-      b.addEventListener("click", () => { state.saved = true; renderCta(cta); }); // TODO(Backend): echtes Senden
-      cta.appendChild(b);
-    } else {
-      const b = el(`<button class="mv-btn mv-btn--block mv-btn--ink">${R.ctaSave}</button>`);
-      b.addEventListener("click", () => goTo(FLOW.findIndex((s) => s.type === "email")));
-      cta.appendChild(b);
-    }
+    // „Ergebnis per Mail sichern" bewusst entfernt (Leo, 2026-07-03) — kommt später
+    // als Klaviyo-Event + Flow zurück. Bis dahin nur Neustart.
     const restart = el(`<button class="link-btn link-btn--muted" style="align-self:center;"></button>`);
     restart.textContent = R.restart;
     restart.addEventListener("click", () => {
-      state.answers = {}; state.email = ""; state.optIn = false; state.saved = false;
+      state.answers = {}; state.email = ""; state.optIn = false;
       goTo(0);
     });
     cta.appendChild(restart);
@@ -1096,4 +1124,8 @@
     render();
   }
   boot();
+
+  // Test-/Editor-Hook: interner Zugriff für Logik-Tests und die spätere Editor-Vorschau.
+  // Rendert nichts und verändert kein Verhalten.
+  window.__quiz = { state, evaluate, goTo, get content() { return C; }, get flow() { return FLOW; } };
 })();
