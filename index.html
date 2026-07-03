@@ -15,7 +15,20 @@
   <link rel="stylesheet" href="_ds/miavola-2-0-design-system-019e1fb5-7550-772f-964b-b7aee6a06470/supplementary_tokens.css">
 
   <!-- App styles (?v zum Cache-Busting — bei Änderungen hochzählen) -->
-  <link rel="stylesheet" href="styles.css?v=19">
+  <link rel="stylesheet" href="styles.css?v=20">
+
+  <!-- Meta Pixel (gleiche Pixel-ID wie miavola.de, dort via GTM geladen) -->
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '272135909305310');
+    fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none" alt=""
+    src="https://www.facebook.com/tr?id=272135909305310&ev=PageView&noscript=1"></noscript>
 </head>
 <body>
   <noscript>
@@ -30,6 +43,6 @@
   <!-- Inhalte werden von app.js async aus content.json geladen
        (mit optionalem localStorage-Override für die Editor-Vorschau).
        ?v zum Cache-Busting — bei Änderungen hochzählen. -->
-  <script src="app.js?v=19" defer></script>
+  <script src="app.js?v=20" defer></script>
 </body>
 </html>
