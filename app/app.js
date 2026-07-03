@@ -708,11 +708,13 @@
     brain: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#833241" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 C 7.5 4 5 7 5.7 9.9 C 3.9 11.4 4.6 14.8 7 15.7 C 7.9 18 10.6 18.7 12 17.1 C 13.4 18.7 16.1 18 17 15.7 C 19.4 14.8 20.1 11.4 18.3 9.9 C 19 7 16.5 4 12 4 Z"/><path d="M12 5.5 C 13.1 8.2 10.9 10.9 12 13.5 L 12 16.5"/></svg>',
   };
 
-  function infographicHTML(g) {
+  // `bare`: ohne eigenen Titel/Untertitel/Fußzeile — wenn die Card den
+  // Erklärtext bereits über der Grafik zeigt (kein doppelter Titel).
+  function infographicHTML(g, bare) {
     if (!g || !g.variant) return "";
-    const head = (g.title ? `<div class="ig__title">${g.title}</div>` : "")
+    const head = bare ? "" : (g.title ? `<div class="ig__title">${g.title}</div>` : "")
       + (g.sub ? `<div class="ig__sub">${g.sub}</div>` : "");
-    const foot = g.foot ? `<div class="ig__foot">${g.foot}</div>` : "";
+    const foot = (bare || !g.foot) ? "" : `<div class="ig__foot">${g.foot}</div>`;
 
     if (g.variant === "venn") {
       const chips = (g.chips || []).map((c) => `<div class="venn__chip">${c}</div>`).join("");
@@ -779,14 +781,15 @@
         </div>`));
     } else if (s.variant === "info") {
       // Info-Card (Wissens-Einschub im Flow): helle Karte.
-      // Mit `infographic`: responsive HTML-Infografik (Titel/Text stecken darin).
-      // Sonst: Grafik oben (onerror-Fallback) + Eyebrow/Titel/Text.
-      const ig = s.infographic ? infographicHTML(s.infographic) : "";
-      const inner = ig || `
-            ${s.graphic ? `<img class="edu__graphic" src="${ASSET}${s.graphic}" alt="" onerror="this.style.display='none'">` : ""}
+      // Eyebrow/Titel/Text immer; darunter responsive HTML-Infografik (`infographic`,
+      // ohne eigenen Titel — der steht schon auf der Card) oder Bild (`graphic`).
+      const ig = s.infographic ? infographicHTML(s.infographic, true) : "";
+      const inner = `
+            ${!ig && s.graphic ? `<img class="edu__graphic" src="${ASSET}${s.graphic}" alt="" onerror="this.style.display='none'">` : ""}
             <div class="edu__eyebrow edu__eyebrow--info">${s.eyebrow || "Gut zu wissen"}</div>
             <h2 class="edu__title edu__title--info">${s.title}</h2>
             <p class="edu__text edu__text--info">${s.text}</p>
+            ${ig}
             ${s.src ? `<p class="edu__src edu__src--info">${s.src}</p>` : ""}`;
       const node = el(`
         <div class="edu edu--info">

@@ -678,6 +678,7 @@ sup { font-size: .7em; opacity: .7; }
    Export (1200px-Artboards), hier responsive übersetzt: Mobile = vertikal.
    ================================================================ */
 .edu__inner--ig { max-width: 660px; padding-left: 14px; padding-right: 14px; }
+.edu__inner--ig .ig { margin-top: 24px; }
 .ig {
   width: 100%; background: #F7F2EA; border-radius: var(--radius-lg);
   padding: 32px 20px 24px; position: relative; overflow: hidden;
