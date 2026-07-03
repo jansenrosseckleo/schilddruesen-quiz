@@ -445,10 +445,7 @@
         <div class="intro">
           <div class="wrap intro__logobar"><img src="${ASSET}logo-black.png" alt="miavola"></div>
           <div class="wrap intro__body">
-            <div class="intro__hero">
-              <span class="pill pill--sage">${t.badge}</span>
-              <img src="${ASSET}intro-header.jpg" alt="" onerror="this.style.display='none'">
-            </div>
+            <span class="pill pill--sage intro__badge">${t.badge}</span>
             <h2 class="intro__title">${t.title}</h2>
             <p class="intro__lead">${t.lead}</p>
             <div class="facts">${facts}</div>
