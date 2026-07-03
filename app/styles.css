@@ -611,13 +611,14 @@ sup { font-size: .7em; opacity: .7; }
 
   /* Intro becomes a two-column hero on wide screens */
   /* Intro-Screen darf breiter als die ruhige 640er-Spalte werden —
-     sonst deckeln .screen (720px) und .wrap (640px) die 1240px-Karte. */
+     aber gedeckelt auf 1040px, damit die Karte auf Laptops (≈1280px)
+     als zentrierte Karte mit Luft liest, nicht randlos. */
   .screen--intro-wide { max-width: none; }
-  .screen--intro-wide .wrap { max-width: 1240px; }
+  .screen--intro-wide .wrap { max-width: 1040px; }
 
   .intro__inner-wide {
-    display: grid; grid-template-columns: 1fr 1.15fr; align-items: stretch;
-    max-width: 1240px; margin: 40px auto; width: 100%;
+    display: grid; grid-template-columns: 1fr 1fr; align-items: stretch;
+    max-width: 1040px; margin: 40px auto; width: 100%;
     border-radius: var(--radius-lg); overflow: hidden;
     border: 1px solid var(--border);
     box-shadow: var(--shadow-md); background: #fff; min-height: 620px;
