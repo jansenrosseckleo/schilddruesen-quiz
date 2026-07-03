@@ -430,7 +430,9 @@ window.QUIZ_CONTENT = {
     // Jod-Sicherung: jodhaltige Produkte nur bei Diagnose. Umwandler entfernt
     // (Leo, 2026-07-03): Leber-Komplex mit Cholin + Selen, laut products.md OHNE Jod
     // → darf als Zweitempfehlung auch ohne Diagnose erscheinen. [TODO Leo: Etikett bestätigen]
-    coreProductIds: ["produzent", "heldenduo"],
+    // Produzent entfernt (Leo, 2026-07-03): soll bei Band A auch ohne Diagnose empfohlen
+    // werden (Regel unten, mit Ausnahme „Werte auffällig"). ⚠️ HWG-Check vor Livegang!
+    coreProductIds: ["heldenduo"],
 
     // ── Signal-Mapping: Antwort-Identität → { score, flags? } ──
     signalRules: {
@@ -494,6 +496,13 @@ window.QUIZ_CONTENT = {
           { text: "Ergänzend dazu kann der Umwandler® zu dir passen: der Leber-Komplex aus unserer Range, rund um Leber und Hormon-Umwandlung." },
           { text: "Kein Muss, als ruhige Alltags-Ergänzung gedacht." },
         ] }] },
+      // Band A ohne Diagnose → Produzent (Leo, 2026-07-03). Ausnahme: „Werte auffällig"
+      // (q17=1) — unklar ob Über- oder Unterfunktion, Jod erst nach ärztlicher Klärung.
+      { productId: "produzent", when: { allOf: [{ outcomeIn: ["A"] }, { not: { q: "q17", is: 1 } }] },
+        reason: [
+          { text: "Deine Antworten zeigen deutliche Hinweise, auch wenn eine ärztliche Abklärung noch aussteht. Aus unserer Range zeigen wir dir deshalb den Produzenten®, den Schilddrüsen-Komplex." },
+          { text: "Er ersetzt keine Abklärung: Lass deine Werte zuerst ärztlich prüfen, gerade weil er Jod enthält." },
+        ] },
       { productId: "kollagen", when: { q: "q4", hasAny: ["haut", "haare", "naegel", "rillen", "brauen", "gesicht"] },  // pending
         reason: [
           { text: "Du hast Veränderungen an Haut, Haaren oder Nägeln genannt." },
