@@ -39,7 +39,7 @@ window.QUIZ_CONTENT = {
     placeholderLabel: "Entwurf · Inhalte vor Livegang HWG/EFSA-Freigabe",
     // Klaviyo-Anbindung (Opt-in auf dem E-Mail-Screen; client-seitig, kein Backend)
     klaviyo: {
-      companyId: "QQjWAk",              // Public API Key (Site-ID) des miavola-Kontos
+      companyId: "S2y7FE",              // Public API Key (Site-ID) — Konto „Monapure GmbH" (dort liegt die Liste)
       listId: "UEPkJi",                 // Liste „Schilddrüsen-Quiz Leads (neu)" — Double-Opt-in via Klaviyo
       source: "Schilddrüsen-Quiz",      // custom_source am Profil
     },
