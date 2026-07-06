@@ -125,11 +125,11 @@ gh api -X POST repos/jansenrosseckleo/schilddruesen-quiz/pages/builds           
 ### Zweites Deploy-Ziel: Cloudways (lp.miavola.de/quiz) — NICHT VERGESSEN
 Das Quiz läuft zusätzlich (produktiv!) auf dem Cloudways-Server unter
 `https://lp.miavola.de/quiz/` (WordPress-Installation, Verzeichnis `public_html/quiz/`).
-Deploy per `lftp`-Mirror über SFTP. Zugangsdaten liefert Leo (Host/User/Port/Passwort);
-sie liegen NICHT im Repo — als `sftp_env.sh` (chmod 600, Variablen `SFTP_HOST`,
-`SFTP_USER`, `SFTP_PW`, `SFTP_PORT`) im Session-Scratchpad ablegen und sourcen:
+Deploy per `lftp`-Mirror über SFTP. Zugangsdaten liegen in **`.env` im Repo-Root**
+(chmod 600, in `.gitignore`, wird NIE committet/gepusht; Variablen `SFTP_HOST`,
+`SFTP_USER`, `SFTP_PW`, `SFTP_PORT`). Fehlt die Datei → von Leo erfragen:
 ```bash
-source sftp_env.sh
+source .env
 lftp -u "$SFTP_USER,$SFTP_PW" -p "$SFTP_PORT" sftp://"$SFTP_HOST" \
   -e "set sftp:auto-confirm yes; mirror -R --delete --parallel=3 --exclude .DS_Store app/ public_html/quiz/; bye"
 curl -s "https://lp.miavola.de/quiz/index.html?cb=$(date +%s)" | grep -o 'app.js?v=[0-9]*'  # verifizieren

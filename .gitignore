@@ -7,3 +7,6 @@
 
 # Claude / lokale Session-Daten
 .claude/
+
+# Zugangsdaten (SFTP Cloudways) — NIEMALS committen
+.env
