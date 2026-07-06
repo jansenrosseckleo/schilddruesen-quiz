@@ -192,7 +192,7 @@ window.QUIZ_CONTENT = {
     // F8 — Verlauf
     { type: "single", id: "q8", cat: "Verlauf & Belastung", showWhen: "hasSymptoms",
       wirkung: "Scoring (leicht) + Personalisierung",
-      q: "Und wie entwickeln sie sich?",
+      q: "Wie entwickeln sich die Symptome über die Zeit?",
       options: [
         { label: "Sie werden mehr" },
         { label: "Sie bleiben gleich" },
@@ -379,13 +379,39 @@ window.QUIZ_CONTENT = {
     // F18 — Körpertemperatur (Barnes-Selbsttest)
     { type: "number", id: "q18", cat: "Werte & Selbstmessung",
       wirkung: "weicher Zusatz-Hinweis (niedrig ≈ <36,8 °C). Kein diagnostisches Kriterium.",
-      q: "Kennst du deine Körpertemperatur, morgens direkt nach dem Aufwachen gemessen?",
+      q: "Kennst du deine morgendliche Körpertemperatur, direkt nach dem Aufwachen gemessen?",
       sub: "Miss am besten morgens, noch im Liegen. Deine Basaltemperatur ist ein weicher Zusatz-Hinweis, kein Beweis und ersetzt keine ärztliche Untersuchung.",
       info: "So misst du richtig: Miss deine Temperatur morgens direkt nach dem Aufwachen (noch im Liegen), mittags und abends, möglichst zu ähnlichen Uhrzeiten. Notiere alle drei Werte pro Tag und bilde daraus den Tagesdurchschnitt. Bleib eine Woche dran, also an sieben Tagen hintereinander. Aus den sieben Tagesdurchschnitten bildest du am Ende deinen Wochendurchschnitt. Wenn du noch deine Periode hast, miss vier Wochen lang, weil deine Körpertemperatur über den Zyklus schwankt.",
       unit: "°C", placeholder: "36,8", min: 34.0, max: 42.0,
       hint: "Gültig zwischen 34,0 und 42,0 °C. Komma oder Punkt sind okay.",
       skipLabel: "Das weiß ich nicht / noch nie gemessen",
       bands: [ { below: 36.8 }, { below: Infinity } ] }, // band:0 = niedrig, band:1 = normal/hoch
+
+    // ── Info-Card nach F18 (immer) — Umwandlungsstörung T4→T3 (Leo, 2026-07-06) ──
+    // Education zur Umwandlung: kommt im Quiz sonst nirgends vor, obwohl der
+    // Umwandler® empfohlen werden kann. HTML-Infografik (compare-Variante).
+    { type: "education", variant: "info", id: "eduUmwandlung",
+      graphicAlt: "T4 muss erst in das aktive Hormon T3 umgewandelt werden",
+      eyebrow: "Gut zu wissen",
+      title: "T4 ist nur der Vorrat, T3 macht die Arbeit",
+      text: "Deine Schilddrüse produziert überwiegend T4, eine Speicherform. Die aktive Form T3, die Energie, Wärme und Stoffwechsel antreibt, entsteht erst durch Umwandlung, zu einem großen Teil in der Leber. Hakt es bei dieser Umwandlung, können Beschwerden bleiben, obwohl die üblichen Werte gut aussehen. Auch das ist ein Thema fürs Arztgespräch.",
+      infographic: {
+        variant: "compare",
+        title: "Von T4 zu T3",
+        left: {
+          big: "T4",
+          badge: "Die Speicherform",
+          points: ["wird von der Schilddrüse produziert", "noch kaum aktiv, ein Vorrat"],
+        },
+        arrowLabel: "Umwandlung,<br>u. a. in der Leber",
+        right: {
+          big: "T3",
+          badge: "Die aktive Form",
+          points: ["treibt Energie, Wärme und Stoffwechsel an", "kommt nur an, wenn die Umwandlung rund läuft"],
+        },
+        foot: "Hakt die Umwandlung, kommt zu wenig aktives Hormon an.",
+      },
+      cta: "Weiter" },
   ],
 
   /* ----- E-MAIL-CAPTURE (soft, optional, kein Gate) -------------
@@ -559,6 +585,7 @@ window.QUIZ_CONTENT = {
           { when: { q: "q16", hasAny: ["schwellung", "kloss", "heiser"] }, icon: "warn", title: "Zeichen am Hals", text: "Veränderungen im Hals- oder Kehlbereich gehören einmal ärztlich angeschaut. Häufig ist es harmlos, Klarheit bekommst du aber nur durch einen Blick darauf." },
           { when: { q: "q7", is: 2 }, icon: "clock", title: "Das begleitet dich schon länger", text: "Beschwerden, die über ein Jahr anhalten, verdienen eine gezielte Abklärung. Nicht, weil etwas Schlimmes sein muss, sondern damit du endlich Klarheit hast." },
           { when: { q: "q8", is: 0 }, icon: "clock", title: "Es wird eher mehr", text: "Dass die Beschwerden zunehmen, ist ein guter Grund, jetzt hinzuschauen, statt weiter abzuwarten." },
+          { when: { q: "q17", is: 0 }, icon: "clipboard", title: "Werte normal, Beschwerden trotzdem da?", text: "Deine Schilddrüse liefert vor allem T4, eine Speicherform. Wirksam wird erst das daraus umgewandelte T3. Hakt es bei der Umwandlung, können Beschwerden bleiben, obwohl die üblichen Werte gut aussehen. Es kann sich deshalb lohnen, neben TSH auch fT3 und fT4 mitbestimmen zu lassen." },
         ],
         advice: [
           { icon: "doctor", title: "Sprich zeitnah mit ärztlicher Begleitung", text: "Nimm deine Beschwerden ernst und such dir zeitnah einen Termin." },
@@ -600,6 +627,7 @@ window.QUIZ_CONTENT = {
           { when: { q: "q16", hasAny: ["schwellung", "kloss", "heiser"] }, icon: "warn", title: "Zeichen am Hals", text: "Veränderungen im Hals- oder Kehlbereich gehören einmal ärztlich angeschaut. Häufig ist es harmlos, Klarheit bekommst du aber nur durch einen Blick darauf." },
           { when: { q: "q7", is: 2 }, icon: "clock", title: "Das begleitet dich schon länger", text: "Beschwerden, die über ein Jahr anhalten, verdienen eine gezielte Abklärung. Nicht, weil etwas Schlimmes sein muss, sondern damit du endlich Klarheit hast." },
           { when: { q: "q8", is: 0 }, icon: "clock", title: "Es wird eher mehr", text: "Dass die Beschwerden zunehmen, ist ein guter Grund, jetzt hinzuschauen, statt weiter abzuwarten." },
+          { when: { q: "q17", is: 0 }, icon: "clipboard", title: "Werte normal, Beschwerden trotzdem da?", text: "Deine Schilddrüse liefert vor allem T4, eine Speicherform. Wirksam wird erst das daraus umgewandelte T3. Hakt es bei der Umwandlung, können Beschwerden bleiben, obwohl die üblichen Werte gut aussehen. Es kann sich deshalb lohnen, neben TSH auch fT3 und fT4 mitbestimmen zu lassen." },
         ],
         advice: [
           { icon: "calendar", title: "Beobachte die nächsten Wochen", text: "Ein kurzes Beschwerde-Tagebuch hilft, Muster zu erkennen." },

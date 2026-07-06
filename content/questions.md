@@ -33,7 +33,7 @@ Ein gerader Weg, **keine** Verzweigung. F2 verzweigt nicht (steuert nur Wording 
 ## Block C · Verlauf & Belastung (übersprungen ohne Symptome)
 
 **F7 (`q7`, single, Scoring + Dringlichkeit)** — „Seit wann ungefähr?" — < 3 Mon · 3–12 Mon (+1) · > 1 Jahr (+2) · nicht sicher
-**F8 (`q8`, single, Scoring leicht)** — „Wie entwickeln sie sich?" — werden mehr (+1) · gleich · weniger · schwankend
+**F8 (`q8`, single, Scoring leicht)** — „Wie entwickeln sich die Symptome über die Zeit?" *(umformuliert, Leo/Adrian 2026-07-06: ohne Vorfrage lesbar)* — werden mehr (+1) · gleich · weniger · schwankend
 **F9 (`q9`, single, Personalisierung)** — „Wie stark schränken sie dich im Alltag ein?" — kaum · etwas · deutlich · massiv  · **[bestätigen: Fragetext rekonstruiert]**
 
 ## Block D · Erfahrung (übersprungen ohne Symptome; nur Personalisierung)
@@ -56,7 +56,7 @@ Ein gerader Weg, **keine** Verzweigung. F2 verzweigt nicht (steuert nur Wording 
 ## Block G · Werte & Selbstmessung
 
 **F17 (`q17`, single, Action-Point + Band-Override)** — „In den letzten 12 Monaten Schilddrüsenwerte überprüft?" — ja, unauffällig · **ja, auffällig** *(neu, Leo 2026-07-03 → Band-Override A, s. outcomes §3)* · ja, kenne Werte nicht · nein, noch nie
-**F18 (`q18`, number, weicher Zusatz-Hinweis)** — „Kennst du deine Körpertemperatur morgens nach dem Aufwachen?" — Zahl °C (34–42, 1 Nachkommastelle, Komma/Punkt) **oder** „weiß ich nicht".
+**F18 (`q18`, number, weicher Zusatz-Hinweis)** — „Kennst du deine morgendliche Körpertemperatur, direkt nach dem Aufwachen gemessen?" *(umformuliert 2026-07-06)* — Zahl °C (34–42, 1 Nachkommastelle, Komma/Punkt) **oder** „weiß ich nicht".
 - Bänder: `band:0` < 36,8 °C (niedrig, +1) · `band:1` ≥ 36,8 (normal/hoch, 0)
 
 ## Wissens-Einschübe (Info-Cards, kein Produkt) — §3 · PLATZIERT (2026-07-01)
@@ -66,6 +66,7 @@ Ganzseitige Info-Cards (`type:"education", variant:"info"`, Grafik oben + Text).
 - **nach F12** (`eduHormone`, nur weiblich/keine Angabe): „Hormone und Schilddrüse sprechen dieselbe Sprache."
 - **nach F15** (`eduHashimoto`): „Die häufigste Ursache heißt Hashimoto." *(nach F15 statt F14 → Abstand zur Hormon-Card)*
 - **nach F17** (`eduTsh`): „Ein ‚normaler' TSH ist nicht das ganze Bild."
+- **nach F18** (`eduUmwandlung`, immer): „T4 ist nur der Vorrat, T3 macht die Arbeit." *(neu, Leo 2026-07-06 — Umwandlungsstörung wird sonst nirgends erklärt; + Insight auf Ergebnisseite bei q17 = unauffällig)*
 
 ## Inline-Frage-Erklärung (`info`) — NEU 2026-07-01
 Optionales Feld `info` je Frage → dezenter, ausklappbarer Hinweis „ⓘ Was ist gemeint?" unter
