@@ -107,8 +107,30 @@ Ergebnistexte mit Bedingungs-Builder) + Live-Vorschau + Export `content.json` + 
 
 ## Offene technische Punkte (nicht blockierend)
 - ✅ **E-Mail-Backend (Opt-in)**: Klaviyo-Subscribe angebunden (s. Stand 2026-07-03).
-- ⬜ **Ergebnis-Mail** (später): Klaviyo-Event „Quiz abgeschlossen" + Flow (klickt Leo im
-  Klaviyo-UI) + E-Mail-Template (baut Claude per API); Button auf Ergebnisseite reaktivieren.
+- ⬜ **Ergebnis-Mail** (Audit 2026-07-06, Ultracode-Workflow, alle Befunde gegengeprüft):
+  Quiz-Seite ist fertig (E-Mail-Screen ✅, Subscribe an Liste `UEPkJi` ✅, Properties
+  `quiz_band`/`quiz_produkt`/`quiz_autoimmun` gehen mit ✅ — vom offiziellen API-Schema
+  bestätigt, auch bei Double-Opt-in). Fehlt nur Klaviyo-Seite:
+  1. DOI-Bestätigungsmail branden (Liste → Settings → Consent),
+  2. **ein** Template mit Conditional Blocks (`person|lookup:'quiz_band' = 'A'` etc. —
+     3 Band-Blöcke + Autoimmun-Block + Produktblöcke; Aufwand ~1–2 h),
+  3. Flow mit Trigger „Added to list" (feuert bei DOI-Listen erst NACH Bestätigung —
+     Properties sind dann am Profil), 4. End-to-End-Test.
+  Produktbilder dafür in Klaviyo-Bildbibliothek hochladen (oder Live-URL nutzen).
+- ⬜ **[BLOCKER · DSGVO] Datenschutz-Link fehlt im ganzen Quiz** (Audit 2026-07-06):
+  E-Mail-Feld erhebt Marketing-Einwilligung ohne Verweis auf Datenschutzerklärung
+  (Art. 13 DSGVO). Fix: Satz + Link bei der Opt-in-Checkbox → **URL von Leo nötig**.
+- ⬜ **[BLOCKER · HWG] Mail-Betreffzeilen fehlen** — nicht in `content/*.md`, dürfen nicht
+  erfunden werden → Vorschläge von Claude, Freigabe durch Leo/Compliance.
+- ⬜ **Mail-Texte**: aus `results-copy.md` kürzen (validation + mech + 1–2 advice +
+  Autoimmun-Block + Produktblock + legalDisclaimer) — keine neuen Aussagen; Freigabe Leo.
+- ⬜ **UX-Edge-Case E-Mail-Screen**: Opt-in-Häkchen gesetzt + Feld leer → verpufft ohne
+  Hinweis. Kleinen Hinweistext ergänzen.
+- ⬜ **Klaviyo-API-Revision anheben**: `app.js` pinnt `2024-10-15` — seit 10/2025
+  deprecated, **Retirement 15.10.2026** → auf `2026-04-15` (o. neuer) umstellen, sonst
+  fällt das Opt-in ab Oktober still aus (fire-and-forget, nur console.warn).
+- ⬜ **Opt-in-Label**: DOI-Hinweis ergänzen („…du bekommst gleich eine Bestätigungs-Mail")
+  — sonst wundern sich Leute, warum nichts kommt.
 - ✅ **Produktlinks** gegen den Shop verifiziert (2026-07-03, alle 200): 3 Slugs korrigiert
   (`der-magenfreund`, `das-heldenduo-30-tage-vorrat`, `essentielle-aminosauren`).
 - 🟡 **Produkt-Key-Visuals** (Stand 2026-07-01): echte PDP-Visuals eingebunden als `.webp`
