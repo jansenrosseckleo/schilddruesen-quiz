@@ -414,6 +414,23 @@
     return bar;
   }
 
+  /* ---------------- TRACKING (GTM dataLayer + Meta Pixel) ----------------
+     Fire-and-forget: Fehler oder blockierte Tracker beeinflussen das Quiz nie.
+     GTM (GTM-WQBJJR64) bekommt Custom Events über window.dataLayer,
+     das Meta Pixel gespiegelte Events (Lead = Standard-Event für Ads). */
+  function track(event, params) {
+    try {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push(Object.assign({ event: event }, params || {}));
+    } catch (e) { /* Tracking nie blockierend */ }
+    try {
+      if (typeof window.fbq !== "function") return;
+      if (event === "quiz_start") window.fbq("trackCustom", "QuizStart");
+      else if (event === "quiz_complete") window.fbq("trackCustom", "QuizComplete", params || {});
+      else if (event === "quiz_lead") window.fbq("track", "Lead");
+    } catch (e) { /* Tracking nie blockierend */ }
+  }
+
   /* ---------------- INTRO ---------------- */
   function renderIntro() {
     const t = C.intro;
@@ -456,7 +473,7 @@
           </div>
         </div>`));
     }
-    screen.querySelector("#start").addEventListener("click", () => go(1));
+    screen.querySelector("#start").addEventListener("click", () => { track("quiz_start"); go(1); });
     return screen;
   }
 
@@ -874,7 +891,7 @@
         return;
       }
       state.email = v;
-      if (v && state.optIn) subscribeKlaviyo(v);   // fire-and-forget, blockiert nie
+      if (v && state.optIn) { subscribeKlaviyo(v); track("quiz_lead"); }   // fire-and-forget, blockiert nie
       go(1);
     });
     input.addEventListener("input", () => { field.classList.remove("textfield--error"); hint.hidden = true; });
@@ -953,6 +970,11 @@
      ================================================================ */
   function renderResult() {
     const ev = evaluate();
+    // Abschluss-Event nur einmal je Durchlauf (Result kann mehrfach rendern)
+    if (!state.completeTracked) {
+      state.completeTracked = true;
+      track("quiz_complete", { quiz_band: ev.band || "", quiz_produkt: ev.productId || "" });
+    }
     if (ev.configured && ev.primary) return renderOutcomeResult(ev);
     return renderTodoResult(ev);
   }
@@ -1175,7 +1197,7 @@
     const restart = el(`<button class="link-btn link-btn--muted" style="align-self:center;"></button>`);
     restart.textContent = R.restart;
     restart.addEventListener("click", () => {
-      state.answers = {}; state.email = ""; state.optIn = false;
+      state.answers = {}; state.email = ""; state.optIn = false; state.completeTracked = false;
       goTo(0);
     });
     cta.appendChild(restart);
