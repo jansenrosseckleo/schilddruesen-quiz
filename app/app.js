@@ -423,10 +423,15 @@
   const ATTR_KEYS = ["inf", "utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"];
   const ATTR = (() => {
     let attr = {};
-    try { attr = JSON.parse(sessionStorage.getItem("quizAttribution") || "{}") || {}; } catch (e) {}
+    try {
+      const stored = JSON.parse(sessionStorage.getItem("quizAttribution") || "{}");
+      if (stored && typeof stored === "object" && !Array.isArray(stored)) attr = stored;
+    } catch (e) { /* Attribution nie blockierend */ }
     try {
       const m = document.cookie.match(/(?:^|;\s*)mv_inf=([^;]+)/);
       if (m) attr.inf = decodeURIComponent(m[1]);
+    } catch (e) { /* defekter Cookie darf die URL-Auslese nicht verhindern */ }
+    try {
       const p = new URLSearchParams(location.search);
       ATTR_KEYS.forEach((k) => { const v = p.get(k); if (v) attr[k] = v; });
     } catch (e) { /* Attribution nie blockierend */ }
