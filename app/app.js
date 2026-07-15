@@ -414,6 +414,46 @@
     return bar;
   }
 
+  /* ---------------- ATTRIBUTION (Influencer / UTM) ----------------
+     Woher kam die Besucherin? Quelle in dieser Priorität:
+     URL-Parameter (?inf=<Rabattcode>&utm_…, vom GTM-Link-Decorator auf
+     miavola.de angehängt) > Cookie mv_inf (von GTM auf .miavola.de
+     gesetzt, auf lp.miavola.de lesbar) > sessionStorage (Reload-sicher).
+     Fire-and-forget: Fehler dürfen das Quiz nie beeinflussen. */
+  const ATTR_KEYS = ["inf", "utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"];
+  const ATTR = (() => {
+    let attr = {};
+    try { attr = JSON.parse(sessionStorage.getItem("quizAttribution") || "{}") || {}; } catch (e) {}
+    try {
+      const p = new URLSearchParams(location.search);
+      ATTR_KEYS.forEach((k) => { const v = p.get(k); if (v) attr[k] = v; });
+      if (!attr.inf) {
+        const m = document.cookie.match(/(?:^|;\s*)mv_inf=([^;]+)/);
+        if (m) attr.inf = decodeURIComponent(m[1]);
+      }
+    } catch (e) { /* Attribution nie blockierend */ }
+    try {
+      if (Object.keys(attr).length) sessionStorage.setItem("quizAttribution", JSON.stringify(attr));
+    } catch (e) { /* z. B. Private Mode → still degradieren */ }
+    return attr;
+  })();
+
+  // Attributions-Felder für dataLayer/Klaviyo. Name-Lookup läuft zur Laufzeit
+  // (C lädt async) und case-insensitiv — Shopify-Rabattcodes sind nicht case-sensitiv.
+  function attributionParams() {
+    const out = {};
+    try {
+      if (ATTR.inf) {
+        out.influencer_id = ATTR.inf;
+        const map = (C && C.meta && C.meta.influencers) || {};
+        const hit = Object.keys(map).find((k) => k.toLowerCase() === ATTR.inf.toLowerCase());
+        if (hit) out.influencer_name = map[hit];
+      }
+      ["utm_source", "utm_medium", "utm_campaign"].forEach((k) => { if (ATTR[k]) out[k] = ATTR[k]; });
+    } catch (e) { /* Attribution nie blockierend */ }
+    return out;
+  }
+
   /* ---------------- TRACKING (GTM dataLayer + Meta Pixel) ----------------
      Fire-and-forget: Fehler oder blockierte Tracker beeinflussen das Quiz nie.
      GTM (GTM-WQBJJR64) bekommt Custom Events über window.dataLayer,
@@ -421,7 +461,7 @@
   function track(event, params) {
     try {
       window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push(Object.assign({ event: event }, params || {}));
+      window.dataLayer.push(Object.assign({ event: event }, attributionParams(), params || {}));
     } catch (e) { /* Tracking nie blockierend */ }
     try {
       if (typeof window.fbq !== "function") return;
@@ -915,6 +955,7 @@
         quiz_autoimmun: !!(r.flags && r.flags.autoimmune),
       };
     } catch (e) { /* Ergebnis-Properties sind optional */ }
+    try { Object.assign(props, attributionParams()); } catch (e) { /* optional */ }
     const body = {
       data: {
         type: "subscription",
