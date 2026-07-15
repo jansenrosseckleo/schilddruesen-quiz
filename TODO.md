@@ -150,3 +150,14 @@ Ergebnistexte mit Bedingungs-Builder) + Live-Vorschau + Export `content.json` + 
 - [ ] **F3–F6** Fragesätze (aus Themen-Labels ausformuliert) — Wording ok?
 - [ ] **§9.4** F13 auch bei Kinderwunsch (F12=2) zeigen?
 - [ ] Ergebnis-Titel je Band („Deutliche/Mögliche/Wenig Hinweise") bestätigen.
+
+## Influencer-Attribution (Stand 2026-07-15) — Code live, GTM-Setup offen
+- ✅ Quiz trackt Attribution: `?inf=<Rabattcode>`/Cookie `mv_inf` → `influencer_id`/`influencer_name`
+  + `utm_*` an allen GTM-Events (`quiz_start/complete/lead`) und als Klaviyo-Profil-Properties.
+  Mapping: `content.json → meta.influencers`. Deployed v=28 (beide Ziele). Spec/Plan: `docs/superpowers/…-influencer-attribution*`.
+- [ ] **Leo: GTM-Tag anlegen + veröffentlichen** (Anleitung Teil 1: `docs/gtm-influencer-attribution.md`).
+- [ ] **Leo: GA4-Variablen + Custom Dimensions** (Anleitung Teil 2).
+- [ ] **Leo: vollständige Liste Rabattcode ↔ Influencer-Name** liefern → `meta.influencers` erweitern + Deploy.
+- [ ] **Leo/Linkster: `NO-CODE`-Publisher auf persönliche Codes umstellen** (Support-Vorlage in Teil 3) —
+  bis dahin sind diese Influencer nicht unterscheidbar.
+- [ ] **E2E-Test nach GTM-Publish** (Teil 4: echter Link → Cookie → Quiz → GA4 DebugView → Klaviyo-Profil).
