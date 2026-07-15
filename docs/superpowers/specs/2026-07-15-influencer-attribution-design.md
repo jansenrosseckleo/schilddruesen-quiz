@@ -51,35 +51,43 @@ Bis dahin werden sie gesammelt als `NO-CODE` → „Linkster (ohne persönlichen
   Advertiser-seitig; die Influencer-Links selbst bleiben unverändert).
 - Neue Influencer = neuer Eintrag in der Mapping-Liste (siehe Baustein C, `meta.influencers`).
 
-### Baustein B — GTM-Tag „Quiz Attribution — Link Decorator" (miavola.de)
+### Baustein B — GTM-Tag „Quiz Attribution" (miavola.de) — Cookie + Link-Dekoration
 
-Custom-HTML-Tag im bestehenden Container `GTM-WQBJJR64`, Trigger **DOM Ready, alle Seiten**;
-das Skript selbst guarded auf `location.hostname`, sodass es nur auf der Shopify-Domain
+Von Leo gewählte Variante: **First-Party-Cookie auf `.miavola.de`** als primärer,
+verlässlichster Transport (lp.miavola.de kann es direkt lesen, gleiche Root-Domain).
+Ausgeliefert wird das Skript als Custom-HTML-Tag im bestehenden Container
+`GTM-WQBJJR64` (kein Shopify-/Theme-Eingriff), Trigger **DOM Ready, alle Seiten**;
+das Skript guarded auf `location.hostname`, sodass es nur auf der Shopify-Domain
 aktiv wird (der Container läuft auch auf dem Quiz).
 
 Verhalten:
 
 1. Liest `discount_code` aus `document.cookie` sowie `utm_source/medium/campaign/content/term`
    aus `location.search`.
-2. Persistiert gefundene Werte in `sessionStorage` (`mv_quiz_attr`) — die UTM-Parameter
-   überleben so auch Zwischen-Navigation auf miavola.de (das Cookie überlebt ohnehin).
-3. Hängt die Werte an alle Links zu `lp.miavola.de/quiz` an:
-   `?inf=<discount_code>&utm_source=…&…` — sowohl per DOM-Dekoration (DOM Ready) als
-   auch per Klick-Listener in der Capture-Phase (fängt spät gerenderte Buttons).
-4. Fehlertolerant: try/catch um alles; ohne Attributionsdaten bleibt der Link unverändert.
+2. **Setzt das Cookie `mv_inf=<code>` auf `Domain=.miavola.de`** (Max-Age 90 Tage,
+   SameSite=Lax, Secure) — überlebt Navigation, Tab-Schließen und spätere Wiederkehr.
+   UTM-Parameter zusätzlich in `sessionStorage` (`mv_quiz_attr`).
+3. Hängt die Werte **zusätzlich** an alle Links zu `lp.miavola.de/quiz` an
+   (`?inf=<code>&utm_…`) — per DOM-Dekoration und Klick-Listener in der Capture-Phase.
+   Doppelter Boden, korrekte GA4-Session-Attribution auf dem Quiz, und funktioniert
+   auch für das GitHub-Pages-Ziel (fremde Domain, Cookie dort nicht lesbar).
+4. Fehlertolerant: try/catch um alles; ohne Attributionsdaten passiert nichts.
 
-Kein eigenes Cookie, kein Shopify-/Theme-Eingriff. Einschränkung: Blockiert das
-Consent-Banner GTM bis zur Einwilligung, greift die Dekoration erst nach Consent —
-wird beim E2E-Test geprüft und im Ergebnis dokumentiert.
+Einschränkungen: Blockiert das Consent-Banner GTM bis zur Einwilligung, greift das
+Tag erst nach Consent — wird beim E2E-Test geprüft. Das `mv_inf`-Cookie ist ein
+First-Party-Attributions-Cookie und läuft über GTM damit innerhalb des bestehenden
+Consent-Setups.
 
 **Deliverable:** fertiger Tag-Code + Klick-für-Klick-GTM-Anleitung in
 `docs/gtm-influencer-attribution.md`.
 
 ### Baustein C — Quiz (app/app.js + content.json)
 
-1. **Erfassen (boot):** URL-Parameter `inf`, `utm_source`, `utm_medium`, `utm_campaign`,
-   `utm_content`, `utm_term` lesen. Vorhandene URL-Werte überschreiben gespeicherte
-   (Last-Touch); sonst Fallback auf `sessionStorage.quizAttribution` (überlebt Reloads).
+1. **Erfassen (boot):** Priorität `URL-Parameter > mv_inf-Cookie > sessionStorage`.
+   URL-Parameter `inf`, `utm_source`, `utm_medium`, `utm_campaign`, `utm_content`,
+   `utm_term` lesen (Last-Touch, überschreiben Gespeichertes); fehlt `inf` in der URL,
+   Fallback auf das Cookie `mv_inf` (auf lp.miavola.de lesbar, auf GitHub Pages nicht);
+   Ergebnis in `sessionStorage.quizAttribution` persistieren (überlebt Reloads).
    Kein Wert → keine Attribution (Quiz verhält sich exakt wie heute).
 2. **Mapping:** `content.json → meta.influencers` = `{ "<code>": "<name>", … }`
    (case-insensitiver Lookup, da Shopify-Codes nicht case-sensitiv sind).
