@@ -425,12 +425,10 @@
     let attr = {};
     try { attr = JSON.parse(sessionStorage.getItem("quizAttribution") || "{}") || {}; } catch (e) {}
     try {
+      const m = document.cookie.match(/(?:^|;\s*)mv_inf=([^;]+)/);
+      if (m) attr.inf = decodeURIComponent(m[1]);
       const p = new URLSearchParams(location.search);
       ATTR_KEYS.forEach((k) => { const v = p.get(k); if (v) attr[k] = v; });
-      if (!attr.inf) {
-        const m = document.cookie.match(/(?:^|;\s*)mv_inf=([^;]+)/);
-        if (m) attr.inf = decodeURIComponent(m[1]);
-      }
     } catch (e) { /* Attribution nie blockierend */ }
     try {
       if (Object.keys(attr).length) sessionStorage.setItem("quizAttribution", JSON.stringify(attr));
