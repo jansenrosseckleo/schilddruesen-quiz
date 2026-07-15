@@ -132,3 +132,24 @@ Die Zuordnung lebt in `app/content.json → meta.influencers`:
 **Bekannte Einschränkung Consent:** Feuert GTM erst nach Einwilligung, greift
 die Attribution nur für Besucherinnen, die dem Banner zustimmen — identisch zum
 restlichen Tracking (GA4/Pixel), also konsistent.
+
+---
+
+## ⚠️ Update 2026-07-15: Umsetzung abweichend von Teil 1 — Shopify Custom Liquid statt GTM
+
+Teil 1 (GTM-Tag) wurde NICHT umgesetzt, weil Leo keinen Zugriff auf den Container
+GTM-WQBJJR64 hat (verwaltet vermutlich von tristan@tristanhahn.com; Leos Zugriff
+beschränkt sich auf GTM-PGCZS7J6, der auf der Storefront nicht im Seiten-HTML läuft).
+
+**Stattdessen live:** Eine verschlankte Variante des Skripts (ohne Hostname-Guard und
+UTM-Zwischenspeicher) sitzt als **Custom-Liquid-Abschnitt** im Shopify-Customizer auf der
+Vorlage `quiz-landing` (Seite `/pages/schilddruesencheck`, Theme „bd."). Funktion identisch:
+`discount_code`-Cookie lesen → `mv_inf`-Cookie auf `.miavola.de` (90 Tage) → Quiz-Links
+mit `?inf=<code>` dekorieren.
+
+**E2E-verifiziert am 2026-07-15:** Linkster-Link → `?inf=Chariklia10` in der Quiz-URL →
+Klaviyo-Profil mit `influencer_id: Chariklia10`. ✅
+
+Weiterhin gültig: Teil 2 (GA4 — braucht Zugriff auf GTM-WQBJJR64, z. B. über Tristan),
+Teil 3 (Mapping-Pflege + NO-CODE-Problem), Teil 4 (Testablauf). Wird das Theme gewechselt
+oder die Seite neu aufgebaut, muss der Custom-Liquid-Abschnitt mit umziehen.
